@@ -105,26 +105,16 @@
 </div>
 
 <script>
+
+  function updateResponsePanel()
+  {
+    var x = document.getElementById("checkoutError");
+    x.style.display = "block";
+  }
+
   function completeCheckout() {
 
-      var x = document.getElementById("checkoutError");
-
-      for (var i = 1; i <= 5; i++) {
-        var tick = function(i) {
-          return function() {
-            console.log(i);
-          }
-        };
-        setTimeout(tick(i), 500 * i);
-      }
-
-      x.style.display = "block";
-
-      //if (x.style.display == "none") {
-      //    x.style.display = "block";
-      //} else {
-      //    x.style.display = "none";
-      //}
+    setTimeout(updateResponsePanel, 3000);
 
     // Requires jQuery
     var eventObject = '{ ' + 
