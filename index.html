@@ -108,11 +108,23 @@
   function completeCheckout() {
 
       var x = document.getElementById("checkoutError");
-      if (x.style.display == "none") {
-          x.style.display = "block";
-      } else {
-          x.style.display = "none";
+
+      for (var i = 1; i <= 5; i++) {
+        var tick = function(i) {
+          return function() {
+            console.log(i);
+          }
+        };
+        setTimeout(tick(i), 500 * i);
       }
+
+      x.style.display = "block";
+
+      //if (x.style.display == "none") {
+      //    x.style.display = "block";
+      //} else {
+      //    x.style.display = "none";
+      //}
 
     // Requires jQuery
     var eventObject = '{ ' + 
