@@ -183,15 +183,22 @@
     //  $("#responseText").text(JSON.stringify(response));
     //});
 
+    //$.ajax({
+    //  type: "POST",
+    //  url: "https://events.pagerduty.com/generic/2010-04-15/create_event.json",
+    //  data: eventObject,
+    //  success: null,
+    //  dataType: "json"
+    //});
+
     $.ajax({
-      type: "POST",
+      method: "POST",
       url: "https://events.pagerduty.com/generic/2010-04-15/create_event.json",
-      data: eventObject,
-      success: null,
-      dataType: "json"
+      data: eventObject
+    })
+      .done(function( msg ) {
+        alert( "Data Saved: " + msg );
     });
-
-
 
 
 
