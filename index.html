@@ -168,21 +168,28 @@
   console.log(eventObject)
 
 
-    var settings = {
-      "url": "https://events.pagerduty.com/generic/2010-04-15/create_event.json",
-      "method": "POST",
-      //"data":  eventObject,
-      "headers": {
-        "Accept": "application/vnd.pagerduty+json;version=2",
-        "Authorization": "Token token=V_uHsBDv3G2NxyimTYVg",
-      }
-    };
+    //var settings = {
+    //  "url": "https://events.pagerduty.com/generic/2010-04-15/create_event.json",
+    //  "method": "POST",
+    //  "data":  eventObject,
+    //  "headers": {
+    //    "Accept": "application/vnd.pagerduty+json;version=2",
+    //    "Authorization": "Token token=V_uHsBDv3G2NxyimTYVg",
+    //  }
+    //};
 
-    $.ajax(settings).done(function (response) {
-      console.log(response);
-      $("#responseText").text(JSON.stringify(response));
+    //$.ajax(settings).done(function (response) {
+    //  console.log(response);
+    //  $("#responseText").text(JSON.stringify(response));
+    //});
 
-});
+    $.ajax({
+      type: "POST",
+      url: "https://events.pagerduty.com/generic/2010-04-15/create_event.json",
+      data: eventObject,
+      success: null,
+      dataType: "json"
+    });
 
 
 
