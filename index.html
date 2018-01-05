@@ -116,6 +116,10 @@
 
     setTimeout(updateResponsePanel, 3000);
 
+    var node = document.getElementById('cart-total'),
+
+    orderValue = node.innerHTML
+
     // Requires jQuery
     var eventObject = '{ ' + 
         ' "client_url": "https://rpm.newrelic.com/accounts/1218847/incidents/17615637", ' +
@@ -155,7 +159,8 @@
     ' } ' +
     ' ], ' +
   ' "details": { ' +
-  ' "body": "Higher than normal Response time on Registration compared to standard baseline and ApDex", ' +
+    ' "body": "Higher than normal Response time on Registration compared to standard baseline" , ' +
+    ' "Order Value": ' + orderValue + ', ' +
     ' "priority": "normal", ' +
     ' "event_type": "metric_alert_monitor", ' +
     ' "title": "[Critical] Below base line response time detected on the Registration page", ' +
