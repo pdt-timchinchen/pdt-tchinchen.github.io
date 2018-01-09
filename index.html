@@ -26,6 +26,12 @@
 
   <h1>UpdateMyGear.com Checkout</h1>
 
+<br/>
+Name: <input type="text" name="customerName" id="customer-name" value="Tim Chinchen"><br>
+
+<br/>
+
+
 <div class="shopping-cart">
 
   <div class="column-labels">
@@ -128,9 +134,12 @@
     setTimeout(updateResponsePanel, 3000);
 
     var node = document.getElementById('cart-total'),
-
     orderValue = node.innerHTML
 
+    node = document.getElementById('customer-name'),
+    customerName = node.value
+
+    alert (customerName);
 
     // Requires jQuery
     var eventObject = '{ ' + 
@@ -171,8 +180,9 @@
     ' } ' +
     ' ], ' +
   ' "details": { ' +
-    ' "body": "Higher than normal Response time on Registration compared to standard baseline" , ' +
+    ' "body": "Higher than normal Response time on Registration compared to standard baseline" , ' +   
     ' "Order Value": ' + orderValue + ', ' +
+    ' "Customer": ' + customerName + ', ' +
     ' "priority": "normal", ' +
     ' "event_type": "metric_alert_monitor", ' +
     ' "title": "[Critical] Below base line response time detected on the Registration page", ' +
