@@ -182,19 +182,21 @@ Name: <input type="text" name="customerName" id="customer-name" value="Tim Chinc
   ' "details": { ' +
     ' "body": "Higher than normal Response time on Registration compared to standard baseline" , ' +   
     ' "Order Value": ' + orderValue + ', ' +
-    ' "Customer": ' + customerName + ', ' +
     ' "priority": "normal", ' +
     ' "event_type": "metric_alert_monitor", ' +
     ' "title": "[Critical] Below base line response time detected on the Registration page", ' +
     ' "event_id": "8125363154448140714", ' +
     ' "org": "DiaglogiDevOp", ' +
     ' "tags": "aws-prod, base, env:prod, host:farnsworth, monitor, pd_az:us-west-2c, production, xdb, xtradb", ' +
-    ' "user": null ' +
+    ' "user": "'+ customerName + '" ' +
     ' }, ' +
   ' "description": "[Critical] Below base line response time detected on the Registration page" ' +
   '}' 
 
   console.log(eventObject)
+
+
+  //    ' "Customer Name": ' + customerName + ', ' +
 
 
     //var settings = {
