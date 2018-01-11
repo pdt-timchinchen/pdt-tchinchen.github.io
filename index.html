@@ -102,7 +102,7 @@ Name: <input type="text" name="customerName" id="customer-name" value="Tim Chinc
     </div>
   </div>
       
-      <button class="checkout" onclick="completeCheckout()">Checkout</button>
+      <button id="checkoutButton" class="checkout" onclick="completeCheckout()">Checkout</button>
   </div>
 
 
@@ -141,9 +141,17 @@ Name: <input type="text" name="customerName" id="customer-name" value="Tim Chinc
   {
     var x = document.getElementById("checkoutError");
     x.style.display = "block";
+
+    document.getElementById("checkoutButton").innerHTML = "Checkout";
+
   }
 
   function completeCheckout() {
+
+    var x = document.getElementById("checkoutError");
+    x.style.display = "none";
+
+    document.getElementById("checkoutButton").innerHTML = "Working";
 
     setTimeout(updateResponsePanel, 4000);
 
