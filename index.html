@@ -122,6 +122,15 @@ Name: <input type="text" name="customerName" id="customer-name" value="Tim Chinc
       s4() + '-' + s4() + s4() + s4();
   }
 
+  function getParameterByName(name, url) {
+    if (!url) url = window.location.href;
+    name = name.replace(/[\[\]]/g, "\\$&");
+    var regex = new RegExp("[?&]" + name + "(=([^&#]*)|&|#|$)"),
+        results = regex.exec(url);
+    if (!results) return null;
+    if (!results[2]) return '';
+    return decodeURIComponent(results[2].replace(/\+/g, " "));
+  }
 
   function updateResponsePanel()
   {
@@ -133,27 +142,34 @@ Name: <input type="text" name="customerName" id="customer-name" value="Tim Chinc
 
     setTimeout(updateResponsePanel, 3000);
 
+    var serviceKey = getParameterByName('service_key');
+    if (!serviceKey) serviceKey = "f12ef11d856640348ee5ec412a1ad087";
+
     var node = document.getElementById('cart-total'),
     orderValue = node.innerHTML
 
     node = document.getElementById('customer-name'),
     customerName = node.value
 
+    //Deprecated guid()
+    var date = new Date("1/1/2001");  
+    dedupKey = customerName + date.getMinutes()
+
     //alert (customerName);
 
     // Requires jQuery
     var eventObject = '{ ' + 
         ' "client_url": "https://rpm.newrelic.com/accounts/1218847/incidents/17615637", ' +
-        ' "service_key"\: "f12ef11d856640348ee5ec412a1ad087", ' +
-        ' "incident_key"\: "' + guid() + '", ' +
+        ' "service_key"\: "' + serviceKey + '", ' +
+        ' "incident_key"\: "' + dedupKey + '", ' +
         ' "client"\: "NewRelic", ' +
         ' "vendor"\: "NewRelic", ' +
         ' "event_type"\: "trigger", ' +
         ' "contexts"\: [ ' +
         ' {  ' +
-            ' "src": "https://s18.postimg.org/h2zqertrd/NRScreen.png", ' +
+            ' "src": "https://s18.postimg.org/3yl0ychi1/NRScreen.png", ' +
             ' "alt": "Snapshot of metric", ' +
-            ' "href": "https://s18.postimg.org/h2zqertrd/NRScreen.png", ' +
+            ' "href": "https://s18.postimg.org/3yl0ychi1/NRScreen.png", ' +
             ' "type": "image" ' +
         ' }, ' +
     
@@ -180,17 +196,15 @@ Name: <input type="text" name="customerName" id="customer-name" value="Tim Chinc
     ' } ' +
     ' ], ' +
   ' "details": { ' +
-    ' "body": "Higher than normal Response time on Registration compared to standard baseline" , ' +   
+    ' "body": "[Critical] Increased response time detected on the Checkout page, High Error rates <br/> Object Reference Not Set and ADO.NET Connection pool exceeded errors detected" , ' +   
     ' "Order Value": ' + orderValue + ', ' +
-    ' "priority": "normal", ' +
-    ' "event_type": "metric_alert_monitor", ' +
-    ' "title": "[Critical] Below base line response time detected on the Registration page", ' +
+    ' "priority": "High", ' +
+    ' "title": "[Critical] Increased response time detected on the Checkout page, High Error rates", ' +
     ' "event_id": "8125363154448140714", ' +
-    ' "org": "DiaglogiDevOp", ' +
     ' "tags": "aws-prod, base, env:prod, host:farnsworth, monitor, pd_az:us-west-2c, production, xdb, xtradb", ' +
-    ' "user": "'+ customerName + '" ' +
+    ' "Customer": "'+ customerName + '" ' +
     ' }, ' +
-  ' "description": "[Critical] Below base line response time detected on the Registration page" ' +
+  ' "description": "[Critical] Increased response time detected on the Checkout page, High Error rates" ' +
   '}' 
 
   console.log(eventObject)
