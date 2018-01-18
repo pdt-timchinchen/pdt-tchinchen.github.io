@@ -33,7 +33,7 @@
   <br/>
 Name: <input type="text" name="customerName" id="customer-name" value="Jim Korchak"> &nbsp;&nbsp;
 Account: 
-<select>
+<select id="accountOption">
   <option value="Current">Current ****-4321</option>
   <option value="Savings">Everyday Saver ****-1234</option>
 </select>
@@ -191,14 +191,16 @@ Account:
     dedupKey = customerName + date.getMinutes()
 
     //alert (customerName);
+    var e = document.getElementById ("accountOption");
+    var accountSelected = e.options [e.selectedIndex] .value;
 
     // Requires jQuery
     var eventObject = '{ ' + 
-        ' "client_url": "https://rpm.newrelic.com/accounts/1218847/incidents/17615637", ' +
+        ' "client_url": "http://demo1.appdynamics.com/controller/#/location=AD_HOME_OVERVIEW&localLogin=true", ' +
         ' "service_key"\: "' + serviceKey + '", ' +
         ' "incident_key"\: "' + dedupKey + '", ' +
-        ' "client"\: "NewRelic", ' +
-        ' "vendor"\: "NewRelic", ' +
+        ' "client"\: "AppDynamics", ' +
+        ' "vendor"\: "AppDynamics", ' +
         ' "event_type"\: "trigger", ' +
         ' "contexts"\: [ ' +
         ' {  ' +
@@ -231,15 +233,16 @@ Account:
     ' } ' +
     ' ], ' +
   ' "details": { ' +
-    ' "body": "[Critical] Increased response time detected on the Checkout page, High Error rates <br/> Object Reference Not Set and ADO.NET Connection pool exceeded errors detected" , ' +   
-    ' "Order Value": ' + orderValue + ', ' +
+    ' "body": "[Critical] Increased response time detected on the Make Payment Business Transaction, High Error rates <br/> Object Reference Not Set and ADO.NET Connection pool exceeded errors detected" , ' +   
+    ' "Payment Value": ' + orderValue + ', ' +
     ' "priority": "High", ' +
-    ' "title": "[Critical] Increased response time detected on the Checkout page, High Error rates", ' +
+    ' "Account": "' + accountSelected + '", ' +
+    ' "title": "[Critical] Increased response time detected on the Make Payment Business Transaction, High Error rates", ' +
     ' "event_id": "8125363154448140714", ' +
-    ' "tags": "aws-prod, base, env:prod, host:farnsworth, monitor, pd_az:us-west-2c, production, xdb, xtradb", ' +
+    ' "tags": "aws-prod, base, env:prod, host:BARCLSFE17, monitor, pd_az:us-west-2c, production, IPSoft, AppD", ' +
     ' "Customer": "'+ customerName + '" ' +
     ' }, ' +
-  ' "description": "[Critical] Increased response time detected on the Checkout page, High Error rates" ' +
+  ' "description": "[Critical] Increased response time detected on the Make Payment Business Transaction, High Error rates" ' +
   '}' 
 
   console.log(eventObject)
