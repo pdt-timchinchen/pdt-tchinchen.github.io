@@ -1,0 +1,300 @@
+<!DOCTYPE html>
+<html lang="en" >
+
+<head>
+  <meta charset="UTF-8">
+  <title>Barclays - Payment Page</title>
+
+    <link rel='shortcut icon' type='image/x-icon' href='favicon.ico' />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/5.0.0/normalize.min.css">
+    <link rel="stylesheet" href="css/style.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+  
+</head>
+
+<style>
+  #checkoutError {
+      width: 100%;
+      padding: 50px 0;
+      text-align: center;
+      background-color: red;
+      margin-top: 20px;
+      display:none;
+  }
+  </style>
+
+<body>
+
+  <br/>  <br/>
+  <!-- 1544 × 296 -->
+  <img height="75" width="370" src="https://www.barclayscorporate.com/content/dam/corppublic/CorporateHiRes/Barclays_Logo/1544x296_Barclays_digital_logo.jpg">
+  <h1>Make a Payment</h1>
+  <br/>
+Name: <input type="text" name="customerName" id="customer-name" value="Jim Korchak"> &nbsp;&nbsp;
+Account: 
+<select>
+  <option value="Current">Current ****-4321</option>
+  <option value="Savings">Everyday Saver ****-1234</option>
+</select>
+
+<br/><br/>
+
+
+
+<div class="shopping-cart">
+
+  <div class="column-labels">
+    <label class="product-image">Image</label>
+    <label class="product-details">Product</label>
+    <label class="product-price">Currency</label>
+    <label class="product-quantity">Amount</label>
+    <label class="product-removal">Remove</label>
+    <label class="product-line-price">Total</label>
+  </div>
+
+  <div class="product">
+    <div class="product-image">
+      <img src="https://media.licdn.com/media/p/4/000/131/29e/0349e90.jpg" height="100" width="200">
+    </div>
+    <div class="product-details">
+      <div class="product-title">Payee Details</div>
+      <p class="product-description">
+        Account Holder Name: Ashok Vaswani<br/>
+        Sort Code: &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 20-00-00<br/>
+        Account Number: &nbsp;&nbsp;&nbsp;&nbsp; 21368192<br/>
+
+      </p>
+    </div>
+    <div class="product-price" display="none">1</div>
+    <div class="product-quantity" item-width="1000">
+      <input type="number" value="1000" min="1" >
+    </div>
+    <div class="product-removal">
+      <button class="remove-product">
+        Remove
+      </button>
+    </div>
+    <div class="product-line-price">1</div>
+  </div>
+
+  <!--
+  <div class="product">
+    <div class="product-image">
+      <img src="http://lofrev.net/wp-content/photos/2017/04/dollar_black_logo.png"  height="75" width="50">
+    </div>
+    <div class="product-details">
+      <div class="product-title">US Dollar ($)</div>
+      <p class="product-description">1 GBP =1.38007USD<br />
+          British Pound<br />
+          1 GBP = 1.38007 USD<br />
+          1 USD = 0.724599 GBP</p>
+    </div>
+    <div class="product-price">1.38</div>
+    <div class="product-quantity">
+      <input type="number" value="1" min="1">
+    </div>
+    <div class="product-removal">
+      <button class="remove-product">
+        Remove
+      </button>
+    </div>
+    <div class="product-line-price">1.38</div>
+  </div>
+-->
+
+  <div class="totals">
+    <div class="totals-item">
+      <label>Subtotal</label>
+      <div class="totals-value" id="cart-subtotal">1000.00</div>
+    </div>
+    
+    <div class="totals-item">
+      <label>Commission (0%)</label>
+      <div class="totals-value" id="cart-tax">0.0</div>
+    </div>
+    <div class="totals-item">
+      <label>Wire Charge (N/A)</label>
+      <div class="totals-value" id="cart-shipping">0.0</div>
+    </div>
+    <div class="totals-item totals-item-total">
+      <label>Grand Total</label>
+      <div class="totals-value" id="cart-total">1000</div>
+    </div>
+  </div>
+      
+      <button id="checkoutButton" class="checkout" onclick="completeCheckout()">Pay Now</button>
+  </div>
+
+
+<div id="checkoutError">
+  <b>Error in Payment</b> 
+  <br/>"Connection to data source updateOrderDB can not be established! 
+  <br/>Reason: Invalid operation. The connection is closed. - complete stack
+  <br/>at System.Data.SqlClient.SqlConnection.GetOpenConnection()
+  <br/>at System.Data.SqlClient.SqlConnection.get_Parser()
+  <br/>at System.Data.SqlClient.SqlConnection.Open()", Please try later
+</div>
+
+<script>
+
+  function guid() {
+    function s4() {
+      return Math.floor((1 + Math.random()) * 0x10000)
+        .toString(16)
+        .substring(1);
+    }
+    return s4() + s4() + '-' + s4() + '-' + s4() + '-' +
+      s4() + '-' + s4() + s4() + s4();
+  }
+
+  function getParameterByName(name, url) {
+    if (!url) url = window.location.href;
+    name = name.replace(/[\[\]]/g, "\\$&");
+    var regex = new RegExp("[?&]" + name + "(=([^&#]*)|&|#|$)"),
+        results = regex.exec(url);
+    if (!results) return null;
+    if (!results[2]) return '';
+    return decodeURIComponent(results[2].replace(/\+/g, " "));
+  }
+
+  function updateResponsePanel()
+  {
+    var x = document.getElementById("checkoutError");
+    x.style.display = "block";
+
+    document.getElementById("checkoutButton").innerHTML = "Pay Now";
+
+  }
+
+  function completeCheckout() {
+
+    var x = document.getElementById("checkoutError");
+    x.style.display = "none";
+
+    document.getElementById("checkoutButton").innerHTML = "Working";
+
+    setTimeout(updateResponsePanel, 4000);
+
+    var serviceKey = getParameterByName('service_key');
+    //  f12ef11d856640348ee5ec412a1ad087
+    if (!serviceKey) serviceKey = "925989251c59464094a68fbce6e76cee";
+
+    var node = document.getElementById('cart-total'),
+    orderValue = node.innerHTML
+
+    node = document.getElementById('customer-name'),
+    customerName = node.value
+
+    //Deprecated guid()
+    var date = new Date("1/1/2001");  
+    dedupKey = customerName + date.getMinutes()
+
+    //alert (customerName);
+
+    // Requires jQuery
+    var eventObject = '{ ' + 
+        ' "client_url": "https://rpm.newrelic.com/accounts/1218847/incidents/17615637", ' +
+        ' "service_key"\: "' + serviceKey + '", ' +
+        ' "incident_key"\: "' + dedupKey + '", ' +
+        ' "client"\: "NewRelic", ' +
+        ' "vendor"\: "NewRelic", ' +
+        ' "event_type"\: "trigger", ' +
+        ' "contexts"\: [ ' +
+        ' {  ' +
+            ' "src": "https://s18.postimg.org/3yl0ychi1/NRScreen.png", ' +
+            ' "alt": "Snapshot of metric", ' +
+            ' "href": "https://s18.postimg.org/3yl0ychi1/NRScreen.png", ' +
+            ' "type": "image" ' +
+        ' }, ' +
+    
+        ' { ' +   
+        ' "text": "Conference URL (Zoom)", ' +
+        ' "href": "https://pagerduty.zoom.us/j/5080555253", ' +
+        ' "type": "link" ' +
+        ' }, ' +
+    
+      '{' +
+      '  "text": "Conference Dial (Zoom)",  ' +
+      '  "href": "tel:+442036950088,,5080555253#",  ' +
+      '  "type": "link"  ' +
+      '},' +
+    '{' +
+      ' "text": "Monitor Status", ' +
+      ' "href": "https://appp.datadoghq.com/monitors#72563?to_ts=1452282540000&group=host%3Aprod-web-xdb09&from_ts=1452281340000", ' +
+      ' "type": "link" ' +
+    '},' +
+    '{ ' +
+    ' "text": "Triggered Monitors", ' +
+    '  "href": "https://rpm.newrelic.com/accounts/1218847/incidents/17615637", ' +
+    '  "type": "link" ' +
+    ' } ' +
+    ' ], ' +
+  ' "details": { ' +
+    ' "body": "[Critical] Increased response time detected on the Checkout page, High Error rates <br/> Object Reference Not Set and ADO.NET Connection pool exceeded errors detected" , ' +   
+    ' "Order Value": ' + orderValue + ', ' +
+    ' "priority": "High", ' +
+    ' "title": "[Critical] Increased response time detected on the Checkout page, High Error rates", ' +
+    ' "event_id": "8125363154448140714", ' +
+    ' "tags": "aws-prod, base, env:prod, host:farnsworth, monitor, pd_az:us-west-2c, production, xdb, xtradb", ' +
+    ' "Customer": "'+ customerName + '" ' +
+    ' }, ' +
+  ' "description": "[Critical] Increased response time detected on the Checkout page, High Error rates" ' +
+  '}' 
+
+  console.log(eventObject)
+
+
+  //    ' "Customer Name": ' + customerName + ', ' +
+
+
+    //var settings = {
+    //  "url": "https://events.pagerduty.com/generic/2010-04-15/create_event.json",
+    //  "method": "POST",
+    //  "data":  eventObject,
+    //  "headers": {
+    //    "Accept": "application/vnd.pagerduty+json;version=2",
+    //    "Authorization": "Token token=V_uHsBDv3G2NxyimTYVg",
+    //  }
+    //};
+
+    //$.ajax(settings).done(function (response) {
+    //  console.log(response);
+    //  $("#responseText").text(JSON.stringify(response));
+    //});
+
+    //$.ajax({
+    //  type: "POST",
+    //  url: "https://events.pagerduty.com/generic/2010-04-15/create_event.json",
+    //  data: eventObject,
+    //  success: null,
+    //  dataType: "json"
+    //});
+
+    $.ajax({
+      method: "POST",
+      url: "https://events.pagerduty.com/generic/2010-04-15/create_event.json",
+      data: eventObject
+    })
+      .done(function( msg ) {
+        //alert( "Data Saved: " + msg );
+    });
+
+
+
+  }
+  </script>
+
+
+
+<script src='http://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js'></script>
+
+  
+
+    <script  src="js/index.js"></script>
+
+
+
+
+</body>
+
+</html>

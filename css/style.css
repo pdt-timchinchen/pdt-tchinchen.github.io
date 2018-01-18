@@ -111,7 +111,7 @@ label {
   line-height: 1.4em;
 }
 .product .product-quantity input {
-  width: 40px;
+  width: 80px;
 }
 .product .remove-product {
   border: 0;
