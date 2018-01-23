@@ -1,0 +1,287 @@
+<!DOCTYPE html>
+<html lang="en" >
+
+<head>
+  <meta charset="UTF-8">
+  <title>Marks and Spencer Checkout</title>
+
+    <link rel='shortcut icon' type='image/x-icon' href='favicon.ico' />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/5.0.0/normalize.min.css">
+    <link rel="stylesheet" href="css/style.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+  
+</head>
+
+<style>
+  #checkoutError {
+      width: 100%;
+      padding: 50px 0;
+      text-align: center;
+      background-color: red;
+      margin-top: 20px;
+      display:none;
+  }
+  </style>
+
+<body>
+
+  <br/>  <br/>
+  <img height="74" width="102" src="data:image/png;base64,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">
+  <h1>Checkout</h1>
+  <br/>
+Name: <input type="text" name="customerName" id="customer-name" value="Joe Moran"><br>
+
+<br/>
+
+
+<div class="shopping-cart">
+
+  <div class="column-labels">
+    <label class="product-image">Image</label>
+    <label class="product-details">Product</label>
+    <label class="product-price">Price</label>
+    <label class="product-quantity">Quantity</label>
+    <label class="product-removal">Remove</label>
+    <label class="product-line-price">Total</label>
+  </div>
+
+  <div class="product">
+    <div class="product-image">
+      <img src="http://asset1.cxnmarksandspencer.com/is/image/mands/T15_2271F_F0_IS?$PDP_PROD_IMAGE$">
+    </div>
+    <div class="product-details">
+      <div class="product-title">Navy Slim Fit Wool Suit</div>
+      <p class="product-description">Inspired by traditional British tailoring, our Luxury suit upholds the attitude of the classic gentleman with a modern twist on fabric and styling. 100% Merino Pure New Wool for the ultimate luxury in suiting.</p>
+    </div>
+    <div class="product-price">84.00</div>
+    <div class="product-quantity">
+      <input type="number" value="1" min="1">
+    </div>
+    <div class="product-removal">
+      <button class="remove-product">
+        Remove
+      </button>
+    </div>
+    <div class="product-line-price">84.00</div>
+  </div>
+
+  <div class="product">
+    <div class="product-image">
+      <img src="http://asset1.cxnmarksandspencer.com/is/image/mands/SD_03_T11_0544A_Z0_X_EC_90?$PDP_HOVER_ZOOM$">
+    </div>
+    <div class="product-details">
+      <div class="product-title">Cotton Rich Tailored Fit Shirt with Stretch</div>
+      <p class="product-description">
+        Fit: Tailored fit<br/>
+        Neck Shape: Collared neck<br/>
+        Sleeve length: Long sleeve<br/>
+        Collar type: Classic collar<br/>
+        Collar bones: Removable</p>
+    </div>
+    <div class="product-price">35.00</div>
+    <div class="product-quantity">
+      <input type="number" value="1" min="1">
+    </div>
+    <div class="product-removal">
+      <button class="remove-product">
+        Remove
+      </button>
+    </div>
+    <div class="product-line-price">35.00</div>
+  </div>
+
+  <div class="totals">
+    <div class="totals-item">
+      <label>Subtotal</label>
+      <div class="totals-value" id="cart-subtotal">119.00</div>
+    </div>
+    <div class="totals-item">
+      <label>VAT (5%)</label>
+      <div class="totals-value" id="cart-tax">5.95</div>
+    </div>
+    <div class="totals-item">
+      <label>Delivery</label>
+      <div class="totals-value" id="cart-shipping">5.00</div>
+    </div>
+    <div class="totals-item totals-item-total">
+      <label>Grand Total</label>
+      <div class="totals-value" id="cart-total">129.95</div>
+    </div>
+  </div>
+      
+      <button id="checkoutButton" class="checkout" onclick="completeCheckout()">Checkout</button>
+  </div>
+
+
+<div id="checkoutError">
+  <b>Error in Checkout</b> 
+  <br/>"Connection to data source updateOrderDB can not be established! 
+  <br/>Reason: Invalid operation. The connection is closed. - complete stack
+  <br/>at System.Data.SqlClient.SqlConnection.GetOpenConnection()
+  <br/>at System.Data.SqlClient.SqlConnection.get_Parser()
+  <br/>at System.Data.SqlClient.SqlConnection.Open()", Please try later
+</div>
+
+<script>
+
+  function guid() {
+    function s4() {
+      return Math.floor((1 + Math.random()) * 0x10000)
+        .toString(16)
+        .substring(1);
+    }
+    return s4() + s4() + '-' + s4() + '-' + s4() + '-' +
+      s4() + '-' + s4() + s4() + s4();
+  }
+
+  function getParameterByName(name, url) {
+    if (!url) url = window.location.href;
+    name = name.replace(/[\[\]]/g, "\\$&");
+    var regex = new RegExp("[?&]" + name + "(=([^&#]*)|&|#|$)"),
+        results = regex.exec(url);
+    if (!results) return null;
+    if (!results[2]) return '';
+    return decodeURIComponent(results[2].replace(/\+/g, " "));
+  }
+
+  function updateResponsePanel()
+  {
+    var x = document.getElementById("checkoutError");
+    x.style.display = "block";
+
+    document.getElementById("checkoutButton").innerHTML = "Checkout";
+
+  }
+
+  function completeCheckout() {
+
+    var x = document.getElementById("checkoutError");
+    x.style.display = "none";
+
+    document.getElementById("checkoutButton").innerHTML = "Working";
+
+    setTimeout(updateResponsePanel, 4000);
+
+    var serviceKey = getParameterByName('service_key');
+    //  f12ef11d856640348ee5ec412a1ad087
+    if (!serviceKey) serviceKey = "925989251c59464094a68fbce6e76cee";
+
+    var node = document.getElementById('cart-total'),
+    orderValue = node.innerHTML
+
+    node = document.getElementById('customer-name'),
+    customerName = node.value
+
+    //Deprecated guid()
+    var date = new Date("1/1/2001");  
+    dedupKey = customerName + date.getMinutes()
+
+    //alert (customerName);
+
+    // Requires jQuery
+    var eventObject = '{ ' + 
+        ' "client_url": "https://rpm.newrelic.com/accounts/1218847/incidents/17615637", ' +
+        ' "service_key"\: "' + serviceKey + '", ' +
+        ' "incident_key"\: "' + dedupKey + '", ' +
+        ' "client"\: "NewRelic", ' +
+        ' "vendor"\: "NewRelic", ' +
+        ' "event_type"\: "trigger", ' +
+        ' "contexts"\: [ ' +
+        ' {  ' +
+            ' "src": "https://s18.postimg.org/3yl0ychi1/NRScreen.png", ' +
+            ' "alt": "Snapshot of metric", ' +
+            ' "href": "https://s18.postimg.org/3yl0ychi1/NRScreen.png", ' +
+            ' "type": "image" ' +
+        ' }, ' +
+    
+        ' { ' +   
+        ' "text": "Conference URL (Zoom)", ' +
+        ' "href": "https://pagerduty.zoom.us/j/5080555253", ' +
+        ' "type": "link" ' +
+        ' }, ' +
+    
+      '{' +
+      '  "text": "Conference Dial (Zoom)",  ' +
+      '  "href": "tel:+442036950088,,5080555253#",  ' +
+      '  "type": "link"  ' +
+      '},' +
+    '{' +
+      ' "text": "Monitor Status", ' +
+      ' "href": "https://appp.datadoghq.com/monitors#72563?to_ts=1452282540000&group=host%3Aprod-web-xdb09&from_ts=1452281340000", ' +
+      ' "type": "link" ' +
+    '},' +
+    '{ ' +
+    ' "text": "Triggered Monitors", ' +
+    '  "href": "https://rpm.newrelic.com/accounts/1218847/incidents/17615637", ' +
+    '  "type": "link" ' +
+    ' } ' +
+    ' ], ' +
+  ' "details": { ' +
+    ' "body": "[Critical] Increased response time detected on the Checkout page, High Error rates <br/> Object Reference Not Set and ADO.NET Connection pool exceeded errors detected" , ' +   
+    ' "Order Value": ' + orderValue + ', ' +
+    ' "priority": "High", ' +
+    ' "title": "[Critical] Increased response time detected on the Checkout page, High Error rates", ' +
+    ' "event_id": "8125363154448140714", ' +
+    ' "tags": "aws-prod, base, env:prod, host:farnsworth, monitor, pd_az:us-west-2c, production, xdb, xtradb", ' +
+    ' "Customer": "'+ customerName + '" ' +
+    ' }, ' +
+  ' "description": "[Critical] Increased response time detected on the Checkout page, High Error rates" ' +
+  '}' 
+
+  console.log(eventObject)
+
+
+  //    ' "Customer Name": ' + customerName + ', ' +
+
+
+    //var settings = {
+    //  "url": "https://events.pagerduty.com/generic/2010-04-15/create_event.json",
+    //  "method": "POST",
+    //  "data":  eventObject,
+    //  "headers": {
+    //    "Accept": "application/vnd.pagerduty+json;version=2",
+    //    "Authorization": "Token token=V_uHsBDv3G2NxyimTYVg",
+    //  }
+    //};
+
+    //$.ajax(settings).done(function (response) {
+    //  console.log(response);
+    //  $("#responseText").text(JSON.stringify(response));
+    //});
+
+    //$.ajax({
+    //  type: "POST",
+    //  url: "https://events.pagerduty.com/generic/2010-04-15/create_event.json",
+    //  data: eventObject,
+    //  success: null,
+    //  dataType: "json"
+    //});
+
+    $.ajax({
+      method: "POST",
+      url: "https://events.pagerduty.com/generic/2010-04-15/create_event.json",
+      data: eventObject
+    })
+      .done(function( msg ) {
+        //alert( "Data Saved: " + msg );
+    });
+
+
+
+  }
+  </script>
+
+
+
+<script src='http://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js'></script>
+
+  
+
+    <script  src="js/index.js"></script>
+
+
+
+
+</body>
+
+</html>
