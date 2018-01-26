@@ -1,0 +1,284 @@
+<!DOCTYPE html>
+<html lang="en" >
+
+<head>
+  <meta charset="UTF-8">
+  <title>Zurich - Select Product</title>
+
+    <link rel='shortcut icon' type='image/x-icon' href='favicon.ico' />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/5.0.0/normalize.min.css">
+    <link rel="stylesheet" href="css/style.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+  
+</head>
+
+<style>
+  #checkoutError {
+      width: 100%;
+      padding: 50px 0;
+      text-align: center;
+      background-color: red;
+      margin-top: 20px;
+      display:none;
+  }
+  </style>
+
+<body>
+
+  <br/>  <br/>
+  <img  src="https://www.zurich.com/_/media/dbe/corporate/images/components/logos/zurichlogomobile.png?h=72&w=300&la=en&hash=23BA108D6D9AEA4C4DE6576944AD7A2FAD0E2370">
+  <h1>Select Product</h1>
+  <br/>
+Name: <input type="text" name="customerName" id="customer-name" value="Gregg Parker"><br>
+
+<br/>
+
+
+<div class="shopping-cart">
+
+  <div class="column-labels">
+    <label class="product-image">Image</label>
+    <label class="product-details">Product</label>
+    <label class="product-price">Price</label>
+    <label class="product-quantity">Quantity</label>
+    <label class="product-removal">Remove</label>
+    <label class="product-line-price">Total</label>
+  </div>
+
+  <div class="product">
+    <div class="product-image">
+      <img src="https://www.zurich.com/_/media/dbe/corporate/images/products/2500x1250_savings-and-investments.jpg?la=en&w=397&hash=0B73D79FCFCE18C6535E8EB0170AC6A4ECC2C77F">
+    </div>
+    <div class="product-details">
+      <div class="product-title">Savings and Investments</div>
+      <p class="product-description">If you’re planning for the future, putting insurance and investments together 
+        could make a lot of sense. At Zurich, we offer all the variety, flexibility and choice you’d expect from a leading insurance company</p>
+    </div>
+    <div class="product-price">8.50</div>
+    <div class="product-quantity">
+      <input type="number" value="1" min="1">
+    </div>
+    <div class="product-removal">
+      <button class="remove-product">
+        Remove
+      </button>
+    </div>
+    <div class="product-line-price">8.50</div>
+  </div>
+
+  <div class="product">
+    <div class="product-image">
+      <img src="https://www.zurich.com/_/media/dbe/corporate/images/products/2500x1250_pension-retirement-plannings.jpg?la=en&w=397&hash=5D7661E7528FE1F2580C3A83AE4230B97FE6727B">
+    </div>
+    <div class="product-details">
+      <div class="product-title">Retirement</div>
+      <p class="product-description">A pension or a retirement savings plan is a long-term investment (ten years or more) that aims to build a fund for your retirement. 
+        This can be used to provide you with an income when the pay packets stop – your pension.</p>
+    </div>
+    <div class="product-price">1.50</div>
+    <div class="product-quantity">
+      <input type="number" value="1" min="1">
+    </div>
+    <div class="product-removal">
+      <button class="remove-product">
+        Remove
+      </button>
+    </div>
+    <div class="product-line-price">1.50</div>
+  </div>
+
+  <div class="totals">
+    <div class="totals-item">
+      <label>Subtotal</label>
+      <div class="totals-value" id="cart-subtotal">10.00</div>
+    </div>
+    <div class="totals-item">
+      <label>VAT (5%)</label>
+      <div class="totals-value" id="cart-tax">0.50</div>
+    </div>
+    <div class="totals-item">
+      <label>Delivery</label>
+      <div class="totals-value" id="cart-shipping">1.00</div>
+    </div>
+    <div class="totals-item totals-item-total">
+      <label>Grand Total</label>
+      <div class="totals-value" id="cart-total">11.50</div>
+    </div>
+  </div>
+      
+      <button id="checkoutButton" class="checkout" onclick="completeCheckout()">Update</button>
+  </div>
+
+
+<div id="checkoutError">
+  <b>Error in Selecting Product</b> 
+  <br/>"Connection to data source updateOrderDB can not be established! 
+  <br/>Reason: Invalid operation. The connection is closed. - complete stack
+  <br/>at System.Data.SqlClient.SqlConnection.GetOpenConnection()
+  <br/>at System.Data.SqlClient.SqlConnection.get_Parser()
+  <br/>at System.Data.SqlClient.SqlConnection.Open()", Please try later
+</div>
+
+<script>
+
+  function guid() {
+    function s4() {
+      return Math.floor((1 + Math.random()) * 0x10000)
+        .toString(16)
+        .substring(1);
+    }
+    return s4() + s4() + '-' + s4() + '-' + s4() + '-' +
+      s4() + '-' + s4() + s4() + s4();
+  }
+
+  function getParameterByName(name, url) {
+    if (!url) url = window.location.href;
+    name = name.replace(/[\[\]]/g, "\\$&");
+    var regex = new RegExp("[?&]" + name + "(=([^&#]*)|&|#|$)"),
+        results = regex.exec(url);
+    if (!results) return null;
+    if (!results[2]) return '';
+    return decodeURIComponent(results[2].replace(/\+/g, " "));
+  }
+
+  function updateResponsePanel()
+  {
+    var x = document.getElementById("checkoutError");
+    x.style.display = "block";
+
+    document.getElementById("checkoutButton").innerHTML = "Update";
+
+  }
+
+  function completeCheckout() {
+
+    var x = document.getElementById("checkoutError");
+    x.style.display = "none";
+
+    document.getElementById("checkoutButton").innerHTML = "Working";
+
+    setTimeout(updateResponsePanel, 4000);
+
+    var serviceKey = getParameterByName('service_key');
+    //  f12ef11d856640348ee5ec412a1ad087
+    if (!serviceKey) serviceKey = "925989251c59464094a68fbce6e76cee";
+
+    var node = document.getElementById('cart-total'),
+    orderValue = node.innerHTML
+
+    node = document.getElementById('customer-name'),
+    customerName = node.value
+
+    //Deprecated guid()
+    var date = new Date("1/1/2001");  
+    dedupKey = customerName + date.getMinutes()
+
+    //alert (customerName);
+
+    // Requires jQuery
+    var eventObject = '{ ' + 
+        ' "client_url": "https://rpm.newrelic.com/accounts/1218847/incidents/17615637", ' +
+        ' "service_key"\: "' + serviceKey + '", ' +
+        ' "incident_key"\: "' + dedupKey + '", ' +
+        ' "client"\: "NewRelic", ' +
+        ' "vendor"\: "NewRelic", ' +
+        ' "event_type"\: "trigger", ' +
+        ' "contexts"\: [ ' +
+        ' {  ' +
+            ' "src": "https://s18.postimg.org/3yl0ychi1/NRScreen.png", ' +
+            ' "alt": "Snapshot of metric", ' +
+            ' "href": "https://s18.postimg.org/3yl0ychi1/NRScreen.png", ' +
+            ' "type": "image" ' +
+        ' }, ' +
+    
+        ' { ' +   
+        ' "text": "Conference URL (Zoom)", ' +
+        ' "href": "https://pagerduty.zoom.us/j/5080555253", ' +
+        ' "type": "link" ' +
+        ' }, ' +
+    
+      '{' +
+      '  "text": "Conference Dial (Zoom)",  ' +
+      '  "href": "tel:+442036950088,,5080555253#",  ' +
+      '  "type": "link"  ' +
+      '},' +
+    '{' +
+      ' "text": "Monitor Status", ' +
+      ' "href": "https://appp.datadoghq.com/monitors#72563?to_ts=1452282540000&group=host%3Aprod-web-xdb09&from_ts=1452281340000", ' +
+      ' "type": "link" ' +
+    '},' +
+    '{ ' +
+    ' "text": "Triggered Monitors", ' +
+    '  "href": "https://rpm.newrelic.com/accounts/1218847/incidents/17615637", ' +
+    '  "type": "link" ' +
+    ' } ' +
+    ' ], ' +
+  ' "details": { ' +
+    ' "body": "[Critical] Increased response time detected on the Checkout page, High Error rates <br/> Object Reference Not Set and ADO.NET Connection pool exceeded errors detected" , ' +   
+    ' "Order Value": ' + orderValue + ', ' +
+    ' "priority": "High", ' +
+    ' "title": "[Critical] Increased response time detected on the Checkout page, High Error rates", ' +
+    ' "event_id": "8125363154448140714", ' +
+    ' "tags": "aws-prod, base, env:prod, host:farnsworth, monitor, pd_az:us-west-2c, production, xdb, xtradb", ' +
+    ' "Customer": "'+ customerName + '" ' +
+    ' }, ' +
+  ' "description": "[Critical] Increased response time detected on the Checkout page, High Error rates" ' +
+  '}' 
+
+  console.log(eventObject)
+
+
+  //    ' "Customer Name": ' + customerName + ', ' +
+
+
+    //var settings = {
+    //  "url": "https://events.pagerduty.com/generic/2010-04-15/create_event.json",
+    //  "method": "POST",
+    //  "data":  eventObject,
+    //  "headers": {
+    //    "Accept": "application/vnd.pagerduty+json;version=2",
+    //    "Authorization": "Token token=V_uHsBDv3G2NxyimTYVg",
+    //  }
+    //};
+
+    //$.ajax(settings).done(function (response) {
+    //  console.log(response);
+    //  $("#responseText").text(JSON.stringify(response));
+    //});
+
+    //$.ajax({
+    //  type: "POST",
+    //  url: "https://events.pagerduty.com/generic/2010-04-15/create_event.json",
+    //  data: eventObject,
+    //  success: null,
+    //  dataType: "json"
+    //});
+
+    $.ajax({
+      method: "POST",
+      url: "https://events.pagerduty.com/generic/2010-04-15/create_event.json",
+      data: eventObject
+    })
+      .done(function( msg ) {
+        //alert( "Data Saved: " + msg );
+    });
+
+
+
+  }
+  </script>
+
+
+
+<script src='http://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js'></script>
+
+  
+
+    <script  src="js/index.js"></script>
+
+
+
+
+</body>
+
+</html>
