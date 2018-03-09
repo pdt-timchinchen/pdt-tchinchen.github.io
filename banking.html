@@ -2,26 +2,14 @@
 <html lang="en" >
 
 <head>
-  <meta charset="UTF-8" http-equiv="Cache-control" content="NO-CACHE">
+  <meta charset="UTF-8">
+  <title>Tims Bank - Payment Page</title>
 
-  <title>Parts Unlimited Checkout</title>
-
-  <link rel='shortcut icon' type='image/x-icon' href='favicon.ico' />
+    <link rel='shortcut icon' type='image/x-icon' href='favicon.ico' />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/5.0.0/normalize.min.css">
     <link rel="stylesheet" href="css/style.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
   
-<!-- Global site tag (gtag.js) - Google Analytics -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=UA-113051118-1"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
-  gtag('config', 'UA-113051118-1');
-</script>
-
-
-
 </head>
 
 <style>
@@ -33,17 +21,37 @@
       margin-top: 20px;
       display:none;
   }
+
+  #PDContent img {
+    position: absolute;
+    top: 0px;
+    right: 15px;
+  }
+
   </style>
 
 <body>
+
   <br/>  <br/>
-  <img height="85" width="225" src="images/parts-unlimited-logo.jpg">
-  <h1>Parts Unlimited iPhone Checkout</h1>
+  <!-- 1544 × 296 -->
+  <img height="35" width="160" src="http://www.timchinchen.co.uk/images/timsbankLogo.png">
 
-<br/>
-Name: <input type="text" name="customerName" id="customer-name" value="Enter your name here..."><br>
+  <div id="PDContent">
+    <img height="45" width="110" src="https://iqm7l1pa7bn3d42rc278rat5-wpengine.netdna-ssl.com/wp-content/uploads/2017/08/logo-pagerduty.svg"/>
+  </div>
 
-<br/>
+  <br/>
+  <h1>Make a Payment</h1>
+  <br/>
+Name: <input type="text" name="customerName" id="customer-name" value="Tim Chinchen"> &nbsp;&nbsp;
+Account: 
+<select id="accountOption">
+  <option value="Premier_Current">Premier Current ****-4321</option>
+  <option value="Everyday_Saver">Everyday Saver ****-1234</option>
+</select>
+
+<br/><br/>
+
 
 
 <div class="shopping-cart">
@@ -51,41 +59,50 @@ Name: <input type="text" name="customerName" id="customer-name" value="Enter you
   <div class="column-labels">
     <label class="product-image">Image</label>
     <label class="product-details">Product</label>
-    <label class="product-price">Price</label>
-    <label class="product-quantity">Quantity</label>
+    <label class="product-price">Currency</label>
+    <label class="product-quantity">Amount</label>
     <label class="product-removal">Remove</label>
     <label class="product-line-price">Total</label>
   </div>
 
   <div class="product">
     <div class="product-image">
-      <img src="https://www.att.com/catalog/en/skus/images/apple-iphone%20x-space%20gray-450x350.png">
+      <img src="https://media.licdn.com/dms/image/C4E03AQE8SKzHeYjshg/profile-displayphoto-shrink_800_800/0?e=1525777200&v=alpha&t=UvRRfGHBGCiJ6gnBVX88e4NuzwjJPd287kpYQLEIZmI" height="100" width="300">
     </div>
     <div class="product-details">
-      <div class="product-title">iPhone X</div>
-      <p class="product-description">Our vision has always been to create an iPhone that is entirely screen. One so immersive the device itself disappears into the experience. And so intelligent it can respond to a tap, your voice, and even a glance. With iPhone X, that vision is now a reality. Say hello to the future.</p>
+      <div class="product-title">Payee Details</div>
+      <p class="product-description">
+        Account Holder Name: Matt Livermore<br/>
+        Sort Code: &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 20-00-00<br/>
+        Account Number: &nbsp;&nbsp;&nbsp;&nbsp; 21368192<br/>
+
+      </p>
     </div>
-    <div class="product-price">800.00</div>
-    <div class="product-quantity">
-      <input type="number" value="2" min="1">
+    <div class="product-price" display="none">1</div>
+    <div class="product-quantity" item-width="1000">
+      <input type="number" value="1000" min="1" >
     </div>
     <div class="product-removal">
       <button class="remove-product">
         Remove
       </button>
     </div>
-    <div class="product-line-price">1600.00</div>
+    <div class="product-line-price">1000</div>
   </div>
 
+  <!--
   <div class="product">
     <div class="product-image">
-      <img src="https://store.storeimages.cdn-apple.com/4662/as-images.apple.com/is/image/AppleInc/aos/published/images/M/ME/MMEF2/MMEF2?wid=572&hei=572&fmt=jpeg&qlt=95&op_sharpen=0&resMode=bicub&op_usm=0.5,0.5,0,0&iccEmbed=0&layer=comp&.v=1503962928226">
+      <img src="http://lofrev.net/wp-content/photos/2017/04/dollar_black_logo.png"  height="75" width="50">
     </div>
     <div class="product-details">
-      <div class="product-title">Apple AirPods</div>
-      <p class="product-description">AirPods will forever change the way you use headphones. Whenever you pull your AirPods out of the charging case, they instantly turn on and connect to your iPhone, Apple Watch, iPad or Mac.(1) Audio automatically plays as soon as you put them in your ears and pauses when you take them out.</p>
+      <div class="product-title">US Dollar ($)</div>
+      <p class="product-description">1 GBP =1.38007USD<br />
+          British Pound<br />
+          1 GBP = 1.38007 USD<br />
+          1 USD = 0.724599 GBP</p>
     </div>
-    <div class="product-price">129.00</div>
+    <div class="product-price">1.38</div>
     <div class="product-quantity">
       <input type="number" value="1" min="1">
     </div>
@@ -94,34 +111,36 @@ Name: <input type="text" name="customerName" id="customer-name" value="Enter you
         Remove
       </button>
     </div>
-    <div class="product-line-price">129.00</div>
+    <div class="product-line-price">1.38</div>
   </div>
+-->
 
   <div class="totals">
     <div class="totals-item">
       <label>Subtotal</label>
-      <div class="totals-value" id="cart-subtotal">1729.00</div>
+      <div class="totals-value" id="cart-subtotal">1000.00</div>
+    </div>
+    
+    <div class="totals-item">
+      <label>Commission (0%)</label>
+      <div class="totals-value" id="cart-tax">0.0</div>
     </div>
     <div class="totals-item">
-      <label>VAT (5%)</label>
-      <div class="totals-value" id="cart-tax">86.45</div>
-    </div>
-    <div class="totals-item">
-      <label>Shipping</label>
-      <div class="totals-value" id="cart-shipping">15.00</div>
+      <label>Wire Charge (N/A)</label>
+      <div class="totals-value" id="cart-shipping">0.0</div>
     </div>
     <div class="totals-item totals-item-total">
       <label>Grand Total</label>
-      <div class="totals-value" id="cart-total">1830.45</div>
+      <div class="totals-value" id="cart-total">1000</div>
     </div>
   </div>
       
-      <button id="checkoutButton" class="checkout" onclick="completeCheckout()">Checkout</button>
+      <button id="checkoutButton" class="checkout" onclick="completeCheckout()">Pay Now</button>
   </div>
 
 
 <div id="checkoutError">
-  <b>Error in Checkout</b> 
+  <b>Error in Payment</b> 
   <br/>"Connection to data source updateOrderDB can not be established! 
   <br/>Reason: Invalid operation. The connection is closed. - complete stack
   <br/>at System.Data.SqlClient.SqlConnection.GetOpenConnection()
@@ -156,14 +175,11 @@ Name: <input type="text" name="customerName" id="customer-name" value="Enter you
     var x = document.getElementById("checkoutError");
     x.style.display = "block";
 
-    document.getElementById("checkoutButton").innerHTML = "Checkout";
+    document.getElementById("checkoutButton").innerHTML = "Pay Now";
 
   }
 
   function completeCheckout() {
-
-    var serviceKey = getParameterByName('service_key');
-    if (!serviceKey) serviceKey = "999845c2635841589098d7fe425b0d0d";
 
     var x = document.getElementById("checkoutError");
     x.style.display = "none";
@@ -171,6 +187,10 @@ Name: <input type="text" name="customerName" id="customer-name" value="Enter you
     document.getElementById("checkoutButton").innerHTML = "Working";
 
     setTimeout(updateResponsePanel, 4000);
+
+    var serviceKey = getParameterByName('service_key');
+    //  f12ef11d856640348ee5ec412a1ad087
+    if (!serviceKey) serviceKey = "925989251c59464094a68fbce6e76cee";
 
     var node = document.getElementById('cart-total'),
     orderValue = node.innerHTML
@@ -183,14 +203,16 @@ Name: <input type="text" name="customerName" id="customer-name" value="Enter you
     dedupKey = customerName + date.getMinutes()
 
     //alert (customerName);
+    var e = document.getElementById ("accountOption");
+    var accountSelected = e.options [e.selectedIndex] .value;
 
     // Requires jQuery
     var eventObject = '{ ' + 
-        ' "client_url": "https://rpm.newrelic.com/accounts/1818495/applications/105833762", ' +
+        ' "client_url": "http://demo1.appdynamics.com/controller/#/location=AD_HOME_OVERVIEW&localLogin=true", ' +
         ' "service_key"\: "' + serviceKey + '", ' +
         ' "incident_key"\: "' + dedupKey + '", ' +
-        ' "client"\: "New Relic", ' +
-        ' "vendor"\: "New Relic", ' +
+        ' "client"\: "AppDynamics", ' +
+        ' "vendor"\: "AppDynamics", ' +
         ' "event_type"\: "trigger", ' +
         ' "contexts"\: [ ' +
         ' {  ' +
@@ -217,21 +239,22 @@ Name: <input type="text" name="customerName" id="customer-name" value="Enter you
       ' "type": "link" ' +
     '},' +
     '{ ' +
-    ' "text": "New Relic - Permalink", ' +
-    '  "href": "https://rpm.newrelic.com/accounts/1818495/applications/105833762?tw%5Bend%5D=1518535392&tw%5Bstart%5D=1518528373", ' +
+    ' "text": "Triggered Monitors", ' +
+    '  "href": "https://rpm.newrelic.com/accounts/1218847/incidents/17615637", ' +
     '  "type": "link" ' +
     ' } ' +
     ' ], ' +
   ' "details": { ' +
-    ' "body": "[Critical] Increased response time detected on the Checkout page, High Error rates <br/> Object Reference Not Set and ADO.NET Connection pool exceeded errors detected" , ' +   
-    ' "Order Value": ' + orderValue + ', ' +
+    ' "body": "[Critical] Increased response time detected on the Make Payment Business Transaction, High Error rates <br/> Object Reference Not Set and ADO.NET Connection pool exceeded errors detected" , ' +   
+    ' "Payment Value": ' + orderValue + ', ' +
     ' "priority": "High", ' +
-    ' "title": "[Critical] Increased response time detected on the Checkout page, High Error rates", ' +
+    ' "Account": "' + accountSelected + '", ' +
+    ' "title": "[Critical] Increased response time detected on the Make Payment Business Transaction, High Error rates", ' +
     ' "event_id": "8125363154448140714", ' +
-    ' "tags": "aws-prod, base, env:prod, host:farnsworth, monitor, pd_az:us-west-2c, production, xdb, xtradb", ' +
+    ' "tags": "aws-prod, base, env:prod, host:BARCLSFE17, monitor, pd_az:us-west-2c, production, IPSoft, AppD", ' +
     ' "Customer": "'+ customerName + '" ' +
     ' }, ' +
-  ' "description": "[Critical] Increased response time detected on the Checkout page, High Error rates" ' +
+  ' "description": "[Critical] Increased response time detected on the Make Payment Business Transaction, High Error rates" ' +
   '}' 
 
   console.log(eventObject)
@@ -277,13 +300,14 @@ Name: <input type="text" name="customerName" id="customer-name" value="Enter you
   }
   </script>
 
-
+<h5>Not a real bank!</h5>
 
 <script src='http://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js'></script>
 
   
 
     <script  src="js/index.js"></script>
+
 
 
 

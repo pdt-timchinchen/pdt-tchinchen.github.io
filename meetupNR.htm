@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="en" >
 
@@ -11,7 +12,6 @@
     <link rel="stylesheet" href="css/style.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
   
-
 <!-- Global site tag (gtag.js) - Google Analytics -->
 <script async src="https://www.googletagmanager.com/gtag/js?id=UA-113051118-1"></script>
 <script>
@@ -20,7 +20,7 @@
   gtag('js', new Date());
   gtag('config', 'UA-113051118-1');
 </script>
-<!-- END Global site tag (gtag.js) - Google Analytics -->
+
 
 
 </head>
@@ -32,38 +32,17 @@
       text-align: center;
       background-color: red;
       margin-top: 20px;
-      display:none;     
+      display:none;
   }
-
-  #PDContent img {
-    position: absolute;
-    top: 0px;
-    right: 15px;
-  }
-
-</style>
+  </style>
 
 <body>
-  <br/>
-
-  <!-- <img height="85" width="225" src="https://qconlondon.com/sites/default/files/newhomepage/logo-qconlondon.svg"> -->
-  <!-- <img height="85" width="225" src="http://querymanager.software/img/top-nav/logo.svg"> -->
-  
-  <img  height="100" width="225" src="https://uswitch-mobiles1-contentful.imgix.net/qhi9fkhtpbo3/1YpMo2dwN2ME6ycgQqWy8G/4916bbda5ab0816b45993ed238c4ad2d/Lebara_mobile_final_logo_image.jpg?w=770&h=370&fit=thumb">
-
-  <!-- MAIN DEMO 
-  <img  height="85" width="225" src="images/parts-unlimited-logo.jpg">
-  -->  
-
-  <div id="PDContent">
-    <img height="45" width="110" src="https://iqm7l1pa7bn3d42rc278rat5-wpengine.netdna-ssl.com/wp-content/uploads/2017/08/logo-pagerduty.svg"/>
-  </div>
-
-  
-  <h1>Lebara Mobile iPhone Checkout</h1>
+  <br/>  <br/>
+  <img height="85" width="225" src="images/parts-unlimited-logo.jpg">
+  <h1>Parts Unlimited iPhone Checkout</h1>
 
 <br/>
-Name &amp; email: <input type="text" name="customerName" id="customer-name" value="Enter your name here..." onfocus="if(this.value=='Enter your name here...') this.value='';"><br>
+Name: <input type="text" name="customerName" id="customer-name" value="Enter your name here..."><br>
 
 <br/>
 
@@ -142,12 +121,8 @@ Name &amp; email: <input type="text" name="customerName" id="customer-name" valu
   </div>
 
 
-<div id="PDinfo">
-  Try and drive our on-call Engineer crazy! or can you?...
-</div>
-
 <div id="checkoutError">
-  <b>Error in Checkout - Better head over to BOOTH 19 for a chance to WIN!</b> 
+  <b>Error in Checkout</b> 
   <br/>"Connection to data source updateOrderDB can not be established! 
   <br/>Reason: Invalid operation. The connection is closed. - complete stack
   <br/>at System.Data.SqlClient.SqlConnection.GetOpenConnection()
@@ -157,8 +132,6 @@ Name &amp; email: <input type="text" name="customerName" id="customer-name" valu
 
 <script>
 
-  //################################################################################
-  //Function to Generate a GUID - Not used now - this was to get a unique key for Dedup'ing
   function guid() {
     function s4() {
       return Math.floor((1 + Math.random()) * 0x10000)
@@ -168,11 +141,7 @@ Name &amp; email: <input type="text" name="customerName" id="customer-name" valu
     return s4() + s4() + '-' + s4() + '-' + s4() + '-' +
       s4() + '-' + s4() + s4() + s4();
   }
-  //################################################################################
 
-
-  //################################################################################
-  //Grab the Params from the URL in this case the Service Key
   function getParameterByName(name, url) {
     if (!url) url = window.location.href;
     name = name.replace(/[\[\]]/g, "\\$&");
@@ -182,69 +151,41 @@ Name &amp; email: <input type="text" name="customerName" id="customer-name" valu
     if (!results[2]) return '';
     return decodeURIComponent(results[2].replace(/\+/g, " "));
   }
-  //################################################################################
 
-  //################################################################################
-  //Clears the Checkout error back to default
   function updateResponsePanel()
   {
     var x = document.getElementById("checkoutError");
     x.style.display = "block";
 
-    var y = document.getElementById("PDinfo");
-    y.style.display = "none";
-
     document.getElementById("checkoutButton").innerHTML = "Checkout";
 
   }
-  //################################################################################
 
-
-  //################################################################################
-  //The Main function under the button
   function completeCheckout() {
 
-    //Capture the customer name
-    node = document.getElementById('customer-name'),
-    customerName = node.value
-
-    //Check the input makes sense
-    if (customerName == "Enter your name here...") 
-    {
-      alert('Please enter your name and business email for a chance to win!');
-      return;
-    }
-    if (customerName == "") 
-    {
-      alert('Who are you???');
-      return;
-    }
-
-    //Grab the Service key of use Tim's default one!
     var serviceKey = getParameterByName('service_key');
     if (!serviceKey) serviceKey = "999845c2635841589098d7fe425b0d0d";
 
-    //Clear the error pane if showing
     var x = document.getElementById("checkoutError");
     x.style.display = "none";
 
-    //Set the Button to something happening
     document.getElementById("checkoutButton").innerHTML = "Working";
-    
-    //Update the panel eventually - simulating an end system response
+
     setTimeout(updateResponsePanel, 4000);
 
-    //Get the Order Value and a Dedup key based on Customer Name and the Minute of the Button click 
-    //(someone clicks multiple times = caught one)
-    //They return later - we trigger a new alert 
     var node = document.getElementById('cart-total'),
     orderValue = node.innerHTML
+
+    node = document.getElementById('customer-name'),
+    customerName = node.value
+
+    //Deprecated guid()
     var date = new Date("1/1/2001");  
     dedupKey = customerName + date.getMinutes()
 
+    //alert (customerName);
 
     // Requires jQuery
-    //Build the JSON payload to send
     var eventObject = '{ ' + 
         ' "client_url": "https://rpm.newrelic.com/accounts/1818495/applications/105833762", ' +
         ' "service_key"\: "' + serviceKey + '", ' +
@@ -277,16 +218,16 @@ Name &amp; email: <input type="text" name="customerName" id="customer-name" valu
       ' "type": "link" ' +
     '},' +
     '{ ' +
-    ' "text": "New Relic - Permalink", ' +
-    '  "href": "https://rpm.newrelic.com/accounts/1818495/applications/105833762?tw%5Bend%5D=1518535392&tw%5Bstart%5D=1518528373", ' +
+    ' "text": "Triggered Monitors", ' +
+    '  "href": "https://rpm.newrelic.com/accounts/1818495/applications/105833762", ' +
     '  "type": "link" ' +
     ' } ' +
     ' ], ' +
   ' "details": { ' +
-    ' "body": "[Critical] Increased response time detected on the Checkout page affecting ' + customerName + ', High Error rates <br/> Object Reference Not Set and ADO.NET Connection pool exceeded errors detected" , ' +   
+    ' "body": "[Critical] Increased response time detected on the Checkout page, High Error rates <br/> Object Reference Not Set and ADO.NET Connection pool exceeded errors detected" , ' +   
     ' "Order Value": ' + orderValue + ', ' +
     ' "priority": "High", ' +
-    ' "title": "[Critical] Increased response time detected on the Checkout page, High Error rates  affecting ' + customerName + '", ' +
+    ' "title": "[Critical] Increased response time detected on the Checkout page, High Error rates", ' +
     ' "event_id": "8125363154448140714", ' +
     ' "tags": "aws-prod, base, env:prod, host:farnsworth, monitor, pd_az:us-west-2c, production, xdb, xtradb", ' +
     ' "Customer": "'+ customerName + '" ' +
@@ -323,7 +264,6 @@ Name &amp; email: <input type="text" name="customerName" id="customer-name" valu
     //  dataType: "json"
     //});
 
-    //Send!!!
     $.ajax({
       method: "POST",
       url: "https://events.pagerduty.com/generic/2010-04-15/create_event.json",
@@ -341,6 +281,13 @@ Name &amp; email: <input type="text" name="customerName" id="customer-name" valu
 
 
 <script src='http://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js'></script>
-<script  src="js/index.js"></script>
+
+  
+
+    <script  src="js/index.js"></script>
+
+
+
 </body>
+
 </html>
