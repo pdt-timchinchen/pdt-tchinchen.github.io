@@ -4,11 +4,11 @@
 <head>
   <meta charset="UTF-8" http-equiv="Cache-control" content="NO-CACHE">
 
-  <title>Sparebank - Payment Page</title>
+  <title>Yara Checkout</title>
 
   <link rel='shortcut icon' type='image/x-icon' href='favicon.ico' />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/5.0.0/normalize.min.css">
-    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/style-centrica.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
   
 
@@ -46,26 +46,18 @@
 <body>
   <br/>
 
-  <img  height="85" width="110" src="https://www.sparebank1.no/content/dam/SB1/nettsider/logo.svg">
+  <img  height="85" width="225" src="https://www.yara.co.uk/globalassets/knowledge-grows-vector.svg">
 
   <div id="PDContent">
     <img height="45" width="110" src="https://iqm7l1pa7bn3d42rc278rat5-wpengine.netdna-ssl.com/wp-content/uploads/2017/08/logo-pagerduty.svg"/>
   </div>
 
   
-  <h1>Sparebank Payment Page</h1>
+  <h1>Yara Checkout</h1>
 
 <br/>
-Name &amp; email: <input type="text" name="customerName" id="customer-name" value="Enter your name here..." onfocus="if(this.value=='Enter your name here...') this.value='';">
-&nbsp;&nbsp;
-Account: 
-<select id="accountOption">
-  <option value="Premier_Current">Premier Current ****-4321</option>
-  <option value="Everyday_Saver">Everyday Saver ****-1234</option>
-</select>
+Name &amp; email: <input type="text" name="customerName" id="customer-name" value="Enter your name here..." onfocus="if(this.value=='Enter your name here...') this.value='';"><br>
 
-<br/>
-<br/>
 <br/>
 
 
@@ -74,74 +66,88 @@ Account:
   <div class="column-labels">
     <label class="product-image">Image</label>
     <label class="product-details">Product</label>
-    <label class="product-price">Currency</label>
-    <label class="product-quantity">Amount</label>
+    <label class="product-price">Price</label>
+    <label class="product-quantity">Quantity</label>
     <label class="product-removal">Remove</label>
     <label class="product-line-price">Total</label>
   </div>
 
   <div class="product">
     <div class="product-image">
-      <img src="http://norway203040.com/wp-content/uploads/2017/02/Turid-Grotmoll-CEO-SpareBank-1-Forsikring.jpg" height="100" width="300">
+      <img src="https://yaraurl.com/fqhv">
     </div>
     <div class="product-details">
-      <div class="product-title">Payee Details</div>
-      <p class="product-description">
-        Account Holder Name: Turid Grotmoll<br/>
-        Sort Code: &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 20-00-00<br/>
-        Account Number: &nbsp;&nbsp;&nbsp;&nbsp; 21368192<br/>
-
-      </p>
+      <div class="product-title">Air1® Brand Diesel Exhaust Fluid</div>
+      <p class="product-description">Air1® is Yara's Diesel Exhaust Fluid used in vehicles with Selective Catalytic Reduction (SCR) technology to reduce harmful gases to meet EPA clean air standards. The SCR system makes the vehicle more fuel efficient, and release less pollution into the air. Air1 is distributed in the US only by Mansfield DeliveryONE Network of distributors.</p>
     </div>
-    <div class="product-price" display="none">1</div>
-    <div class="product-quantity" item-width="1000">
-      <input type="number" value="1000" min="1" >
+    <div class="product-price">800.00</div>
+    <div class="product-quantity">
+      <input type="number" value="2" min="1">
     </div>
     <div class="product-removal">
       <button class="remove-product">
         Remove
       </button>
     </div>
-    <div class="product-line-price">1000</div>
+    <div class="product-line-price">1600.00</div>
   </div>
 
+  <div class="product">
+    <div class="product-image">
+      <img src="http://abdas.org/wp-content/uploads/2013/06/Yara-Tanzania.jpg">
+    </div>
+    <div class="product-details">
+      <div class="product-title">Technical Nitrates for civil explosives</div>
+      <p class="product-description">When buying the raw material for producing civil explosives you need to be sure of consistent quality and the right support. Find out how Yara aims to exceed customer expectations.
+
+        As the leading independent supplier of UltrAN® raw materials for civil explosives to 75+ countries on 6 continents, you can be sure we know the business inside out. And as a customer, you can rely on our experience and expertise.</p>
+    </div>
+    <div class="product-price">129.00</div>
+    <div class="product-quantity">
+      <input type="number" value="1" min="1">
+    </div>
+    <div class="product-removal">
+      <button class="remove-product">
+        Remove
+      </button>
+    </div>
+    <div class="product-line-price">129.00</div>
+  </div>
 
   <div class="totals">
     <div class="totals-item">
       <label>Subtotal</label>
-      <div class="totals-value" id="cart-subtotal">1000.00</div>
-    </div>
-    
-    <div class="totals-item">
-      <label>Commission (0%)</label>
-      <div class="totals-value" id="cart-tax">0.0</div>
+      <div class="totals-value" id="cart-subtotal">1729.00</div>
     </div>
     <div class="totals-item">
-      <label>Wire Charge (N/A)</label>
-      <div class="totals-value" id="cart-shipping">0.0</div>
+      <label>VAT (5%)</label>
+      <div class="totals-value" id="cart-tax">86.45</div>
+    </div>
+    <div class="totals-item">
+      <label>Shipping</label>
+      <div class="totals-value" id="cart-shipping">5.00</div>
     </div>
     <div class="totals-item totals-item-total">
       <label>Grand Total</label>
-      <div class="totals-value" id="cart-total">1000</div>
+      <div class="totals-value" id="cart-total">1820.45</div>
     </div>
   </div>
       
-      <button id="checkoutButton" class="checkout" onclick="completeCheckout()">Pay Now</button>
+      <button id="checkoutButton" class="checkout" onclick="completeCheckout()">Checkout</button>
   </div>
 
 
+<div id="PDinfo">
+  Try and drive our on-call Engineer crazy! or can you?...
+</div>
+
 <div id="checkoutError">
-  <b>Error in Payment</b> 
-  <br/>"Connection to data source updatePaymentDB can not be established! 
+  <b>Error in Checkout - Unable to complete your order</b> 
+  <br/>"Connection to data source updateOrderDB can not be established! 
   <br/>Reason: Invalid operation. The connection is closed. - complete stack
   <br/>at System.Data.SqlClient.SqlConnection.GetOpenConnection()
   <br/>at System.Data.SqlClient.SqlConnection.get_Parser()
   <br/>at System.Data.SqlClient.SqlConnection.Open()", Please try later
-</div>
-
-
-<div id="PDinfo">
-  Not a real Bank! <H5>But check out us for real at <a href="https://www.pagerduty.com/">https://www.pagerduty.com/</a></h5>
 </div>
 
 <script>
@@ -183,7 +189,7 @@ Account:
     var y = document.getElementById("PDinfo");
     y.style.display = "none";
 
-    document.getElementById("checkoutButton").innerHTML = "Pay Now";
+    document.getElementById("checkoutButton").innerHTML = "Checkout";
 
   }
   //################################################################################
@@ -231,9 +237,6 @@ Account:
     var date = new Date();  
     dedupKey = customerName + date.getMinutes()
 
-    //alert (customerName);
-    var e = document.getElementById ("accountOption");
-    var accountSelected = e.options [e.selectedIndex] .value;
 
     // Requires jQuery
     //Build the JSON payload to send
@@ -275,16 +278,15 @@ Account:
     ' } ' +
     ' ], ' +
   ' "details": { ' +
-    ' "body": "[Critical] Increased response time detected on the Payment page affecting ' + customerName + ', High Error rates <br/> Object Reference Not Set and ADO.NET Connection pool exceeded errors detected" , ' +   
+    ' "body": "[Critical] Increased response time detected on the Checkout page affecting ' + customerName + ', High Error rates <br/> Object Reference Not Set and ADO.NET Connection pool exceeded errors detected" , ' +   
     ' "Order Value": ' + orderValue + ', ' +
     ' "priority": "High", ' +
-    ' "Account": "' + accountSelected + '", ' +
-    ' "title": "[Critical] Increased response time detected on the Payment page, High Error rates  affecting ' + customerName + '", ' +
+    ' "title": "[Critical] Increased response time detected on the Checkout page, High Error rates  affecting ' + customerName + '", ' +
     ' "event_id": "8125363154448140714", ' +
     ' "tags": "aws-prod, base, env:prod, host:farnsworth, monitor, pd_az:us-west-2c, production, xdb, xtradb", ' +
     ' "Customer": "'+ customerName + '" ' +
     ' }, ' +
-  ' "description": "[Critical] Increased response time detected on the Payment page, High Error rates" ' +
+  ' "description": "[Critical] Increased response time detected on the Checkout page, High Error rates" ' +
   '}' 
 
   console.log(eventObject)
@@ -353,7 +355,7 @@ Account:
     '     "severity": "warning",   ' +
     '     "location" : "prod",   ' +
     '     "component": "Zabbix",   ' +
-    '     "group": "Zabbix,Production,RetailBanking,Payment-Tier",   ' +
+    '     "group": "Zabbix,Production,eCommerce,Checkout-Tier",   ' +
     '     "class": "Zabbix" },   ' +
     '   	"routing_key": "' + serviceKey + '",   ' +
     '   	"dedup_key": "Zabbixdedupkey",   ' +
@@ -399,12 +401,12 @@ function sendLowRevenueWarning()
 
     var eventObject = ' { ' +
     '   "payload": {     ' +
-    '     "summary": "Low Transfers detected compared to normal baselines",   ' +
+    '     "summary": "Low Revenue detected compared to normal",   ' +
     '     "source": "Prometheus",   ' +
     '     "severity": "warning",   ' +
     '     "location" : "prod",   ' +
     '     "component": "Prometheus",   ' +
-    '     "group": "Prometheus,Production,Payment-Tier",   ' +
+    '     "group": "Prometheus,Production,eCommerce,Checkout-Tier",   ' +
     '     "class": "Prometheus" },   ' +
     '   	"routing_key": "' + serviceKey + '",   ' +
     '   	"dedup_key": "Prometheusdedupkey",   ' +

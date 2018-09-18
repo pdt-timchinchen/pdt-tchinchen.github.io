@@ -1,0 +1,291 @@
+<!DOCTYPE html>
+<html>
+<title>Demo Tools</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="w3.css">
+<link rel="stylesheet" href="w3-theme-blue.css">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+
+<body style="max-width:400px;margin:16px;border:1px solid #ccc">
+
+<header class="w3-container w3-card-4 w3-theme">
+  <h1>Demo Tools</h1>
+</header>
+
+<!-- Tweet -->
+
+<div class="w3-panel">
+<div class="w3-row">
+  <div class="w3-col s3">
+    <img src="https://smartblogger.com/wp-content/uploads/2014/03/twitter-logo-blue.png" style="width:100%">
+  </div>
+  <div class="w3-col s9 w3-container">
+    <h3>Twitter Feed (Phoenix)</h3>
+    <p><input type="text" name="tweet-text" id="tweet-text" value="I cant buy my iPhone"><br/>&nbsp;<br/>
+       <Button onclick="sendTweet()">Send Tweet</Button></p>
+  </div>
+</div>  
+<hr>
+
+<!-- Zabbix Resolve -->
+<div class="w3-row">
+  <div class="w3-col s3">
+    <img src="https://rtfm.co.ua/wp-content/uploads/2014/09/zabbix_logo.png" style="width:100%">
+  </div>
+  <div class="w3-col s9 w3-container">
+    <h3>Zabbix Resolve (Phoenix)</h3>
+    <p><Button onclick="sendZabbixResolve()">Send Resolve to demo</Button></p>
+  </div>
+</div>
+<hr>
+
+<!-- AppD Business Tx's LOADS -->
+
+<div class="w3-row">
+  <div class="w3-col s3">
+    <img src="https://yt3.ggpht.com/-pm7hhnBR98g/AAAAAAAAAAI/AAAAAAAAAAA/fKomwC-ceHg/s288-mo-c-c0xffffffff-rj-k-no/photo.jpg" style="width:100%">
+  </div>
+  <div class="w3-col s9 w3-container">
+    <h3>AppD Overload (DutyCalls)</h3>
+    <!-- <input type="text" name="BT-text" id="BT-text" value="Search for Package"><br/>&nbsp;<br/> -->
+
+    <select id="BT-text">
+      <option value="Slow Business Transaction - Help Page Lookup">Help Page Lookup</option>
+      <option value="High heap space">High heap space</option>
+      <option value="Warning - Increased Errors on Paypal calls (5%)">Increased Errors on Paypal</option>
+      <option value="Release Event - New Node Detected">New Node Detected</option>
+    </select><br/>&nbsp;<br/>
+
+
+    <input type="text" name="Volume-text" id="Volume-text" value="20"><br/>&nbsp;<br/>
+    <p><Button onclick="AppDLoad()">Loads of AppD Alerts</Button></p>
+  </div>
+</div>
+<hr>
+
+</div>
+
+<footer class="w3-container w3-theme-l2" style="position:relative">
+  <a class="w3-btn w3-xlarge w3-circle w3-theme-action w3-right" style="position:absolute;top:-28px;right:16px;">+</a>
+  <p>Tim's Demo tools</p>
+</footer>
+
+<div class="w3-container w3-theme-dark w3-xlarge">&lt;<span class="w3-right">&gt;</span></div>
+
+<script>
+
+  var g_AppDi;
+
+  function AppDLoad()
+    {
+
+    node = document.getElementById('Volume-text'),
+      maxTimes = node.value
+
+
+    for (g_AppDi = 0; g_AppDi < maxTimes; g_AppDi++) 
+    { 
+
+    //Grab the Service key of use Tim's default one!
+      var serviceKey = getParameterByName('service_key');
+      if (!serviceKey) serviceKey = "fd69c23d4e45483a9626b69a42e34c8a";
+
+      node = document.getElementById('BT-text'),
+        BTName = node.value
+
+      setTimeout(function () {
+
+        var date = new Date();  
+        dedupKey = date.getMinutes()
+
+          var eventObject = '        {                                             ' +
+                        '        "payload": {                                             ' +
+                        '            "summary": "' + BTName + ' (AppNode00' + g_AppDi + ')",                                             ' +
+                        '            "source": "AppDynamics",                                             ' +
+                        '            "severity": "warning",                                             ' +
+                        '            "location": "prod",                                             ' +
+                        '            "component": "AppDynamics",                                             ' +
+                        '            "group": "AppDynamics,Production",                                             ' +
+                        '            "class": "AppDynamics",                                             ' +
+                        '                "custom_details": {                                             ' +
+                        '                        "Event Name": "Slow Business Transaction - Search for Package (AppNode00' + g_AppDi + ')",                                             ' +
+                        '                "Summary": "Slow Business Transaction - Search for Package (AppNode00' + g_AppDi + ')",                                             ' +
+                        '                "Event ID": "WERSEFG123123",                                             ' +
+                        '                "GUID": "5dbc676b-3c36-4d98-b056-7bbb9d456942",                                             ' +
+                        '                "Event Time": "' + date.getTime() + '",                                             ' +
+                        '                "Event Type": "Warning Event",                                             ' +
+                        '                "Event Type Key": "Warning-AppD",                                             ' +
+                        '                "Application Name": "DutyCalls - eCommerce",                                             ' +
+                        '                "Node Name": "AppNode00' + g_AppDi + '",                                             ' +
+                        '                "Message": "' + BTName + ' (AppNode00' + g_AppDi + ')",                                             ' +
+                        '                "Severity": "warning"                                             ' +
+                        '            }                                             ' +
+                        '        },                                             ' +
+                        '        "routing_key": "' + serviceKey + '",                                             ' +
+                        '        "dedup_key": "AppNode00' + g_AppDi + BTName + dedupKey +' - eCommerce",                                             ' +
+                        '        "event_action": "trigger",                                             ' +
+                        '        "client": "View in AppDynamics",                                             ' +
+                        '        "client_url": "http://demo1.appdynamics.com/controller/",                                             ' +
+                        '        "images": [                                             ' +
+                        '            {                                             ' +
+                        '            "href":"http://demo1.appdynamics.com/controller/",                                             ' +
+                        '            "src": "http://demo1.appdynamics.com/controller/",                                             ' +
+                        '            "alt": "http://demo1.appdynamics.com/controller/"                                             ' +
+                        '            }                                             ' +
+                        '        ],                                             ' +
+                        '            "links": [                                             ' +
+                        '            {                                             ' +
+                        '                "href": "http://demo1.appdynamics.com/controller/",                                             ' +
+                        '            "text": "View this transaction in AppDynamics"                                             ' +
+                        '            }                                             ' +
+                        '        ]                                             ' +
+                        '        }                                             '
+
+              console.log(eventObject)
+
+              $.ajax({
+                method: "POST",
+                url: "https://events.pagerduty.com/v2/enqueue",
+                data: eventObject
+              })
+                .done(function( msg ) {
+                  //alert( "Data Saved: " + msg );
+              });
+
+        }, 1000);
+
+    }
+    return;
+  }
+
+  function AppDAlert()
+  {
+    AppDLoad();
+  }
+
+
+
+  //################################################################################
+  function sendTweet()
+  {
+    
+    //Grab the Service key of use Tim's default one!
+    var serviceKey = getParameterByName('service_key');
+    if (!serviceKey) serviceKey = "999845c2635841589098d7fe425b0d0d";
+
+    var date = new Date();  
+    dedupKey = "Tweet" + date.getMinutes()
+
+    node = document.getElementById('tweet-text'),
+    tweetText = node.value
+
+var eventObject = ' { ' +
+  '   "payload": {     ' +
+  '     "summary": "' + tweetText + '",   ' +
+  '     "source": "Twitter",   ' +
+  '     "severity": "warning",   ' +
+  '     "location" : "prod",   ' +
+  '     "component": "Twitter Feed",   ' +
+  '     "group": "Twitter, Sentiment, production",   ' +
+  '     "class": "tweet" },   ' +
+  '   	"routing_key": "' + serviceKey + '",   ' +
+  '   	"dedup_key": "' + dedupKey + '",   ' +
+  '    	"event_action": "trigger",   ' +
+  '   	"client": "View in Twitter",   ' +
+  '   	"client_url": "www.twitter.com"   ' +
+  '   }'
+
+
+    console.log(eventObject)
+
+    $.ajax({
+      method: "POST",
+      url: "https://events.pagerduty.com/v2/enqueue",
+      data: eventObject
+    })
+      .done(function( msg ) {
+        //alert( "Data Saved: " + msg );
+    });
+
+    return;
+  }
+  //################################################################################
+
+
+//################################################################################
+function sendZabbixResolve()
+  {
+    console.log('Send to Zabbix');
+
+    
+    //Grab the Service key of use Tim's default one!
+    var serviceKey = getParameterByName('service_key');
+    if (!serviceKey) serviceKey = "999845c2635841589098d7fe425b0d0d";
+
+    var eventObject = ' { ' +
+    '   "payload": {     ' +
+    '     "summary": "java.lang.OutOfMemoryError: Java heap space",   ' +
+    '     "source": "Zabbix",   ' +
+    '     "severity": "warning",   ' +
+    '     "location" : "prod",   ' +
+    '     "component": "Zabbix",   ' +
+    '     "group": "Zabbix,Production,eCommerce,Checkout-Tier",   ' +
+    '     "class": "Zabbix" },   ' +
+    '   	"routing_key": "' + serviceKey + '",   ' +
+    '   	"dedup_key": "Zabbixdedupkey",   ' +
+    '    	"event_action": "resolve",   ' +
+    '   	"client": "View in Zabbix",   ' +
+    '   	"client_url": "www.zabbix.com",   ' +
+    '   	"images": [   ' +
+    '   	    {   ' +
+    '   	      "src": "https://chart.googleapis.com/chart?chs=600x400&chd=t:6,2,9,5,2,5,7,4,8,2,1&cht=lc&chds=a&chxt=y&chm=D,0033FF,0,0,5,1",   ' +
+    '   	      "href": "https://acme.pagerduty.com",   ' +
+    '   	      "alt": "This is a sample link"  ' +
+    '   	  }  ' +
+    '   	]  ' +
+    '   }'
+
+
+    $.ajax({
+      method: "POST",
+      url: "https://events.pagerduty.com/v2/enqueue",
+      data: eventObject
+    })
+      .done(function( msg ) {
+        //alert( "Data Saved: " + msg );
+    });
+
+    return;
+  }
+  //################################################################################
+
+
+
+
+  //################################################################################
+  //Grab the Params from the URL in this case the Service Key
+  function getParameterByName(name, url) {
+    if (!url) url = window.location.href;
+    name = name.replace(/[\[\]]/g, "\\$&");
+    var regex = new RegExp("[?&]" + name + "(=([^&#]*)|&|#|$)"),
+        results = regex.exec(url);
+    if (!results) return null;
+    if (!results[2]) return '';
+    return decodeURIComponent(results[2].replace(/\+/g, " "));
+  }
+  //################################################################################
+
+
+
+</script>
+  
+
+</body>
+
+
+
+
+
+
+
+</html> 

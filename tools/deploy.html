@@ -1,0 +1,102 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+</head>
+<body>
+
+<h2>Deployment</h2>
+<button type="button" onclick="sendDeploymentEvent()">Click Me!</button>
+ 
+</body>
+</html>
+
+
+
+
+<script>
+
+    //################################################################################
+    //Function to Generate a GUID - Not used now - this was to get a unique key for Dedup'ing
+    function guid() {
+      function s4() {
+        return Math.floor((1 + Math.random()) * 0x10000)
+          .toString(16)
+          .substring(1);
+      }
+      return s4() + s4() + '-' + s4() + '-' + s4() + '-' +
+        s4() + '-' + s4() + s4() + s4();
+    }
+    //################################################################################
+  
+  
+     //################################################################################
+  //Grab the Params from the URL in this case the Service Key
+  function getParameterByName(name, url) {
+    if (!url) url = window.location.href;
+    name = name.replace(/[\[\]]/g, "\\$&");
+    var regex = new RegExp("[?&]" + name + "(=([^&#]*)|&|#|$)"),
+        results = regex.exec(url);
+    if (!results) return null;
+    if (!results[2]) return '';
+    return decodeURIComponent(results[2].replace(/\+/g, " "));
+  }
+  //################################################################################
+
+  
+   //################################################################################
+   function sendDeploymentEvent()
+    {
+      console.log('sendDeployment');
+  
+      
+      //Grab the Service key of use Tim's default one!
+      var serviceKey = getParameterByName('service_key');
+      if (!serviceKey) serviceKey = "573adcdc5e7e453b9caebcf8325437ef";
+  
+      var eventObject = ' { ' +
+      '   "payload": {     ' +
+      '     "summary": "Release ' + guid() + ' ",   ' +
+      '     "source": "Jenkins",   ' +
+//      '     "severity": "info",   ' +
+      '     "location" : "prod",   ' +
+      '     "component": "Jenkins",   ' +
+      '     "group": "Jenkins,Production,eCommerce,Checkout-Tier" },   ' +
+//      '     "class": "deploy" },   ' +
+      '   	"routing_key": "' + serviceKey + '",   ' +
+      '   	"dedup_key": "deploy' + guid() + '",   ' +
+      '    	"event_action": "trigger",   ' +
+      '   	"client": "View in Jenkins",   ' +
+      '   	"client_url": "www.jenkins.com",   ' +
+      '   	"images": [   ' +
+      '   	    {   ' +
+      '   	      "src": "https://chart.googleapis.com/chart?chs=600x400&chd=t:6,2,9,5,2,5,7,4,8,2,1&cht=lc&chds=a&chxt=y&chm=D,0033FF,0,0,5,1",   ' +
+      '   	      "href": "https://acme.pagerduty.com",   ' +
+      '   	      "alt": "This is a sample link"  ' +
+      '   	  }  ' +
+      '   	]  ' +
+      '   }'
+  
+  
+      console.log(eventObject);
+  
+      $.ajax({
+        method: "POST",
+        url: "https://events.pagerduty.com/v2/enqueue",
+        data: eventObject
+      })
+        .done(function( msg ) {
+        
+        alert( "Event sent... Message: " + msg.message + " Status:" + msg.status );
+      
+      });
+  
+      return;
+    }
+    //################################################################################
+  
+
+  
+    </script>
+  

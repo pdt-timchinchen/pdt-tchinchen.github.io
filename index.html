@@ -46,21 +46,14 @@
 <body>
   <br/>
 
-  <!-- <img height="85" width="225" src="https://qconlondon.com/sites/default/files/newhomepage/logo-qconlondon.svg"> -->
-  <!-- <img height="85" width="225" src="http://querymanager.software/img/top-nav/logo.svg"> -->
-  
-  <img  height="100" width="225" src="https://uswitch-mobiles1-contentful.imgix.net/qhi9fkhtpbo3/1YpMo2dwN2ME6ycgQqWy8G/4916bbda5ab0816b45993ed238c4ad2d/Lebara_mobile_final_logo_image.jpg?w=770&h=370&fit=thumb">
-
-  <!-- MAIN DEMO 
   <img  height="85" width="225" src="images/parts-unlimited-logo.jpg">
-  -->  
 
   <div id="PDContent">
     <img height="45" width="110" src="https://iqm7l1pa7bn3d42rc278rat5-wpengine.netdna-ssl.com/wp-content/uploads/2017/08/logo-pagerduty.svg"/>
   </div>
 
   
-  <h1>Lebara Mobile iPhone Checkout</h1>
+  <h1>Parts Unlimited iPhone Checkout</h1>
 
 <br/>
 Name &amp; email: <input type="text" name="customerName" id="customer-name" value="Enter your name here..." onfocus="if(this.value=='Enter your name here...') this.value='';"><br>
@@ -81,11 +74,12 @@ Name &amp; email: <input type="text" name="customerName" id="customer-name" valu
 
   <div class="product">
     <div class="product-image">
-      <img src="https://www.att.com/catalog/en/skus/images/apple-iphone%20x-space%20gray-450x350.png">
+      <!-- <img src="https://www.att.com/catalog/en/skus/images/apple-iphone%20x-space%20gray-450x350.png"> -->
+      <img src="https://www.apple.com/newsroom/images/product/iphone/standard/Apple-iPhone-Xs-line-up-09122018_inline.jpg.large.jpg">
     </div>
     <div class="product-details">
-      <div class="product-title">iPhone X</div>
-      <p class="product-description">Our vision has always been to create an iPhone that is entirely screen. One so immersive the device itself disappears into the experience. And so intelligent it can respond to a tap, your voice, and even a glance. With iPhone X, that vision is now a reality. Say hello to the future.</p>
+      <div class="product-title">iPhone XS</div>
+      <p class="product-description">Our vision has always been to create an iPhone that is entirely screen. One so immersive the device itself disappears into the experience. And so intelligent it can respond to a tap, your voice, and even a glance. The iPhone XS features an OLED display with Dolby Vision and HDR 10, an A12 bionic chip, Smart HDR, support for VR, and Dual-SIM support using a physical SIM and an e-SIM</p>
     </div>
     <div class="product-price">800.00</div>
     <div class="product-quantity">
@@ -130,11 +124,11 @@ Name &amp; email: <input type="text" name="customerName" id="customer-name" valu
     </div>
     <div class="totals-item">
       <label>Shipping</label>
-      <div class="totals-value" id="cart-shipping">15.00</div>
+      <div class="totals-value" id="cart-shipping">5.00</div>
     </div>
     <div class="totals-item totals-item-total">
       <label>Grand Total</label>
-      <div class="totals-value" id="cart-total">1830.45</div>
+      <div class="totals-value" id="cart-total">1820.45</div>
     </div>
   </div>
       
@@ -147,7 +141,7 @@ Name &amp; email: <input type="text" name="customerName" id="customer-name" valu
 </div>
 
 <div id="checkoutError">
-  <b>Error in Checkout - Better head over to BOOTH 19 for a chance to WIN!</b> 
+  <b>Error in Checkout - Unable to complete your order</b> 
   <br/>"Connection to data source updateOrderDB can not be established! 
   <br/>Reason: Invalid operation. The connection is closed. - complete stack
   <br/>at System.Data.SqlClient.SqlConnection.GetOpenConnection()
@@ -211,7 +205,7 @@ Name &amp; email: <input type="text" name="customerName" id="customer-name" valu
     //Check the input makes sense
     if (customerName == "Enter your name here...") 
     {
-      alert('Please enter your name and business email for a chance to win!');
+      alert('Please enter your name and email to complete the order');
       return;
     }
     if (customerName == "") 
@@ -239,7 +233,7 @@ Name &amp; email: <input type="text" name="customerName" id="customer-name" valu
     //They return later - we trigger a new alert 
     var node = document.getElementById('cart-total'),
     orderValue = node.innerHTML
-    var date = new Date("1/1/2001");  
+    var date = new Date();  
     dedupKey = customerName + date.getMinutes()
 
 
@@ -254,7 +248,7 @@ Name &amp; email: <input type="text" name="customerName" id="customer-name" valu
         ' "event_type"\: "trigger", ' +
         ' "contexts"\: [ ' +
         ' {  ' +
-            ' "src": "https://s14.postimg.org/knuvhigz5/NRErrors2.png", ' +
+            ' "src": "https://s14.postimg.cc/kkb4ebntd/NRErrors2.png", ' +
             ' "alt": "Snapshot of metric", ' +
             ' "href": "http://www.timchinchen.co.uk/DemoImages/NRErrors1.png", ' +
             ' "type": "image" ' +
@@ -333,9 +327,120 @@ Name &amp; email: <input type="text" name="customerName" id="customer-name" valu
         //alert( "Data Saved: " + msg );
     });
 
-
+    //Update the panel eventually - simulating an end system response
+    setTimeout(sendZabbix, 5000);
+    //Update the panel eventually - simulating an end system response
+    setTimeout(sendLowRevenueWarning, 5000);
 
   }
+
+
+
+
+ //################################################################################
+ function sendZabbix()
+  {
+    console.log('Send to Zabbix');
+
+    
+    //Grab the Service key of use Tim's default one!
+    var serviceKey = getParameterByName('service_key');
+    if (!serviceKey) serviceKey = "999845c2635841589098d7fe425b0d0d";
+
+    var eventObject = ' { ' +
+    '   "payload": {     ' +
+    '     "summary": "java.lang.OutOfMemoryError: Java heap space",   ' +
+    '     "source": "Zabbix",   ' +
+    '     "severity": "warning",   ' +
+    '     "location" : "prod",   ' +
+    '     "component": "Zabbix",   ' +
+    '     "group": "Zabbix,Production,eCommerce,Checkout-Tier",   ' +
+    '     "class": "Zabbix" },   ' +
+    '   	"routing_key": "' + serviceKey + '",   ' +
+    '   	"dedup_key": "Zabbixdedupkey",   ' +
+    '    	"event_action": "trigger",   ' +
+    '   	"client": "View in Zabbix",   ' +
+    '   	"client_url": "www.zabbix.com",   ' +
+    '   	"images": [   ' +
+    '   	    {   ' +
+    '   	      "src": "https://chart.googleapis.com/chart?chs=600x400&chd=t:6,2,9,5,2,5,7,4,8,2,1&cht=lc&chds=a&chxt=y&chm=D,0033FF,0,0,5,1",   ' +
+    '   	      "href": "https://acme.pagerduty.com",   ' +
+    '   	      "alt": "This is a sample link"  ' +
+    '   	  }  ' +
+    '   	]  ' +
+    '   }'
+
+
+    console.log(eventObject);
+
+    $.ajax({
+      method: "POST",
+      url: "https://events.pagerduty.com/v2/enqueue",
+      data: eventObject
+    })
+      .done(function( msg ) {
+        //alert( "Data Saved: " + msg );
+    });
+
+    return;
+  }
+  //################################################################################
+
+
+//################################################################################
+function sendLowRevenueWarning()
+  {
+
+    console.log('Send Low Revenue Warning');
+
+    
+    //Grab the Service key of use Tim's default one!
+    var serviceKey = getParameterByName('service_key');
+    if (!serviceKey) serviceKey = "999845c2635841589098d7fe425b0d0d";
+
+    var eventObject = ' { ' +
+    '   "payload": {     ' +
+    '     "summary": "Low Revenue detected compared to normal",   ' +
+    '     "source": "Prometheus",   ' +
+    '     "severity": "warning",   ' +
+    '     "location" : "prod",   ' +
+    '     "component": "Prometheus",   ' +
+    '     "group": "Prometheus,Production,eCommerce,Checkout-Tier",   ' +
+    '     "class": "Prometheus" },   ' +
+    '   	"routing_key": "' + serviceKey + '",   ' +
+    '   	"dedup_key": "Prometheusdedupkey",   ' +
+    '    	"event_action": "trigger",   ' +
+    '   	"client": "View in Prometheus",   ' +
+    '   	"client_url": "www.Prometheus.com",   ' +
+    '   	"images": [   ' +
+    '   	    {   ' +
+    '   	      "src": "https://logz.io/wp-content/uploads/2017/03/memory-graph.png",   ' +
+    '   	      "href": "https://logz.io/wp-content/uploads/2017/03/memory-graph.png",   ' +
+    '   	      "alt": "This is a sample link"  ' +
+    '   	  }  ' +
+    '   	]  ' +
+    '   }'
+
+
+    console.log(eventObject);
+
+    $.ajax({
+      method: "POST",
+      url: "https://events.pagerduty.com/v2/enqueue",
+      data: eventObject
+    })
+      .done(function( msg ) {
+        //alert( "Data Saved: " + msg );
+    });
+
+    return;
+  }
+  //################################################################################
+
+
+
+
+
   </script>
 
 

@@ -4,7 +4,7 @@
 <head>
   <meta charset="UTF-8" http-equiv="Cache-control" content="NO-CACHE">
 
-  <title>Sparebank - Payment Page</title>
+  <title>WorldFirst - Payment Page</title>
 
   <link rel='shortcut icon' type='image/x-icon' href='favicon.ico' />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/5.0.0/normalize.min.css">
@@ -46,22 +46,22 @@
 <body>
   <br/>
 
-  <img  height="85" width="110" src="https://www.sparebank1.no/content/dam/SB1/nettsider/logo.svg">
+  <img  height="85" width="110" src="https://www.seeklogo.net/wp-content/uploads/2014/06/waitrose-vector-logo.png">
 
   <div id="PDContent">
     <img height="45" width="110" src="https://iqm7l1pa7bn3d42rc278rat5-wpengine.netdna-ssl.com/wp-content/uploads/2017/08/logo-pagerduty.svg"/>
   </div>
 
   
-  <h1>Sparebank Payment Page</h1>
+  <h1>WorldFirst Transfer Page</h1>
 
 <br/>
 Name &amp; email: <input type="text" name="customerName" id="customer-name" value="Enter your name here..." onfocus="if(this.value=='Enter your name here...') this.value='';">
 &nbsp;&nbsp;
 Account: 
 <select id="accountOption">
-  <option value="Premier_Current">Premier Current ****-4321</option>
-  <option value="Everyday_Saver">Everyday Saver ****-1234</option>
+  <option value="World_Account">World Account ****-4321</option>
+  <option value="WorldFirst_Premier">WorldFirst Premier ****-1234</option>
 </select>
 
 <br/>
@@ -82,12 +82,12 @@ Account:
 
   <div class="product">
     <div class="product-image">
-      <img src="http://norway203040.com/wp-content/uploads/2017/02/Turid-Grotmoll-CEO-SpareBank-1-Forsikring.jpg" height="100" width="300">
+      <img src="https://media.licdn.com/dms/image/C4E03AQFYXIMkVs3i5w/profile-displayphoto-shrink_800_800/0?e=1534377600&v=beta&t=1o0s1xR5sQ6dIkCyNvu5uLQlL-0h252DlVwQKWDr83s" height="100" width="300">
     </div>
     <div class="product-details">
       <div class="product-title">Payee Details</div>
       <p class="product-description">
-        Account Holder Name: Turid Grotmoll<br/>
+        Account Holder Name: Craige Pendleton Browne<br/>
         Sort Code: &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 20-00-00<br/>
         Account Number: &nbsp;&nbsp;&nbsp;&nbsp; 21368192<br/>
 
@@ -131,7 +131,7 @@ Account:
 
 
 <div id="checkoutError">
-  <b>Error in Payment</b> 
+  <b>Error in Transfer</b> 
   <br/>"Connection to data source updatePaymentDB can not be established! 
   <br/>Reason: Invalid operation. The connection is closed. - complete stack
   <br/>at System.Data.SqlClient.SqlConnection.GetOpenConnection()
@@ -141,7 +141,7 @@ Account:
 
 
 <div id="PDinfo">
-  Not a real Bank! <H5>But check out us for real at <a href="https://www.pagerduty.com/">https://www.pagerduty.com/</a></h5>
+  Not a real WorldFirst Page! <H5>But check out us for real at <a href="https://www.worldfirst.com/">https://www.worldfirst.com/</a></h5>
 </div>
 
 <script>
@@ -284,7 +284,7 @@ Account:
     ' "tags": "aws-prod, base, env:prod, host:farnsworth, monitor, pd_az:us-west-2c, production, xdb, xtradb", ' +
     ' "Customer": "'+ customerName + '" ' +
     ' }, ' +
-  ' "description": "[Critical] Increased response time detected on the Payment page, High Error rates" ' +
+  ' "description": "[Critical] Increased response time detected on the Payment page, High Error rates affecting ' + customerName + '" ' +
   '}' 
 
   console.log(eventObject)
