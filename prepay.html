@@ -1,0 +1,450 @@
+<!DOCTYPE html>
+<html lang="en" >
+
+<head>
+  <meta charset="UTF-8" http-equiv="Cache-control" content="NO-CACHE">
+
+  <title>Prepay Payment Page</title>
+
+  <link rel='shortcut icon' type='image/x-icon' href='favicon.ico' />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/5.0.0/normalize.min.css">
+    <link rel="stylesheet" href="css/style.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+  
+
+<!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-113051118-1"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'UA-113051118-1');
+</script>
+<!-- END Global site tag (gtag.js) - Google Analytics -->
+
+
+</head>
+
+<style>
+  #checkoutError {
+      width: 100%;
+      padding: 50px 0;
+      text-align: center;
+      background-color: red;
+      margin-top: 20px;
+      display:none;     
+  }
+
+  #PDContent img {
+    position: absolute;
+    top: 0px;
+    right: 15px;
+  }
+
+</style>
+
+<body>
+  <br/>
+
+  <img  height="85" width="110" src="http://prepaysolutions.com/wp-content/uploads/2017/06/weblogo205.png">
+
+  <div id="PDContent">
+    <img height="45" width="110" src="https://iqm7l1pa7bn3d42rc278rat5-wpengine.netdna-ssl.com/wp-content/uploads/2017/08/logo-pagerduty.svg"/>
+  </div>
+
+  
+  <h1>Make Transfer</h1>
+
+<br/>
+Name &amp; email: <input type="text" name="customerName" id="customer-name" value="Enter your name here..." onfocus="if(this.value=='Enter your name here...') this.value='';">
+&nbsp;&nbsp;
+Account: 
+<select id="accountOption">
+  <option value="Premier_Current">Premier Current ****-4321</option>
+  <option value="Everyday_Saver">Everyday Saver ****-1234</option>
+</select>
+
+<br/>
+<br/>
+<br/>
+
+
+<div class="shopping-cart">
+
+  <div class="column-labels">
+    <label class="product-image">Image</label>
+    <label class="product-details">Product</label>
+    <label class="product-price">Currency</label>
+    <label class="product-quantity">Amount</label>
+    <label class="product-removal">Remove</label>
+    <label class="product-line-price">Total</label>
+  </div>
+
+  <div class="product">
+    <div class="product-image">
+      <img src="https://media.licdn.com/dms/image/C4D03AQHI8mZfDu4r8A/profile-displayphoto-shrink_800_800/0?e=1544054400&v=beta&t=9dZb-BrbTJCT05ZS5N08albAIlNuYH4sG1eHan51eaE" height="100" width="300">
+    </div>
+    <div class="product-details">
+      <div class="product-title">Payee Details</div>
+      <p class="product-description">
+        Account Holder Name: Michael Creed<br/>
+        Sort Code: &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 20-00-00<br/>
+        Account Number: &nbsp;&nbsp;&nbsp;&nbsp; 21368192<br/>
+
+      </p>
+    </div>
+    <div class="product-price" display="none">1</div>
+    <div class="product-quantity" item-width="1000">
+      <input type="number" value="1000" min="1" >
+    </div>
+    <div class="product-removal">
+      <button class="remove-product">
+        Remove
+      </button>
+    </div>
+    <div class="product-line-price">1000</div>
+  </div>
+
+
+  <div class="totals">
+    <div class="totals-item">
+      <label>Subtotal</label>
+      <div class="totals-value" id="cart-subtotal">1000.00</div>
+    </div>
+    
+    <div class="totals-item">
+      <label>Commission (0%)</label>
+      <div class="totals-value" id="cart-tax">0.0</div>
+    </div>
+    <div class="totals-item">
+      <label>Wire Charge (N/A)</label>
+      <div class="totals-value" id="cart-shipping">0.0</div>
+    </div>
+    <div class="totals-item totals-item-total">
+      <label>Grand Total</label>
+      <div class="totals-value" id="cart-total">1000</div>
+    </div>
+  </div>
+      
+      <button id="checkoutButton" class="checkout" onclick="completeCheckout()">Pay Now</button>
+  </div>
+
+
+<div id="checkoutError">
+  <b>Error in Payment</b> 
+  <br/>"Connection to data source updatePaymentDB can not be established! 
+  <br/>Reason: Invalid operation. The connection is closed. - complete stack
+  <br/>at System.Data.SqlClient.SqlConnection.GetOpenConnection()
+  <br/>at System.Data.SqlClient.SqlConnection.get_Parser()
+  <br/>at System.Data.SqlClient.SqlConnection.Open()", Please try later
+</div>
+
+
+<div id="PDinfo">
+  Not a real Prepay Page! <H5>But check out us for real at <a href="http://prepaysolutions.com/">http://prepaysolutions.com//</a></h5>
+</div>
+
+<script>
+
+  //################################################################################
+  //Function to Generate a GUID - Not used now - this was to get a unique key for Dedup'ing
+  function guid() {
+    function s4() {
+      return Math.floor((1 + Math.random()) * 0x10000)
+        .toString(16)
+        .substring(1);
+    }
+    return s4() + s4() + '-' + s4() + '-' + s4() + '-' +
+      s4() + '-' + s4() + s4() + s4();
+  }
+  //################################################################################
+
+
+  //################################################################################
+  //Grab the Params from the URL in this case the Service Key
+  function getParameterByName(name, url) {
+    if (!url) url = window.location.href;
+    name = name.replace(/[\[\]]/g, "\\$&");
+    var regex = new RegExp("[?&]" + name + "(=([^&#]*)|&|#|$)"),
+        results = regex.exec(url);
+    if (!results) return null;
+    if (!results[2]) return '';
+    return decodeURIComponent(results[2].replace(/\+/g, " "));
+  }
+  //################################################################################
+
+  //################################################################################
+  //Clears the Checkout error back to default
+  function updateResponsePanel()
+  {
+    var x = document.getElementById("checkoutError");
+    x.style.display = "block";
+
+    var y = document.getElementById("PDinfo");
+    y.style.display = "none";
+
+    document.getElementById("checkoutButton").innerHTML = "Checkout";
+
+  }
+  //################################################################################
+
+
+  //################################################################################
+  //The Main function under the button
+  function completeCheckout() {
+
+    //Capture the customer name
+    node = document.getElementById('customer-name'),
+    customerName = node.value
+
+    //Check the input makes sense
+    if (customerName == "Enter your name here...") 
+    {
+      alert('Please enter your name and email to complete the order');
+      return;
+    }
+    if (customerName == "") 
+    {
+      alert('Who are you???');
+      return;
+    }
+
+    //Grab the Service key of use Tim's default one!
+    var serviceKey = getParameterByName('service_key');
+    if (!serviceKey) serviceKey = "999845c2635841589098d7fe425b0d0d";
+
+    //Clear the error pane if showing
+    var x = document.getElementById("checkoutError");
+    x.style.display = "none";
+
+    //Set the Button to something happening
+    document.getElementById("checkoutButton").innerHTML = "Working";
+    
+    //Update the panel eventually - simulating an end system response
+    setTimeout(updateResponsePanel, 4000);
+
+    //Get the Order Value and a Dedup key based on Customer Name and the Minute of the Button click 
+    //(someone clicks multiple times = caught one)
+    //They return later - we trigger a new alert 
+    var node = document.getElementById('cart-total'),
+    orderValue = node.innerHTML
+    var date = new Date();  
+    dedupKey = customerName + date.getMinutes()
+
+    //alert (customerName);
+    var e = document.getElementById ("accountOption");
+    var accountSelected = e.options [e.selectedIndex] .value;
+
+    // Requires jQuery
+    //Build the JSON payload to send
+    var eventObject = '{ ' + 
+        ' "client_url": "https://rpm.newrelic.com/accounts/1818495/applications/105833762", ' +
+        ' "service_key"\: "' + serviceKey + '", ' +
+        ' "incident_key"\: "' + dedupKey + '", ' +
+        ' "client"\: "New Relic", ' +
+        ' "vendor"\: "New Relic", ' +
+        ' "event_type"\: "trigger", ' +
+        ' "contexts"\: [ ' +
+        ' {  ' +
+            ' "src": "https://s14.postimg.cc/kkb4ebntd/NRErrors2.png", ' +
+            ' "alt": "Snapshot of metric", ' +
+            ' "href": "http://www.timchinchen.co.uk/DemoImages/NRErrors1.png", ' +
+            ' "type": "image" ' +
+        ' }, ' +
+    
+        ' { ' +   
+        ' "text": "Conference URL (Zoom)", ' +
+        ' "href": "https://pagerduty.zoom.us/j/5080555253", ' +
+        ' "type": "link" ' +
+        ' }, ' +
+    
+      '{' +
+      '  "text": "Conference Dial (Zoom)",  ' +
+      '  "href": "tel:+442036950088,,5080555253#",  ' +
+      '  "type": "link"  ' +
+      '},' +
+    '{' +
+      ' "text": "Monitor Status", ' +
+      ' "href": "https://appp.datadoghq.com/monitors#72563?to_ts=1452282540000&group=host%3Aprod-web-xdb09&from_ts=1452281340000", ' +
+      ' "type": "link" ' +
+    '},' +
+    '{ ' +
+    ' "text": "New Relic - Permalink", ' +
+    '  "href": "https://rpm.newrelic.com/accounts/1818495/applications/105833762?tw%5Bend%5D=1518535392&tw%5Bstart%5D=1518528373", ' +
+    '  "type": "link" ' +
+    ' } ' +
+    ' ], ' +
+  ' "details": { ' +
+    ' "body": "[Critical] Increased response time detected on the Payment page affecting ' + customerName + ', High Error rates <br/> Object Reference Not Set and ADO.NET Connection pool exceeded errors detected" , ' +   
+    ' "Order Value": ' + orderValue + ', ' +
+    ' "priority": "High", ' +
+    ' "Account": "' + accountSelected + '", ' +
+    ' "title": "[Critical] Increased response time detected on the Payment page, High Error rates  affecting ' + customerName + '", ' +
+    ' "event_id": "8125363154448140714", ' +
+    ' "tags": "aws-prod, base, env:prod, host:farnsworth, monitor, pd_az:us-west-2c, production, xdb, xtradb", ' +
+    ' "Customer": "'+ customerName + '" ' +
+    ' }, ' +
+  ' "description": "[Critical] Increased response time detected on the Payment page, High Error rates" ' +
+  '}' 
+
+  console.log(eventObject)
+
+
+  //    ' "Customer Name": ' + customerName + ', ' +
+
+
+    //var settings = {
+    //  "url": "https://events.pagerduty.com/generic/2010-04-15/create_event.json",
+    //  "method": "POST",
+    //  "data":  eventObject,
+    //  "headers": {
+    //    "Accept": "application/vnd.pagerduty+json;version=2",
+    //    "Authorization": "Token token=V_uHsBDv3G2NxyimTYVg",
+    //  }
+    //};
+
+    //$.ajax(settings).done(function (response) {
+    //  console.log(response);
+    //  $("#responseText").text(JSON.stringify(response));
+    //});
+
+    //$.ajax({
+    //  type: "POST",
+    //  url: "https://events.pagerduty.com/generic/2010-04-15/create_event.json",
+    //  data: eventObject,
+    //  success: null,
+    //  dataType: "json"
+    //});
+
+    //Send!!!
+    $.ajax({
+      method: "POST",
+      url: "https://events.pagerduty.com/generic/2010-04-15/create_event.json",
+      data: eventObject
+    })
+      .done(function( msg ) {
+        //alert( "Data Saved: " + msg );
+    });
+
+    //Update the panel eventually - simulating an end system response
+    setTimeout(sendZabbix, 5000);
+    //Update the panel eventually - simulating an end system response
+    setTimeout(sendLowRevenueWarning, 5000);
+
+  }
+
+
+
+
+ //################################################################################
+ function sendZabbix()
+  {
+    console.log('Send to Zabbix');
+
+    
+    //Grab the Service key of use Tim's default one!
+    var serviceKey = getParameterByName('service_key');
+    if (!serviceKey) serviceKey = "999845c2635841589098d7fe425b0d0d";
+
+    var eventObject = ' { ' +
+    '   "payload": {     ' +
+    '     "summary": "java.lang.OutOfMemoryError: Java heap space",   ' +
+    '     "source": "Zabbix",   ' +
+    '     "severity": "warning",   ' +
+    '     "location" : "prod",   ' +
+    '     "component": "Zabbix",   ' +
+    '     "group": "Zabbix,Production,RetailBanking,Payment-Tier",   ' +
+    '     "class": "Zabbix" },   ' +
+    '   	"routing_key": "' + serviceKey + '",   ' +
+    '   	"dedup_key": "Zabbixdedupkey",   ' +
+    '    	"event_action": "trigger",   ' +
+    '   	"client": "View in Zabbix",   ' +
+    '   	"client_url": "www.zabbix.com",   ' +
+    '   	"images": [   ' +
+    '   	    {   ' +
+    '   	      "src": "https://chart.googleapis.com/chart?chs=600x400&chd=t:6,2,9,5,2,5,7,4,8,2,1&cht=lc&chds=a&chxt=y&chm=D,0033FF,0,0,5,1",   ' +
+    '   	      "href": "https://acme.pagerduty.com",   ' +
+    '   	      "alt": "This is a sample link"  ' +
+    '   	  }  ' +
+    '   	]  ' +
+    '   }'
+
+
+    console.log(eventObject);
+
+    $.ajax({
+      method: "POST",
+      url: "https://events.pagerduty.com/v2/enqueue",
+      data: eventObject
+    })
+      .done(function( msg ) {
+        //alert( "Data Saved: " + msg );
+    });
+
+    return;
+  }
+  //################################################################################
+
+
+//################################################################################
+function sendLowRevenueWarning()
+  {
+
+    console.log('Send Low Revenue Warning');
+
+    
+    //Grab the Service key of use Tim's default one!
+    var serviceKey = getParameterByName('service_key');
+    if (!serviceKey) serviceKey = "999845c2635841589098d7fe425b0d0d";
+
+    var eventObject = ' { ' +
+    '   "payload": {     ' +
+    '     "summary": "Low Transfers detected compared to normal baselines",   ' +
+    '     "source": "Prometheus",   ' +
+    '     "severity": "warning",   ' +
+    '     "location" : "prod",   ' +
+    '     "component": "Prometheus",   ' +
+    '     "group": "Prometheus,Production,Payment-Tier",   ' +
+    '     "class": "Prometheus" },   ' +
+    '   	"routing_key": "' + serviceKey + '",   ' +
+    '   	"dedup_key": "Prometheusdedupkey",   ' +
+    '    	"event_action": "trigger",   ' +
+    '   	"client": "View in Prometheus",   ' +
+    '   	"client_url": "www.Prometheus.com",   ' +
+    '   	"images": [   ' +
+    '   	    {   ' +
+    '   	      "src": "https://logz.io/wp-content/uploads/2017/03/memory-graph.png",   ' +
+    '   	      "href": "https://logz.io/wp-content/uploads/2017/03/memory-graph.png",   ' +
+    '   	      "alt": "This is a sample link"  ' +
+    '   	  }  ' +
+    '   	]  ' +
+    '   }'
+
+
+    console.log(eventObject);
+
+    $.ajax({
+      method: "POST",
+      url: "https://events.pagerduty.com/v2/enqueue",
+      data: eventObject
+    })
+      .done(function( msg ) {
+        //alert( "Data Saved: " + msg );
+    });
+
+    return;
+  }
+  //################################################################################
+
+
+
+
+
+  </script>
+
+
+
+<script src='http://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js'></script>
+<script  src="js/index.js"></script>
+</body>
+</html>

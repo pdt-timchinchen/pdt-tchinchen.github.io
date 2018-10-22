@@ -66,6 +66,8 @@ body {
   padding: 0px 30px 30px 20px;
   font-family: "Lato", "HelveticaNeue-Light", "Helvetica Neue Light", "Helvetica Neue", Helvetica, Arial, sans-serif;
   font-weight: 200;
+  color: grey;
+  background-color: black;
 }
 
 h1 {
@@ -73,7 +75,7 @@ h1 {
 }
 
 label {
-  color: #aaa;
+  color: white;
 }
 
 .shopping-cart {
