@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en" >
+
+<head>
+   <title>Holidays</title>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+</head>
+
+
+<script>
+// https://api.jquery.com/jquery.get/
+let url = 'https://holidayapi.pl/v1/holidays?country=FR&year=2019';
+$.get( url, function( data ) {
+  // log response to the console
+  console.log(data);
+  alert( "Done!" );
+  });
+  </script>
+
+<H2>Holidays</H2>
+

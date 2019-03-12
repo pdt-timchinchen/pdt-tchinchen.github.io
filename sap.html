@@ -4,11 +4,11 @@
 <head>
   <meta charset="UTF-8" http-equiv="Cache-control" content="NO-CACHE">
 
-  <title>Get a Quote</title>
+  <title>SAP Success Factors Update Employee</title>
 
   <link rel='shortcut icon' type='image/x-icon' href='favicon.ico' />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/5.0.0/normalize.min.css">
-    <link rel="stylesheet" href="css/style-centrica.css">
+    <link rel="stylesheet" href="css/style-velocix.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
   
 
@@ -26,6 +26,11 @@
 </head>
 
 <style>
+
+  #lastDay{
+    color: red;
+  }
+
   #checkoutError {
       width: 100%;
       padding: 50px 0;
@@ -46,14 +51,15 @@
 <body>
   <br/>
 
-  <img  height="85" width="450" src="https://www.britishgas.co.uk/content/dam/british-gas/beta/images/bg-logo-mobile.svg">
+  <img  height="60" width="502" src="https://www.successfactors.com/content/dam/successfactors/en_us/images/u101-header/sap-success-factor-logo-white.png">
 
   <div id="PDContent">
-    <img height="45" width="110" src="https://iqm7l1pa7bn3d42rc278rat5-wpengine.netdna-ssl.com/wp-content/uploads/2017/08/logo-pagerduty.svg"/>
+    <img  src="https://www.successfactors.com/content/dam/successfactors/en_us/images/misc/logo_sap.png"/>
   </div>
 
   
-  <h1>Get a Quote</h1>
+  <h1>Update Employee - Bonus payment</h1>
+  <h3 id="lastDay">Final Day - Payment processing today</h1>
 
 <br/>
 Name &amp; email: <input type="text" name="customerName" id="customer-name" value="Enter your name here..." onfocus="if(this.value=='Enter your name here...') this.value='';"><br>
@@ -66,93 +72,83 @@ Name &amp; email: <input type="text" name="customerName" id="customer-name" valu
   <div class="column-labels">
     <label class="product-image">Image</label>
     <label class="product-details">Product</label>
-    <label class="product-price">Price</label>
-    <label class="product-quantity">Quantity</label>
-    <label class="product-removal">Remove</label>
+    <label class="product-price">Bonus</label>
+    <label class="product-quantity">-</label> 
+    <label class="product-removal">Reject</label>
     <label class="product-line-price">Total</label>
   </div>
 
   <div class="product">
     <div class="product-image">
-      <img src="images/getaquote2.png">
+      <!-- <img src="https://www.att.com/catalog/en/skus/images/apple-iphone%20x-space%20gray-450x350.png"> -->
+      <img src="https://www.successfactors.com/content/dam/successfactors/en_us/images/c00/management-page-head-shots/c00f-featured-greg-tomb.jpg">
     </div>
     <div class="product-details">
-      <div class="product-title">HomeEnergy Plus Cover May 2019</div>
-      <p class="product-description">
-        <ul>
-        <li>Repairs to your gas boiler and controls, including your thermostat with an excess of £99 for each repair</li>
-        <li>The cover does not include repairs to anything other than the boiler and does not include an annual service. For full inclusions and exclusions go here</li>
-        <li>This tariff isn’t available if you already have British Gas Home Services. Other eligibility criteria applies. You can check if you’re eligible go here</li>
-        </ul>
-      </p>
+      <div class="product-title">Greg Tomb (President)</div>
+      <p class="product-description">Greg serves as President of SAP SuccessFactors with oversight across the end-to-end business for SAP's Human Capital Management (HCM) Solutions. </p>
     </div>
-    <div class="product-price">29.03</div>
+    <div class="product-price">100,000</div>
     <div class="product-quantity">
-      <input type="number" value="12" min="1">
-    </div>
+      <!--<input type="number" value="2" min="1">--> &nbsp;
+    </div> 
     <div class="product-removal">
       <button class="remove-product">
-        Remove
+        Reject
       </button>
     </div>
-    <div class="product-line-price">348.36</div>
+    <div class="product-line-price">100,000</div>
   </div>
 
   <div class="product">
     <div class="product-image">
-      <img src="images/getaquote1.png">
+      <img src="https://www.successfactors.com/content/dam/successfactors/en_us/images/c42/c42-bmd-v2.jpg">
     </div>
     <div class="product-details">
-      <div class="product-title">HomeEnergy Secure Apr 2020</div>
-      <p class="product-description">
-          <ul>
-          <li>Fixed price energy until 30th April 2020</li>
-          <li>Exit fees of £40 per fuel if you want to move to another supplier before 13th March 2020</li>
-          <li>No exit fees if you switch between our tariffs</li>
-        </ul>
-        </p>
+      <div class="product-title">Brigette McInnis-Day (Chief Operating Officer, Strategy & Transformation)</div>
+      <p class="product-description">Brigette serves as Chief HR Strategy & Digital Transformation Executive for SAP SuccessFactors. She partners with SAP SuccessFactors customers to drive employee experience via HR Value, Solution and Technology experts and digital HR experience (dHRx) team.</p>
     </div>
-    <div class="product-price">31.35</div>
+    <div class="product-price">101,000</div>
     <div class="product-quantity">
-      <input type="number" value="12" min="1">
-    </div>
+        <!--<input type="number" value="2" min="1">--> &nbsp;
+      </div> 
     <div class="product-removal">
       <button class="remove-product">
-        Remove
+        Reject
       </button>
     </div>
-    <div class="product-line-price">376.20</div>
+    <div class="product-line-price">101,000</div>
   </div>
 
   <div class="totals">
     <div class="totals-item">
       <label>Subtotal</label>
-      <div class="totals-value" id="cart-subtotal">724.56</div>
+      <div class="totals-value" id="cart-subtotal">201,000</div>
     </div>
     <div class="totals-item">
-      <label>VAT (5%)</label>
-      <div class="totals-value" id="cart-tax">36.23</div>
+      <label>-</label>
+      <div class="totals-value" id="cart-tax">0</div>
     </div>
     <div class="totals-item">
-      <label>Admin</label>
-      <div class="totals-value" id="cart-shipping">5.00</div>
+      <label>-</label>
+      <div class="totals-value" id="cart-shipping">0</div>
     </div>
     <div class="totals-item totals-item-total">
-      <label>Grand Total</label>
-      <div class="totals-value" id="cart-total">765.79</div>
+      <label>Bonus Total</label>
+      <div class="totals-value" id="cart-total">201000</div>
     </div>
   </div>
       
-      <button id="checkoutButton" class="checkout" onclick="completeCheckout()">&gt; Buy Now</button>
+      <button id="checkoutButton" class="checkout" onclick="completeCheckout()">Approve</button>
   </div>
 
 
   <div id="PDinfo">
-    Not a Centrica Site! <H5>But check out us for real at <a href="www.britishgas.co.uk/">www.britishgas.co.uk</a></h5>
-</div>
+      Not a real SAP Page! <H5>But check out us for real at <a href="https://www.successfactors.com/">https://www.successfactors.com/</a></h5>
+  </div>
+    
 
 <div id="checkoutError">
-  <b>Error in Quote - Unable to complete your quote</b> 
+  <b>Error in UpdateEmployee - Unable to complete your request</b> 
   <br/>"Connection to data source updateOrderDB can not be established! 
   <br/>Reason: Invalid operation. The connection is closed. - complete stack
   <br/>at System.Data.SqlClient.SqlConnection.GetOpenConnection()
@@ -199,7 +195,7 @@ Name &amp; email: <input type="text" name="customerName" id="customer-name" valu
     var y = document.getElementById("PDinfo");
     y.style.display = "none";
 
-    document.getElementById("checkoutButton").innerHTML = "Checkout";
+    document.getElementById("checkoutButton").innerHTML = "Update";
 
   }
   //################################################################################
@@ -251,17 +247,17 @@ Name &amp; email: <input type="text" name="customerName" id="customer-name" valu
     // Requires jQuery
     //Build the JSON payload to send
     var eventObject = '{ ' + 
-        ' "client_url": "https://twin2018101106165011.saas.appdynamics.com/controller/?accountName=twin2018101106165011#/location=APP_DASHBOARD&timeRange=last_1_hour.BEFORE_NOW.-1.-1.60&application=77098&dashboardMode=force", ' +
+        ' "client_url": "https://rpm.newrelic.com/accounts/1818495/applications/105833762", ' +
         ' "service_key"\: "' + serviceKey + '", ' +
         ' "incident_key"\: "' + dedupKey + '", ' +
-        ' "client"\: "AppDynamics", ' +
-        ' "vendor"\: "AppDynamics", ' +
+        ' "client"\: "New Relic", ' +
+        ' "vendor"\: "New Relic", ' +
         ' "event_type"\: "trigger", ' +
         ' "contexts"\: [ ' +
         ' {  ' +
-            ' "src": "https://s3.eu-west-2.amazonaws.com/www.timchinchen.co.uk/DemoImages/AppDError.png", ' +
+            ' "src": "https://s14.postimg.cc/kkb4ebntd/NRErrors2.png", ' +
             ' "alt": "Snapshot of metric", ' +
-            ' "href": "https://s3.eu-west-2.amazonaws.com/www.timchinchen.co.uk/DemoImages/AppDError.png", ' +
+            ' "href": "http://www.timchinchen.co.uk/DemoImages/NRErrors1.png", ' +
             ' "type": "image" ' +
         ' }, ' +
     
@@ -282,21 +278,21 @@ Name &amp; email: <input type="text" name="customerName" id="customer-name" valu
       ' "type": "link" ' +
     '},' +
     '{ ' +
-    ' "text": "AppDynamics link", ' +
-    '  "href": "https://twin2018101106165011.saas.appdynamics.com/controller/?accountName=twin2018101106165011#/location=APP_DASHBOARD&timeRange=last_1_hour.BEFORE_NOW.-1.-1.60&application=77098&dashboardMode=force", ' +
+    ' "text": "New Relic - Permalink", ' +
+    '  "href": "https://rpm.newrelic.com/accounts/1818495/applications/105833762?tw%5Bend%5D=1518535392&tw%5Bstart%5D=1518528373", ' +
     '  "type": "link" ' +
     ' } ' +
     ' ], ' +
   ' "details": { ' +
-    ' "body": "[Critical] Increased response time detected on the Quote Business Transaction affecting ' + customerName + ', High Error rates <br/> Object Reference Not Set and ADO.NET Connection pool exceeded errors detected" , ' +   
+    ' "body": "[Critical] Increased response time detected on the Update Employee page affecting ' + customerName + ', High Error rates <br/> Object Reference Not Set and ADO.NET Connection pool exceeded errors detected" , ' +   
     ' "Order Value": ' + orderValue + ', ' +
     ' "priority": "High", ' +
-    ' "title": "[Critical] Increased response time detected on the Quote Business Transaction, High Error rates  affecting ' + customerName + '", ' +
+    ' "title": "[Critical] Increased response time detected on the Update Employee page, High Error rates  affecting ' + customerName + '", ' +
     ' "event_id": "8125363154448140714", ' +
     ' "tags": "aws-prod, base, env:prod, host:farnsworth, monitor, pd_az:us-west-2c, production, xdb, xtradb", ' +
     ' "Customer": "'+ customerName + '" ' +
     ' }, ' +
-  ' "description": "[Critical] Increased response time detected on the Quote Business Transaction, High Error rates" ' +
+  ' "description": "[Critical] Increased response time detected on the Update Employee page, High Error rates" ' +
   '}' 
 
   console.log(eventObject)
@@ -358,25 +354,25 @@ Name &amp; email: <input type="text" name="customerName" id="customer-name" valu
     var serviceKey = getParameterByName('service_key');
     if (!serviceKey) serviceKey = "999845c2635841589098d7fe425b0d0d";
 
-    var eventObject = ' { ' +
+  var eventObject = ' { ' +
     '   "payload": {     ' +
-    '     "summary": "java.lang.OutOfMemoryError: Java heap space",   ' +
-    '     "source": "Zabbix",   ' +
+    '     "summary": "Latency Issue Detected - High Packet loss detected on Node-23475SFFVI",   ' +
+    '     "source": "Solarwinds Orion",   ' +
     '     "severity": "warning",   ' +
     '     "location" : "prod",   ' +
-    '     "component": "Zabbix",   ' +
-    '     "group": "Zabbix,Production,eCommerce,Checkout-Tier",   ' +
-    '     "class": "Zabbix" },   ' +
+    '     "component": "Solarwinds Orion",   ' +
+    '     "group": "Solarwinds,Production,eCommerce,UpdateEmployee-Tier",   ' +
+    '     "class": "Solarwinds" },   ' +
     '   	"routing_key": "' + serviceKey + '",   ' +
     '   	"dedup_key": "Zabbixdedupkey",   ' +
     '    	"event_action": "trigger",   ' +
-    '   	"client": "View in Zabbix",   ' +
-    '   	"client_url": "www.zabbix.com",   ' +
+    '   	"client": "View in Solarwinds",   ' +
+    '   	"client_url": "www.Solarwinds.com",   ' +
     '   	"images": [   ' +
     '   	    {   ' +
-    '   	      "src": "https://chart.googleapis.com/chart?chs=600x400&chd=t:6,2,9,5,2,5,7,4,8,2,1&cht=lc&chds=a&chxt=y&chm=D,0033FF,0,0,5,1",   ' +
+    '   	      "src": "https://www.solarwinds.com/-/media/solarwinds/swdcv2/licensed-products/network-performance-monitor/images/product-screenshots/npm-network-summary.ashx?vs=1&h=640&w=1024&la=en&hash=C49DA628EFA2B261D37AD054B83603EB3B6FC7B3",   ' +
     '   	      "href": "https://acme.pagerduty.com",   ' +
-    '   	      "alt": "This is a sample link"  ' +
+    '   	      "alt": "Solarwinds"  ' +
     '   	  }  ' +
     '   	]  ' +
     '   }'
@@ -416,7 +412,7 @@ function sendLowRevenueWarning()
     '     "severity": "warning",   ' +
     '     "location" : "prod",   ' +
     '     "component": "Prometheus",   ' +
-    '     "group": "Prometheus,Production,eCommerce,Checkout-Tier",   ' +
+    '     "group": "Prometheus,Production,eCommerce,UpdateEmployee-Tier",   ' +
     '     "class": "Prometheus" },   ' +
     '   	"routing_key": "' + serviceKey + '",   ' +
     '   	"dedup_key": "Prometheusdedupkey",   ' +

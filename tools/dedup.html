@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html>
+<title>Demo Tools</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="w3.css">
+<link rel="stylesheet" href="w3-theme-blue.css">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+
+<body style="max-width:400px;margin:16px;border:1px solid #ccc">
+
+<header class="w3-container w3-card-4 w3-theme">
+  <h1>Demo Tools</h1>
+</header>
+
+<!-- Tweet -->
+
+<div class="w3-panel">
+<div class="w3-row">
+  <div class="w3-col s3">
+    <img src="http://www.enterprisestorageguide.com/wp-content/uploads/2014/05/deduplication_diagram-700x325.jpg" style="width:100%">
+  </div>
+  <div class="w3-col s9 w3-container">
+    <h3>Dedup Test Page</h3>
+    <p>
+      <input type="text" name="serviceKey-text" id="serviceKey-text" value="5bc4b729786e4174895a4a9b4396dd99"><br/>&nbsp;<br/>
+      <input type="text" name="dedupKey-text" id="dedupKey-text" value="SERVER01"><br/>&nbsp;<br/>
+      <input type="text" name="CustomDetails-text" id="CustomDetails-text" value="[This is the first update]"><br/>&nbsp;<br/>
+      
+       <Button onclick="sendInfo()">Send Info</Button></p>
+  </div>
+</div>  
+<hr>
+
+
+<hr>
+
+</div>
+
+<footer class="w3-container w3-theme-l2" style="position:relative">
+  <a class="w3-btn w3-xlarge w3-circle w3-theme-action w3-right" style="position:absolute;top:-28px;right:16px;">+</a>
+  <p>Tim's Demo tools</p>
+</footer>
+
+<div class="w3-container w3-theme-dark w3-xlarge">&lt;<span class="w3-right">&gt;</span></div>
+
+<script>
+
+  var g_AppDi;
+
+  
+
+
+
+  //################################################################################
+  function sendInfo()
+  {
+    
+    var date = new Date();  
+
+    //Grab the Service key of use Tim's default one!
+    var serviceKey = getParameterByName('service_key');
+    if (!serviceKey) 
+    {
+      serviceKey = document.getElementById('serviceKey-text').value;
+    }
+
+    dedupKey = document.getElementById('dedupKey-text').value;
+
+    InfoText = document.getElementById('CustomDetails-text').value;
+
+// var eventObject = ' { ' +
+//   '   "payload": {     ' +
+//   '     "summary": "' + InfoText + '",   ' +
+//   '     "source": "Production",   ' +
+//   '     "severity": "warning",   ' +
+//   '     "location" : "prod",   ' +
+//   '     "component": "Twitter Feed",   ' +
+//   '     "group": "Twitter, Sentiment, production",   ' +
+//   '     "class": "tweet" },   ' +
+//   '   	"routing_key": "' + serviceKey + '",   ' +
+//   '   	"dedup_key": "' + dedupKey + '",   ' +
+//   '    	"event_action": "trigger",   ' +
+//   '   	"client": "View in Twitter",   ' +
+//   '   	"client_url": "www.twitter.com"   ' +
+//   '   }'
+
+
+
+
+
+         var eventObject = '        {                                             ' +
+                        '        "payload": {                                             ' +
+                        '            "summary": "Summary ' + InfoText + '",                                             ' +
+                        '            "source": "AppDynamics",                                             ' +
+                        '            "severity": "warning",                                             ' +
+                        '            "location": "prod",                                             ' +
+                        '            "component": "AppDynamics",                                             ' +
+                        '            "group": "AppDynamics,Production",                                             ' +
+                        '            "class": "AppDynamics",                                             ' +
+                        '                "custom_details": {                                             ' +
+                        '                        "Event Name": "Event Name ' + InfoText + '",                                             ' +
+                        '                "Summary": "' + InfoText + ')",                                             ' +
+                        '                "Event ID": "WERSEFG123123",                                             ' +
+                        '                "GUID": "5dbc676b-3c36-4d98-b056-7bbb9d456942",                                             ' +
+                        '                "Event Time": "' + date.getTime() + '",                                             ' +
+                        '                "Event Type": "Warning Event",                                             ' +
+                        '                "Event Type Key": "Warning-AppD",                                             ' +
+                        '                "Application Name": "DutyCalls - eCommerce",                                             ' +
+                        '                "Node Name": "Node Name: ' + InfoText + '",                                             ' +
+                        '                "Message": "Message: ' + InfoText + ')",                                             ' +
+                        '                "Severity": "warning"                                             ' +
+                        '            }                                             ' +
+                        '        },                                             ' +
+                        '        "routing_key": "' + serviceKey + '",                                             ' +
+                        '        "dedup_key": "' + dedupKey + '",                                             ' +
+                        '        "event_action": "trigger",                                             ' +
+                        '        "client": "View in AppDynamics",                                             ' +
+                        '        "client_url": "http://demo1.appdynamics.com/controller/",                                             ' +
+                        '        "images": [                                             ' +
+                        '            {                                             ' +
+                        '            "href":"http://demo1.appdynamics.com/controller/",                                             ' +
+                        '            "src": "http://demo1.appdynamics.com/controller/",                                             ' +
+                        '            "alt": "http://demo1.appdynamics.com/controller/"                                             ' +
+                        '            }                                             ' +
+                        '        ],                                             ' +
+                        '            "links": [                                             ' +
+                        '            {                                             ' +
+                        '                "href": "http://demo1.appdynamics.com/controller/",                                             ' +
+                        '            "text": "View this transaction in AppDynamics"                                             ' +
+                        '            }                                             ' +
+                        '        ]                                             ' +
+                        '        }                                             '
+
+    console.log(eventObject)
+
+    $.ajax({
+      method: "POST",
+      url: "https://events.pagerduty.com/v2/enqueue",
+      data: eventObject
+    })
+      .done(function( msg ) {
+        //alert( "Data Saved: " + msg );
+    });
+
+    return;
+  }
+  //################################################################################
+
+
+
+
+
+
+  //################################################################################
+  //Grab the Params from the URL in this case the Service Key
+  function getParameterByName(name, url) {
+    if (!url) url = window.location.href;
+    name = name.replace(/[\[\]]/g, "\\$&");
+    var regex = new RegExp("[?&]" + name + "(=([^&#]*)|&|#|$)"),
+        results = regex.exec(url);
+    if (!results) return null;
+    if (!results[2]) return '';
+    return decodeURIComponent(results[2].replace(/\+/g, " "));
+  }
+  //################################################################################
+
+
+
+</script>
+  
+
+</body>
+
+
+
+
+
+
+
+</html> 

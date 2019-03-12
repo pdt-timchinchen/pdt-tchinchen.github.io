@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="en" >
+
+<head>
+  <meta charset="UTF-8" http-equiv="Cache-control" content="NO-CACHE">
+
+  <title>List Users</title>
+  <link rel='shortcut icon' type='image/x-icon' href='favicon.ico' />
+  <link rel="stylesheet" href="incidentlist.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+
+</head>
+
+
+<H2>Users</H2>
+
+<body onLoad="buildHtmlTable('#excelDataTable')">
+  <table class="blueTable" id="excelDataTable" border="1">
+  </table>
+</body>
+
+
+
+<script>
+
+// Builds the HTML Table out of myList.
+function buildHtmlTable(selector) {
+
+  var apiKey = getParameterByName('key');
+  if (!apiKey) apiKey = "NMG1_M-3nLFspHYS5Nma";
+
+  //https://api.pagerduty.com/incidents?statuses%5B%5D=triggered&statuses%5B%5D=acknowledged&service_ids%5B%5D=P2XGK1J%2CPKLTA37&time_zone=UTC
+
+  var pdURL = "https://api.pagerduty.com/users";
+
+  //var service_ids = getParameterByName('service_ids');
+  //if (service_ids) 
+ // {
+  //  pdURL = pdURL + "&service_ids%5B%5D=" + service_ids;
+  //}
+
+
+  var settings = {
+    "url": pdURL ,
+    "method": "GET",
+    "headers": {
+      "Accept": "application/vnd.pagerduty+json;version=2",
+      "Authorization": "Token token=" + apiKey
+    }
+  };
+
+  $.ajax(settings).done(function (response) {
+
+    console.log(response.users);
+    console.log("Length" + response.users.length);
+    var myList = response.users;
+
+
+    var columns = addAllColumnHeaders(myList, selector);
+
+    for (var i = 0; i < myList.length; i++) {
+      var row$ = $('<tr/>');
+      for (var colIndex = 0; colIndex < columns.length; colIndex++) {
+        var cellValue = myList[i][columns[colIndex]];
+        if (cellValue == null) cellValue = "";
+        if(colIndex==0)
+        {
+          console.log("<input type='button' value='delete' onclick='deleteuser(\"" + myList[i][columns[15]] + "\")'>");
+          row$.append($('<td/>').html("<input type='button' value='delete' onclick='deleteuser(\"" + myList[i][columns[15]] + "\")'>"));
+        } else
+        {
+          row$.append($('<td/>').html(cellValue));
+        }
+      }
+      $(selector).append(row$);
+    }
+
+  });
+
+}
+
+// Adds a header row to the table and returns the set of columns.
+// Need to do union of keys from all records as some records may not contain
+// all records.
+function addAllColumnHeaders(myList, selector) {
+  var columnSet = [];
+  var headerTr$ = $('<tr/>');
+
+  columnSet.push("DELETE");
+  headerTr$.append($('<th/>').html("DELETE"));
+
+  for (var i = 0; i < myList.length; i++) {
+    var rowHash = myList[i];
+    for (var key in rowHash) {
+      if ($.inArray(key, columnSet) == -1) {
+        columnSet.push(key);
+        headerTr$.append($('<th/>').html(key));
+      }
+    }
+  }
+  $(selector).append(headerTr$);
+
+
+  return columnSet;
+}
+
+//################################################################################
+  //Grab the Params from the URL in this case the Service Key
+  function getParameterByName(name, url) {
+    if (!url) url = window.location.href;
+    name = name.replace(/[\[\]]/g, "\\$&");
+    var regex = new RegExp("[?&]" + name + "(=([^&#]*)|&|#|$)"),
+        results = regex.exec(url);
+    if (!results) return null;
+    if (!results[2]) return '';
+    return decodeURIComponent(results[2].replace(/\+/g, " "));
+  }
+  //################################################################################
+
+  function deleteuser(userID)
+  {
+    alert('Delete ' + userID);
+
+
+    var apiKey = getParameterByName('key');
+    if (!apiKey) apiKey = "NMG1_M-3nLFspHYS5Nma";
+
+    var pdURL = "https://api.pagerduty.com/users/" + userID;
+
+    var settings = {
+      "url": pdURL ,
+      "method": "DELETE",
+      "headers": {
+        "Accept": "application/vnd.pagerduty+json;version=2",
+        "Authorization": "Token token=" + apiKey
+      }
+    };
+
+    $.ajax(settings).done(function (response) {
+      console.log(response);
+      alert('done' + response);
+    });
+
+    $.ajax(settings).error(function(jqXHR, textStatus, errorThrown) {
+      alert('Unable to delete: ' + jqXHR.responseText );
+
+      var toResolve = JSON.parse(jqXHR.responseText)
+
+      console.log(toResolve.error.conflicts.length);
+
+      var updateSchedulewith = window.prompt("Replacement User in schedule " + toResolve.error.conflicts[0].id ,"PGLLOU4");
+
+      
+
+    });
+  }
+
+</script>

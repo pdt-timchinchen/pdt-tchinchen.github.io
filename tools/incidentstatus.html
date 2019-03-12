@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="en" >
+
+<head>
+  <meta charset="UTF-8" http-equiv="Cache-control" content="NO-CACHE">
+
+  <title>Current Open Incidents</title>
+  <link rel='shortcut icon' type='image/x-icon' href='favicon.ico' />
+  <link rel="stylesheet" href="incidentlist.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+
+</head>
+
+
+<H2>Open Incidents</H2>
+
+<body onLoad="buildHtmlTable('#excelDataTable')">
+  <table class="blueTable" id="excelDataTable" border="1">
+  </table>
+</body>
+
+
+
+<script>
+
+// Builds the HTML Table out of myList.
+function buildHtmlTable(selector) {
+
+  var apiKey = getParameterByName('key');
+  if (!apiKey) apiKey = "NfkoYnHRyN6oUGmKRjkt";
+
+  //https://api.pagerduty.com/incidents?statuses%5B%5D=triggered&statuses%5B%5D=acknowledged&service_ids%5B%5D=P2XGK1J%2CPKLTA37&time_zone=UTC
+
+  var pdURL = "https://api.pagerduty.com/incidents?statuses%5B%5D=triggered&statuses%5B%5D=acknowledged&time_zone=UTC";
+
+  var service_ids = getParameterByName('service_ids');
+  if (service_ids) 
+  {
+    pdURL = pdURL + "&service_ids%5B%5D=" + service_ids;
+  }
+
+
+  var settings = {
+    "url": pdURL ,
+    "method": "GET",
+    "headers": {
+      "Accept": "application/vnd.pagerduty+json;version=2",
+      "Authorization": "Token token=" + apiKey
+    }
+  };
+
+  $.ajax(settings).done(function (response) {
+
+    console.log(response.incidents);
+    console.log("Length" + response.incidents.length);
+    var myList = response.incidents;
+
+
+    var columns = addAllColumnHeaders(myList, selector);
+
+    for (var i = 0; i < myList.length; i++) {
+      var row$ = $('<tr/>');
+      for (var colIndex = 0; colIndex < columns.length; colIndex++) {
+        var cellValue = myList[i][columns[colIndex]];
+        if (cellValue == null) cellValue = "";
+        if(colIndex==0)
+        {
+          console.log("<input type='text' id=" + myList[i][columns[26]] + "> <input type='button' value='Update' onclick='updatestatus(\"" + myList[i][columns[26]] + "\")'>");
+          row$.append($('<td/>').html("<input type='text' id=" + myList[i][columns[26]] + "> <input type='button' value='Update' onclick='updatestatus(\"" + myList[i][columns[26]] + "\")'>"));
+        } else
+        {
+          row$.append($('<td/>').html(cellValue));
+        }
+      }
+      $(selector).append(row$);
+    }
+
+  });
+
+}
+
+// Adds a header row to the table and returns the set of columns.
+// Need to do union of keys from all records as some records may not contain
+// all records.
+function addAllColumnHeaders(myList, selector) {
+  var columnSet = [];
+  var headerTr$ = $('<tr/>');
+
+  columnSet.push("STATUS");
+  headerTr$.append($('<th/>').html("Status Update"));
+
+  for (var i = 0; i < myList.length; i++) {
+    var rowHash = myList[i];
+    for (var key in rowHash) {
+      if ($.inArray(key, columnSet) == -1) {
+        columnSet.push(key);
+        headerTr$.append($('<th/>').html(key));
+      }
+    }
+  }
+  $(selector).append(headerTr$);
+
+  return columnSet;
+}
+
+//################################################################################
+  //Grab the Params from the URL in this case the Service Key
+  function getParameterByName(name, url) {
+    if (!url) url = window.location.href;
+    name = name.replace(/[\[\]]/g, "\\$&");
+    var regex = new RegExp("[?&]" + name + "(=([^&#]*)|&|#|$)"),
+        results = regex.exec(url);
+    if (!results) return null;
+    if (!results[2]) return '';
+    return decodeURIComponent(results[2].replace(/\+/g, " "));
+  }
+  //################################################################################
+
+//################################################################################
+  function updatestatus(IncidentID)
+  {
+    console.log('Update ' + IncidentID + document.getElementById(IncidentID).value);
+
+
+    var apiKey = getParameterByName('key');
+    if (!apiKey) apiKey = "NMG1_M-3nLFspHYS5Nma";
+
+    var pdURL = "https://api.pagerduty.com/incidents/" + IncidentID + "/status_updates";
+
+    var data = {
+        "message": document.getElementById(IncidentID).value
+    }
+
+    var settings = {
+      "url": pdURL ,
+      "method": "POST",
+      "data": data,
+      "headers": {
+        "Accept": "application/vnd.pagerduty+json;version=2",
+        "From": "dlace@sportingsolutions.com",
+        "Authorization": "Token token=" + apiKey
+      }
+    };
+
+    $.ajax(settings).done(function (response) {
+      console.log(response);
+      alert('Status Update Complete');
+    });
+
+    
+    $.ajax(settings).error(function(jqXHR, textStatus, errorThrown) {
+      alert('Unable to delete: ' + jqXHR.responseText );
+    });
+    
+    
+  }
+
+//################################################################################
+
+
+
+
+</script>

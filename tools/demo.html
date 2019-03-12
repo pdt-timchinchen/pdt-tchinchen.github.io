@@ -1,0 +1,16 @@
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<script>
+// Requires jQuery
+var settings = {
+  "url": "https://api.pagerduty.com/incidents",
+  "method": "GET",
+  "headers": {
+    "Accept": "application/vnd.pagerduty+json;version=2",
+    "Authorization": "Token token=xJ3F5DtRjyH1XEjrDhyC"
+  }
+};
+
+$.ajax(settings).done(function (response) {
+  console.log(response);
+});
+</script>
