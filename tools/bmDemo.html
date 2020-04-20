@@ -1,0 +1,114 @@
+
+
+<!DOCTYPE html>
+<html lang="en" >
+
+<head>
+  <meta charset="UTF-8" http-equiv="Cache-control" content="NO-CACHE">
+
+  <title>Business Metric Demo</title>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+
+</head>
+
+
+<H2>Business Metric Demo</H2>
+
+<body onLoad="getSharePriceAndUpdateBusinessMetric('#excelDataTable')">
+  <table id="excelDataTable" border="1">
+  </table>
+</body>
+
+
+<script>
+
+// Builds the HTML Table out of myList.
+function getSharePriceAndUpdateBusinessMetric(selector) {
+
+
+
+  /*
+  var shareURL = "https://cloud.iexapis.com/stable/stock/pd/quote/latestPrice?token=sk_47d1e21e473f474c9647efbcdf14f88b";
+
+  var settings = {
+    "url": shareURL ,
+    "method": "GET"
+  };
+
+  $.ajax(settings).done(function (response) {
+
+    var currentPrice = response;
+
+    console.log(currentPrice);
+
+  });
+
+  sendBusinessMetric(currentPrice);
+  */
+
+  sendBusinessMetric(43);
+
+
+}
+
+
+//################################################################################
+function sendBusinessMetric(metricValue)
+  {
+
+    //TODO: UPDATE THIS ################################
+    //var apiKey = getParameterByName('key');
+    //if (!apiKey) apiKey = "NMG1_M-3nLFspHYS5Nma";
+
+    var apiKey = "V_uHsBDv3G2NxyimTYVg";
+    var pdURL = "https://api.pagerduty.com/business_impact_metrics/PU9EIJS/observations";
+
+    //example = "2019-04-17T10:35:51Z"
+    var now = new Date;
+    var UTCDate = now.getUTCFullYear() + "-" + now.getUTCMonth() + "-" +  now.getUTCDay()  + "T" +  
+      now.getUTCHours()  + ":" +  now.getUTCMinutes()  + ":" +  now.getUTCSeconds()  + "Z";
+    console.log(UTCDate);
+
+    var data = {
+	    "observation": {
+	        "value":metricValue,
+	        "observed_at":UTCDate.toString()
+	    }
+    }
+
+    var settings = {
+      "url": pdURL ,
+      "method": "POST",
+      "data": data,
+      "headers": {
+        "Accept": "application/vnd.pagerduty+json;version=2",
+        "Content-Type" : "application/json",
+        "Access-Control-Allow-Origin": "*",
+        "Access-Control-Allow-Methods": "GET,PUT,POST,DELETE",
+        "Authorization": "Token token=" + apiKey
+      }
+    };
+
+    $.ajax(settings).done(function (response) {
+      console.log(response);
+      alert('Status Update Complete');
+    });
+
+    
+    //$.ajax(settings).error(function(jqXHR, textStatus, errorThrown) {
+    //  alert('Unable to delete: ' + jqXHR.responseText );
+    //});
+
+    //TODO: UPDATE THIS ################################
+    
+  }
+
+//################################################################################
+
+
+
+
+</script>
+
+
+

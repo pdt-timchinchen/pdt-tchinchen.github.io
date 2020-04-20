@@ -102,7 +102,8 @@ label {
   text-align: center;
 }
 .product .product-image img {
-  width: 150px;
+  height: 75px;
+  width: 225px;
 }
 .product .product-details .product-title {
   margin-right: 20px;

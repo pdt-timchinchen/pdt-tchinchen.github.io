@@ -66,8 +66,6 @@ body {
   padding: 0px 30px 30px 20px;
   font-family: "Lato", "HelveticaNeue-Light", "Helvetica Neue Light", "Helvetica Neue", Helvetica, Arial, sans-serif;
   font-weight: 200;
-  color: grey;
-  background-color: black;
 }
 
 h1 {
@@ -75,7 +73,7 @@ h1 {
 }
 
 label {
-  color: white;
+  color: #aaa;
 }
 
 .shopping-cart {
@@ -102,7 +100,7 @@ label {
   text-align: center;
 }
 .product .product-image img {
-  width: 150px;
+  width: 200px;
 }
 .product .product-details .product-title {
   margin-right: 20px;
@@ -155,14 +153,14 @@ label {
   border: 0;
   margin-top: 20px;
   padding: 6px 25px;
-  background-color: #6b6;
+  background-color: #1A658F;
   color: #fff;
   font-size: 25px;
   border-radius: 3px;
 }
 
 .checkout:hover {
-  background-color: #494;
+  background-color: rgb(68, 81, 153);
 }
 
 /* Make adjustments for tablet */

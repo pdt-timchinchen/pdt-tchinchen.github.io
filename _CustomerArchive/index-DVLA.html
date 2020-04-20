@@ -5,11 +5,11 @@
 <head>
   <meta charset="UTF-8" http-equiv="Cache-control" content="NO-CACHE">
 
-  <title>DutyRocks Checkout</title>
+  <title>DVLA Register</title>
 
   <link rel='shortcut icon' type='image/x-icon' href='favicon.ico' />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/5.0.0/normalize.min.css">
-    <link rel="stylesheet" href="css/style-saga.css">
+    <link rel="stylesheet" href="css/style.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
   
 
@@ -47,14 +47,14 @@
 <body>
   <br/>
 
-  <img  height="100" width="320" src="images/dutyrockslogo.png">
+  <img  height="80" width="300" src="images/DCLogoWh.png">
 
   <div id="PDContent">
-    <img vspace="25" height="40" width="150" src="images/PagerDuty-BlackRGB-1x.png"/>
+    <img height="45" width="110" src="https://iqm7l1pa7bn3d42rc278rat5-wpengine.netdna-ssl.com/wp-content/uploads/2017/08/logo-pagerduty.svg"/>
   </div>
 
   
-  <h1>DutyRocks Checkout</h1>
+  <h1>DutyCalls iPhone Checkout</h1>
 
 <br/>
 Name &amp; email: <input type="text" name="customerName" id="customer-name" value="Enter your name here..." onfocus="if(this.value=='Enter your name here...') this.value='';"><br>
@@ -76,13 +76,11 @@ Name &amp; email: <input type="text" name="customerName" id="customer-name" valu
   <div class="product">
     <div class="product-image">
       <!-- <img src="https://www.att.com/catalog/en/skus/images/apple-iphone%20x-space%20gray-450x350.png"> -->
-      <img src="https://andertons-productimages.imgix.net/257445-1514998065624.png?w=1700&h=1700&fit=fill&bg=FFFFFF&auto=format&ixlib=imgixjs-3.3.2">
+      <img src="https://www.apple.com/newsroom/images/product/iphone/standard/Apple-iPhone-Xs-line-up-09122018_inline.jpg.large.jpg">
     </div>
     <div class="product-details">
-      <div class="product-title">Ibanez AZ242BC-DET Premium in Deep Espresso Burst</div>
-      <p class="product-description">This classy addition to Ibanez's 2018 range combines versatile specs, lush playability and understated aesthetics. This is the epitome of a workhorse instrument! If you're after Ibanez's formidable performance, but with distinctly classy, nostalgic flavours, the AZ series might just be for you.
-        With features like the comfortable oval-C neck profile, lightweight Basswood body, smooth mid-output Seymour Duncan pickups and cutting-edge Gotoh hardware.
-        </p>
+      <div class="product-title">iPhone XS</div>
+      <p class="product-description">Our vision has always been to create an iPhone that is entirely screen. One so immersive the device itself disappears into the experience. And so intelligent it can respond to a tap, your voice, and even a glance. The iPhone XS features an OLED display with Dolby Vision and HDR 10, an A12 bionic chip, Smart HDR, support for VR, and Dual-SIM support using a physical SIM and an e-SIM</p>
     </div>
     <div class="product-price">800.00</div>
     <div class="product-quantity">
@@ -98,11 +96,11 @@ Name &amp; email: <input type="text" name="customerName" id="customer-name" valu
 
   <div class="product">
     <div class="product-image">
-      <img src="https://encrypted-tbn2.gstatic.com/shopping?q=tbn:ANd9GcSK1jWX6QEasX2gbpKvTbxwKIgLaothcpGzFXK9JVMCIHyzH9iBMW1oExr9SQQU8Cf98S6Pu6g59A&usqp=CAc">
+      <img src="https://store.storeimages.cdn-apple.com/4662/as-images.apple.com/is/image/AppleInc/aos/published/images/M/ME/MMEF2/MMEF2?wid=572&hei=572&fmt=jpeg&qlt=95&op_sharpen=0&resMode=bicub&op_usm=0.5,0.5,0,0&iccEmbed=0&layer=comp&.v=1503962928226">
     </div>
     <div class="product-details">
-      <div class="product-title">Boss Katana MkII</div>
-      <p class="product-description">The Boss Katana 50 MkII is a medium-sized combo amp packed full of modern features, with a lightweight and compact enclosure that's easy to transport to venues. Fitted with a custom 12" speaker that can push plenty of air in a live scenario, the Katana 50 MkII also serves as a fantastic practice amp for the home.</p>
+      <div class="product-title">Apple AirPods</div>
+      <p class="product-description">AirPods will forever change the way you use headphones. Whenever you pull your AirPods out of the charging case, they instantly turn on and connect to your iPhone, Apple Watch, iPad or Mac.(1) Audio automatically plays as soon as you put them in your ears and pauses when you take them out.</p>
     </div>
     <div class="product-price">129.00</div>
     <div class="product-quantity">
@@ -167,6 +165,7 @@ Name &amp; email: <input type="text" name="customerName" id="customer-name" valu
   }
   //################################################################################
 
+
   //################################################################################
   //Grab the Params from the URL in this case the Service Key
   function getParameterByName(name, url) {
@@ -194,7 +193,6 @@ Name &amp; email: <input type="text" name="customerName" id="customer-name" valu
 
   }
   //################################################################################
-
 
 
   //################################################################################
@@ -281,15 +279,15 @@ Name &amp; email: <input type="text" name="customerName" id="customer-name" valu
     ' } ' +
     ' ], ' +
   ' "details": { ' +
-    ' "body": "[Critical] Increased response time detected on the Checkout page affecting ' + customerName + ', High Error rates <br/> Object Reference Not Set and ADO.NET Connection pool exceeded errors detected" , ' +   
+    ' "body": "[Critical] Increased response time detected on the Register a Trailer page affecting ' + customerName + ', High Error rates <br/> Object Reference Not Set and ADO.NET Connection pool exceeded errors detected" , ' +   
     ' "Order Value": ' + orderValue + ', ' +
     ' "priority": "High", ' +
-    ' "title": "[Critical] Increased response time detected on the Checkout page, High Error rates  affecting ' + customerName + '", ' +
+    ' "title": "[Critical] Increased response time detected on the Register a Trailer page, High Error rates  affecting ' + customerName + '", ' +
     ' "event_id": "8125363154448140714", ' +
     ' "tags": "aws-prod, base, env:prod, host:farnsworth, monitor, pd_az:us-west-2c, production, xdb, xtradb", ' +
     ' "Customer": "'+ customerName + '" ' +
     ' }, ' +
-  ' "description": "[Critical] Increased response time detected on the Checkout page, High Error rates" ' +
+  ' "description": "[Critical] Increased response time detected on the Register a Trailer page, High Error rates" ' +
   '}' 
 
   console.log(eventObject)
@@ -327,14 +325,14 @@ Name &amp; email: <input type="text" name="customerName" id="customer-name" valu
     '  "client": "New Relic",  ' +
     '  "client_url": "https://rpm.newrelic.com/accounts/1818495/applications/105833762",  ' +
     '  "payload": {  ' +
-    '    "summary": "[Critical] Increased response time detected on the Checkout page, High Error rates",  ' +
+    '    "summary": "[Critical] Increased response time detected on the Register a Trailer page, High Error rates",  ' +
     '    "source": "aws-prod, base, env:prod, host:farnsworth, monitor, pd_az:us-west-2c, production, xdb, xtradb",  ' +
     '    "severity": "critical",  ' +
     '    "component": "Checkout-Page",  ' +
     '    "group": "prod-datapipe",  ' +
     '    "class": "LIVE",  ' +
     '    "custom_details": {  ' +
-    '			"Error Details": "[Critical] Increased response time detected on the Checkout page affecting ' + customerName + ', High Error rates <br/> Object Reference Not Set and ADO.NET Connection pool exceeded errors detected" ,  ' +
+    '			"Error Details": "[Critical] Increased response time detected on the Register a Trailer page affecting ' + customerName + ', High Error rates <br/> Object Reference Not Set and ADO.NET Connection pool exceeded errors detected" ,  ' +
     '           "Customer Name": "' + customerName + '",  ' +
     '           "Order Value": 1000  ' +
     '    }  ' +
@@ -362,258 +360,22 @@ Name &amp; email: <input type="text" name="customerName" id="customer-name" valu
     setTimeout(sendSUMO, 8000);
     setTimeout(sendSignalFX, 8000);
     setTimeout(sendAppD, 8000);
-    setTimeout(sendInstana, 10000);
-    setTimeout(sendDynatrace, 9000);
-    setTimeout(sendDataDog, 9000);
     setTimeout(sendTweets, 10000);
     setTimeout(sendAWSCW, 10000);
-    setTimeout(relatedService1, 10000);
-    setTimeout(relatedService2, 10000);
 
   }
 
 
-
-
-//################################################################################
-  function relatedService1()
-  {
-    
-
-  console.log('Send a related Incident');
-    
-  //Grab the Service key of use Tim's default one!
-  var serviceKey = getParameterByName('related_key');
-  if (!serviceKey) serviceKey = "ee09b94737a0413aab91e3a6e4161145";
-
-
-  var eventObject = ' { ' +
-    '   "payload": {     ' +
-    '     "summary": "[Critical] Increased response time detected on the Search page, High Error rates",   ' +
-    '     "source": "DataDog",   ' +
-    '     "severity": "warning",   ' +
-    '     "location" : "prod",   ' +
-    '     "component": "Sumologic",   ' +
-    '     "group": "Datadog,Production,eCommerce,Checkout-Tier",   ' +
-    '     "class": "DataDog" },   ' +
-    '   	"routing_key": "' + serviceKey + '",   ' +
-    '   	"dedup_key": "DataDog",   ' +
-    '    	"event_action": "trigger",   ' +
-    '   	"client": "View in DataDog",   ' +
-    '   	"client_url": "www.datadog.com",   ' +
-    '   	"images": [   ' +
-    '   	    {   ' +
-    '   	      "src": "https://chart.googleapis.com/chart?chs=600x400&chd=t:6,2,9,5,2,5,7,4,8,2,1&cht=lc&chds=a&chxt=y&chm=D,0033FF,0,0,5,1",   ' +
-    '   	      "href": "https://acme.pagerduty.com",   ' +
-    '   	      "alt": "This is a sample link"  ' +
-    '   	  }  ' +
-    '   	]  ' +
-    '   }'
-
-
-
-  console.log(eventObject);
-
-  $.ajax({
-    method: "POST",
-    url: "https://events.pagerduty.com/v2/enqueue",
-    data: eventObject
-  })
-    .done(function( msg ) {
-      //alert( "Data Saved: " + msg );
-  });
-
-  return;
-
-
-  }
-//################################################################################
-
-
-//################################################################################
-  function relatedService2()
-  {
-    
-
-  console.log('Send a related Incident #2');
-    
-  //Grab the Service key of use Tim's default one!
-  var serviceKey = getParameterByName('related2_key');
-  if (!serviceKey) serviceKey = "ad1fe06c65cd468eaab05191115ec46c";
-
-
-  var eventObject = ' { ' +
-    '   "payload": {     ' +
-    '     "summary": "[Critical] Increased Response Time detected - SQL Plan slow on SQLCLUSTER01, High Error Rates",   ' +
-    '     "source": "SQLMonitor",   ' +
-    '     "severity": "warning",   ' +
-    '     "location" : "prod",   ' +
-    '     "component": "SQLMonitor",   ' +
-    '     "group": "SQLMonitor,Production,eCommerce,Checkout-Tier",   ' +
-    '     "class": "SQLMonitor" },   ' +
-    '   	"routing_key": "' + serviceKey + '",   ' +
-    '   	"dedup_key": "SQLMonitor",   ' +
-    '    	"event_action": "trigger",   ' +
-    '   	"client": "View in SQLMonitor",   ' +
-    '   	"client_url": "www.SQLMonitor.com",   ' +
-    '   	"images": [   ' +
-    '   	    {   ' +
-    '   	      "src": "https://chart.googleapis.com/chart?chs=600x400&chd=t:6,2,9,5,2,5,7,4,8,2,1&cht=lc&chds=a&chxt=y&chm=D,0033FF,0,0,5,1",   ' +
-    '   	      "href": "https://acme.pagerduty.com",   ' +
-    '   	      "alt": "This is a sample link"  ' +
-    '   	  }  ' +
-    '   	]  ' +
-    '   }'
-
-
-
-  console.log(eventObject);
-
-  $.ajax({
-    method: "POST",
-    url: "https://events.pagerduty.com/v2/enqueue",
-    data: eventObject
-  })
-    .done(function( msg ) {
-      //alert( "Data Saved: " + msg );
-  });
-
-  return;
-
-
-  }
-//################################################################################
-
-
-//################################################################################
-  function sendInstana()
-{
-    console.log('Send to Instana');
-
-    
-    //Grab the Service key of use Tim's default one!
-    var serviceKey = getParameterByName('service_key');
-    if (!serviceKey) serviceKey = "a36720292f404b75a1e0916687454497";
-
-    var eventObject = ' { ' +
-    '   "payload": {     ' +
-    '     "summary": "Instana - Allocatable memory too low",   ' +
-    '     "source": "Instana",   ' +
-    '     "severity": "warning",   ' +
-    '     "location" : "prod",   ' +
-    '     "component": "Instana",   ' +
-    '     "group": "Instana,Production,eCommerce,Kubernetes",   ' +
-    '     "class": "Instana",   ' +
-    '     "custom_details" : {      ' +
-    '         "information": "Requested Memory to Available Memory Ratio is too low",    ' +
-    '         "suggestion solution": "Tune your Garbage Collector, reduce allocation rate through code changes",    ' +
-    '         "link to component": "https://app.instana.io/#/?snapshotId=rjhkZXdNzegliVVEswMScGNn0YY",   ' +
-    '         "zone": "Prod",    ' +
-    '         "tags": "production, documents, elasticsearch",    ' +
-    '         "load avg": 0.75   ' +
-    '         }    ' +
-    '   	 },  ' +
-    '   	"routing_key": "' + serviceKey + '",   ' +
-    '   	"dedup_key": "Instana",   ' +
-    '    	"event_action": "trigger",   ' +
-    '   	"client": "View in Instana",   ' +
-    '   	"client_url": "www.Instana.com",   ' +
-    '   	"images": [   ' +
-    '   	    {   ' +
-    '   	      "src": "https://images.g2crowd.com/uploads/attachment/file/93659/Screen-Shot-2018-11-15-at-5.29.14-PM.png",   ' +
-    '   	      "href": "https://acme.instana.com",   ' +
-    '   	      "alt": "instana"  ' +
-    '   	  }  ' +
-    '   	]  ' +
-    '   }'
-
-
-    console.log(eventObject);
-
-    $.ajax({
-      method: "POST",
-      url: "https://events.pagerduty.com/v2/enqueue",
-      data: eventObject
-    })
-      .done(function( msg ) {
-        //alert( "Data Saved: " + msg );
-    });
-
-    return;
-  }
-//################################################################################
-
-
-//################################################################################
-  function sendDynatrace()
-{
-    console.log('Send to Dynatrace');
-
-    
-    //Grab the Service key of use Tim's default one!
-    var serviceKey = getParameterByName('service_key');
-    if (!serviceKey) serviceKey = "a36720292f404b75a1e0916687454497";
-
-    var eventObject = ' { ' +
-    '   "payload": {     ' +
-    '     "summary": "Dynatrace - High Memory usage on Host SVR00001",   ' +
-    '     "source": "Dynatrace",   ' +
-    '     "severity": "warning",   ' +
-    '     "location" : "prod",   ' +
-    '     "component": "Dynatrace",   ' +
-    '     "group": "Dynatrace,Production,eCommerce,Kubernetes",   ' +
-    '     "class": "Dynatrace",   ' +
-    '     "custom_details" : {      ' +
-    '         "information": "Requested Memory to Available Memory Ratio is too low",    ' +
-    '         "suggestion solution": "Tune your Garbage Collector, reduce allocation rate through code changes",    ' +
-    '         "link to component": "www.dynatrace.com",   ' +
-    '         "zone": "Prod",    ' +
-    '         "tags": "production, documents, elasticsearch",    ' +
-    '         "load avg": 0.75   ' +
-    '         }    ' +
-    '   	 },  ' +
-    '   	"routing_key": "' + serviceKey + '",   ' +
-    '   	"dedup_key": "Dynatrace",   ' +
-    '    	"event_action": "trigger",   ' +
-    '   	"client": "View in Dynatrace",   ' +
-    '   	"client_url": "www.Dynatrace.com",   ' +
-    '   	"images": [   ' +
-    '   	    {   ' +
-    '   	      "src": "https://s3.eu-west-2.amazonaws.com/www.timchinchen.co.uk/images/dynatrace.jpg",   ' +
-    '   	      "href": "https://acme.Dynatrace.com",   ' +
-    '   	      "alt": "Dynatrace"  ' +
-    '   	  }  ' +
-    '   	]  ' +
-    '   }'
-
-
-    console.log(eventObject);
-
-    $.ajax({
-      method: "POST",
-      url: "https://events.pagerduty.com/v2/enqueue",
-      data: eventObject
-    })
-      .done(function( msg ) {
-        //alert( "Data Saved: " + msg );
-    });
-
-    return;
-  }
-//################################################################################
-
-
-//################################################################################
+  //################################################################################
   function sendTweets()
   {
     sendTweet("@sbarrett - #DutyCalls Wheres my phone ");
     sendTweet("@howard - This #DutyCalls, great idea poor execution!");
     sendTweet("@Jenn - Come on #DutyCalls team - deliver these phones!");
   }
-//################################################################################
 
 
-//################################################################################
+  //################################################################################
   function sendTweet(tweetText)
   {
     
@@ -653,10 +415,11 @@ Name &amp; email: <input type="text" name="customerName" id="customer-name" valu
 
     return;
   }
-//################################################################################
+  //################################################################################
 
 
-//################################################################################
+
+
 function sendSUMO()
 {
     console.log('Send to Sumo');
@@ -668,7 +431,7 @@ function sendSUMO()
 
     var eventObject = ' { ' +
     '   "payload": {     ' +
-    '     "summary": "Sumologic - Increase 500 error rates",   ' +
+    '     "summary": "Instana - Container memory usage is critical on the Docker Container",   ' +
     '     "source": "Sumologic",   ' +
     '     "severity": "warning",   ' +
     '     "location" : "prod",   ' +
@@ -703,68 +466,8 @@ function sendSUMO()
 
     return;
   }
-//################################################################################
+  //################################################################################
 
-
-//################################################################################
-function sendDataDog()
-{
-    console.log('Send to DataDog');
-
-    
-    //Grab the Service key of use Tim's default one!
-    var serviceKey = getParameterByName('service_key');
-    if (!serviceKey) serviceKey = "a36720292f404b75a1e0916687454497";
-
-    var eventObject = ' { ' +
-    '   "payload": {     ' +
-    '     "summary": "DataDog - Long history length in xdb (possible stuck transaction)",   ' +
-    '     "source": "DataDog",   ' +
-    '     "severity": "warning",   ' +
-    '     "location" : "prod",   ' +
-    '     "component": "DataDog",   ' +
-    '     "group": "aws-prod, base, env:prod, host:farnsworth, monitor, pd_az:us-west-2c, production, xdb, xtradb",   ' +
-    '     "class": "DataDog",   ' +
-    '     "custom_details" : {      ' +
-    '         "information": "History list length is high, which usually indicates that an active but idle transaction is persisting. Go find the transaction (SHOW ENGINE INNODB STATUS, usually the last one listed) and kill it (KILL <thread id>).  @devop-Datadog mysql2.Innodb_history_list_length over role:xdb was > 12500.0 on average during the last 5m. Metric value: 12796.667",    ' +
-    '         "ping time": "1500ms",    ' +
-    '         "load avg": 0.75   ' +
-    '         }    ' +
-    '   	 },  ' +
-    '   	"routing_key": "' + serviceKey + '",   ' +
-    '   	"dedup_key": "DataDog123",   ' +
-    '    	"event_action": "trigger",   ' +
-    '   	"client": "View in DataDog",   ' +
-    '   	"client_url": "www.DataDog.com",   ' +
-    '   	"images": [   ' +
-    '   	    {   ' +
-    '   	      "src": "https://p.datadoghq.com/snapshot/view/dd-snapshots-prod/org_1804/2016-01-08/2a82598cc2d67f28542eb218f1094db70657b139.png",   ' +
-    '   	      "href": "https://appp.datadoghq.com/monitors#72563?to_ts=1452282540000&group=host%3Aprod-web-xdb09&from_ts=1452281340000",   ' +
-    '   	      "alt": "Link to DataDog"  ' +
-    '   	  }  ' +
-    '   	]  ' +
-    '   }'
-
-
-    console.log(eventObject);
-
-    $.ajax({
-      method: "POST",
-      url: "https://events.pagerduty.com/v2/enqueue",
-      data: eventObject
-    })
-      .done(function( msg ) {
-        //alert( "Data Saved: " + msg );
-    });
-
-    return;
-
-   
-  }
-//################################################################################
-
-
-//################################################################################
 function sendSignalFX()
 {
     console.log('Send to SignalFX');
@@ -811,10 +514,8 @@ function sendSignalFX()
 
     return;
   }
-//################################################################################
+  //################################################################################
 
-
-//################################################################################
 function sendAppD()
 {
     console.log('Send to AppD');
@@ -826,7 +527,7 @@ function sendAppD()
 
     var eventObject = ' { ' +
     '   "payload": {     ' +
-    '     "summary": "AppDynamics - Increased Business Transaction Response time compared to baseline - BTs > Checkout, Order Confirmed",   ' +
+    '     "summary": "AppDynamics - Increase Business Transaction Response time compared to baseline - BTs > Checkout, Order Confirmed",   ' +
     '     "source": "AppDynamics",   ' +
     '     "severity": "warning",   ' +
     '     "location" : "prod",   ' +
@@ -861,10 +562,9 @@ function sendAppD()
 
     return;
   }
-//################################################################################
+  //################################################################################
 
 
-//################################################################################
 function sendAWSCW()
 {
     console.log('Send to AWS');
@@ -931,10 +631,16 @@ function sendAWSCW()
 
     return;
   }
-//################################################################################
+  //################################################################################
 
 
-//################################################################################
+
+
+
+
+
+
+ //################################################################################
  function sendZabbix()
   {
     console.log('Send to Zabbix');
@@ -981,7 +687,7 @@ function sendAWSCW()
 
     return;
   }
-//################################################################################
+  //################################################################################
 
 
 //################################################################################
@@ -1032,10 +738,15 @@ function sendLowRevenueWarning()
 
     return;
   }
-//################################################################################
+  //################################################################################
 
 
-</script>
+
+
+
+  </script>
+
+
 
 <script src='http://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js'></script>
 <script  src="js/index.js"></script>

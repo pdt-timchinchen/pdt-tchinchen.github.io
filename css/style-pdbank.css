@@ -67,7 +67,8 @@ body {
   font-family: "Lato", "HelveticaNeue-Light", "Helvetica Neue Light", "Helvetica Neue", Helvetica, Arial, sans-serif;
   font-weight: 200;
   color: grey;
-  background-color: black;
+  background-color: #222222
+  ;
 }
 
 h1 {
@@ -102,7 +103,7 @@ label {
   text-align: center;
 }
 .product .product-image img {
-  width: 150px;
+  width: 100px;
 }
 .product .product-details .product-title {
   margin-right: 20px;

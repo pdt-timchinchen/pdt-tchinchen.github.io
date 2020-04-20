@@ -1,0 +1,275 @@
+<!DOCTYPE html>
+<html>
+<title>Event Reporter</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="w3.css">
+<link rel="stylesheet" href="w3-theme-blue.css">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-serialize-object/2.5.0/jquery.serialize-object.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.11.2/js/bootstrap-select.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/async/2.1.2/async.js"></script>
+
+<body style="max-width:800px;margin:16px;border:1px solid #ccc" onload="populateTriggerSelect()"> 
+
+<header class="w3-container w3-card-4 w3-theme">
+  <h1>Event Reporter</h1>
+</header>
+
+<!-- Tweet -->
+
+<div class="w3-panel">
+    <div class="w3-row">
+    <div class="w3-col s3">
+        <img src="https://trimdon.com/wp-content/uploads/2017/02/incident-reporting.jpg" style="width:100%">
+    </div>
+    <div class="w3-col s9 w3-container">
+        <h3>Event Update feed</h3>
+        <table class="table">
+            <tr><td>Destination:</td><td><select id="trigger-dest-select"></select></td></tr>
+        </table>
+        <p>
+           <table class="table">
+                <tr><td>Headline:</td><td><input type="text" name="headline-text" id="headline-text" value=""></td></tr>
+                <tr><td>Affected Customers:</td><td><input type="text" name="AC-text" id="AC-text" value=""></td></tr>
+                <tr><td>Affected Services:</td><td><input type="text" name="AS-text" id="AS-text" value=""></td></tr>
+                <tr><td>Current Status:</td><td><input type="text" name="CS-text" id="SC-text" value=""></td></tr>
+            </table>
+        <p>&nbsp;</p>
+        <Button onclick="sendUpdate()">Send Update</Button></p>
+    </div>
+</div>  
+<hr>
+</div>
+
+<footer class="w3-container w3-theme-l2" style="position:relative">
+  <a class="w3-btn w3-xlarge w3-circle w3-theme-action w3-right" style="position:absolute;top:-28px;right:16px;">+</a>
+  <p>Event Reporter</p>
+</footer>
+
+<div class="w3-container w3-theme-dark w3-xlarge">&lt;<span class="w3-right">&gt;</span></div>
+
+<script>
+
+
+//################################################################################
+//################################################################################
+//INSERT YOUR TOKEN HERE
+//################################################################################
+//################################################################################
+var token = "YYYYYYYYYYYYYYYYYYYYYYYYYY";
+//################################################################################
+
+var token = "V_uHsBDv3G2NxyimTYVg";
+
+
+//################################################################################
+function populateTriggerSelect() {
+	//var token = getParameterByName("token");
+	var servicesData;
+	var integrationIDs = [];
+	
+  var settings = {
+    "url": "https://api.pagerduty.com/services" ,
+    "method": "GET",
+    "headers": {
+      "Accept": "application/vnd.pagerduty+json;version=2",
+      "Authorization": "Token token=" + token
+    }
+  };
+
+  $.ajax(settings).done(function (response) {
+
+    console.log(response);
+    console.log("Length" + response.services.length);
+    var myList = response.services;
+
+
+    for (var i = 0; i < myList.length; i++) {
+      
+      console.log(myList[i]);
+
+      var serviceName = myList[i].name;
+      var serviceID = myList[i].id;
+
+      if(myList[i].integrations.length > 0)
+      {
+
+        var integrationId = myList[i].integrations[0].id;
+        var selectValue = serviceID + '-' + integrationId
+
+        $('#trigger-dest-select').append(`<option value="${selectValue}"> 
+                              ${serviceName} 
+                          </option>`)
+
+      }
+         
+    }
+    
+
+  });
+
+}
+
+
+
+//################################################################################
+
+function getIntegrationP(serviceID,integrationID,token) {
+  return new Promise(function(resolve, reject) {
+    
+    var intKey = "XYZ"
+    var url = "https://api.pagerduty.com/services/" + serviceID + "/integrations/" + integrationID;
+
+    console.log(url);
+
+    $.ajax({
+      url: url,
+      method: "GET",
+      headers: {
+      Accept: "application/vnd.pagerduty+json;version=2",
+      Authorization: "Token token=" + token
+      },
+      success: function(data) {
+        resolve(data) // Resolve promise and go to then()
+      },
+      error: function(err) {
+        reject(err) // Reject the promise and go to catch()
+      }
+    });
+
+  });
+}
+
+//################################################################################
+
+
+
+
+//################################################################################
+
+function getIntegration(serviceID,integrationID,token)
+{
+  var intKey = "XYZ"
+  var url = "https://api.pagerduty.com/services/" + serviceID + "/integrations/" + integrationID;
+
+  console.log(url);
+
+  var integrationsSettings = {
+    "url": url ,
+    "method": "GET",
+    "headers": {
+    "Accept": "application/vnd.pagerduty+json;version=2",
+    "Authorization": "Token token=" + token
+    }
+  } ;
+
+  $.ajax(integrationsSettings).done(function (respIntegrations) {
+
+    if(respIntegrations.integration.integration_key)
+      {
+      intKey = respIntegrations.integration.integration_key
+      }
+
+    });
+
+    return intKey;
+
+}
+
+
+
+//################################################################################
+  function sendUpdate()
+  {
+
+    var IDs = $("#trigger-dest-select").val();
+    var serviceID = IDs.split("-")[0]
+    var integrationID = IDs.split("-")[1]
+
+    getIntegrationP(serviceID,integrationID,token).then(function(data) {
+      console.log(data)
+
+      if(data.integration.integration_key)
+      {
+
+        var date = new Date();  
+        dedupKey = "Update" + date.getMinutes()
+
+        node = document.getElementById('headline-text'),
+        headlineText = node.value
+
+        serviceKey = data.integration.integration_key;
+
+        var eventObject = ' { ' +
+        '   "payload": {     ' +
+        '     "summary": "' + headlineText + '",   ' +
+        '     "source": "Incident-Form",   ' +
+        '     "severity": "warning",   ' +
+        '     "location" : "prod",   ' +
+        '     "component": "Incident Feed",   ' +
+        '     "group": "Incident, production",   ' +
+        '     "class": "Incident" },   ' +
+        '   	"routing_key": "' + serviceKey + '",   ' +
+        '   	"dedup_key": "' + dedupKey + '",   ' +
+        '    	"event_action": "trigger",   ' +
+        '   	"client": "View in pagerduty",   ' +
+        '   	"client_url": "www.pagerduty.com"   ' +
+        '   }'
+
+
+        console.log(eventObject)
+
+        $.ajax({
+          method: "POST",
+          url: "https://events.pagerduty.com/v2/enqueue",
+          data: eventObject
+        })
+          .done(function( msg ) {
+          alert( "Event received \nThank you!");
+        });
+
+        return;
+      } else
+      {
+        alert("First integration is not an API key!");
+      }
+      
+    }).catch(function(err) {
+      console.log(err)
+    })
+
+  }
+  //################################################################################
+
+
+
+
+
+  //################################################################################
+  //Grab the Params from the URL in this case the Service Key
+  function getParameterByName(name, url) {
+    if (!url) url = window.location.href;
+    name = name.replace(/[\[\]]/g, "\\$&");
+    var regex = new RegExp("[?&]" + name + "(=([^&#]*)|&|#|$)"),
+        results = regex.exec(url);
+    if (!results) return null;
+    if (!results[2]) return '';
+    return decodeURIComponent(results[2].replace(/\+/g, " "));
+  }
+  //################################################################################
+
+
+
+</script>
+  
+
+</body>
+
+
+
+
+
+
+
+</html> 

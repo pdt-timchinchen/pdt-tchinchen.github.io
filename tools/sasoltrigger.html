@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html>
+<title>Sasol - Trigger</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="w3.css">
+<link rel="stylesheet" href="w3-theme-blue.css">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+
+<body style="max-width:400px;margin:16px;border:1px solid #ccc">
+
+<header class="w3-container w3-card-4 w3-theme">
+  <h1>Sasol Event send</h1>
+</header>
+
+<!-- Tweet -->
+
+<div class="w3-panel">
+<div class="w3-row">
+  <div class="w3-col s3">
+    <img src="https://media-exp1.licdn.com/dms/image/C4E0BAQGyeljXUeahug/company-logo_200_200/0?e=2159024400&v=beta&t=N4yIejWxxClCx5cUMNK4_ocjlsP6uiC4Q4_gdIjTLP0" style="width:100%">
+  </div>
+  <div class="w3-col s9 w3-container">
+    <h3>Sasol Trigger</h3>
+    <p>      
+       <Button onclick="sendInfo()">Raise Incident</Button></p>
+  </div>
+</div>  
+<hr>
+
+
+<hr>
+
+</div>
+
+<footer class="w3-container w3-theme-l2" style="position:relative">
+  <a class="w3-btn w3-xlarge w3-circle w3-theme-action w3-right" style="position:absolute;top:-28px;right:16px;">+</a>
+  <p>Tim's Demo tools</p>
+</footer>
+
+<div class="w3-container w3-theme-dark w3-xlarge">&lt;<span class="w3-right">&gt;</span></div>
+
+<script>
+
+  var g_AppDi;
+
+  
+
+
+
+  //################################################################################
+  function sendInfo()
+  {
+    
+    var date = new Date();  
+
+    //Grab the Service key of use Tim's default one!
+    var serviceKey = getParameterByName('service_key');
+    if (!serviceKey) 
+    {
+      serviceKey = 'R020N2868CEIS5VH7KIM2E04G1KJH1S1';
+    }
+
+
+         var eventObject = '    {     ' +
+        '		"details" : {    ' +
+          '			"targets": [    ' +
+          '				{    ' +
+            '					"name": "TransactionError query"    ' +
+            '				}    ' +
+            '			]    ' +
+            '		},    ' +
+            '    "payload": {    ' +
+              '      "summary": "Sharepoint Application (TransactionError query violated High Errors in Sharepoint Application)",    ' +
+              '      "source": "New Relic",    ' +
+              '      "severity": "critical",    ' +
+              '      "component": "Production",    ' +
+              '      "group": "Production",    ' +
+              '      "class": "APM",    ' +
+              '      "custom_details": {    ' +
+                '					"targets": [    ' +
+                '						{    ' +
+                  '							"id": "TransactionError",    ' +
+                  '							"type": "Query",    ' +
+                  '							"product": "NRQL",    ' +
+                  '							"name": "TransactionError query",    ' +
+                  '							"link": "https://insights.newrelic.com/accounts/2589833/query?query=SELECT%20count%28%2A%29%20FROM%20TransactionError%20TIMESERIES%201%20minute%20SINCE%20%272020-03-15%2009%3A25%3A17%27%20UNTIL%20%272020-03-15%2015%3A24%3A17%27"         ' +
+                  '						}      ' +
+                  '				],    ' +
+                  '				"policy_url": "https://alerts.newrelic.com/accounts/2589833/policies/658980",    ' +
+                  '				"policy_name": "Sharepoint Application",    ' +
+                  '				"owner": "",    ' +
+                  '				"open_violations_count": {    ' +
+                    '					"warning": "0",    ' +
+                    '					"critical": "1"    ' +
+                    '				},    ' +
+                    '				"incident_url": "https://alerts.newrelic.com/accounts/2589833/incidents/116296591",    ' +
+                    '				"incident_id": "116296591",    ' +
+                    '				"incident_acknowledge_url": "https://alerts.newrelic.com/accounts/2589833/incidents/116296591/acknowledge",    ' +
+                    '				"event_type": "INCIDENT",    ' +
+                    '				"duration": "761",    ' +
+                    '				"details": "TransactionError query result is = 0 for 1 minutes",    ' +
+                    '				"current_state": "open",    ' +
+                    '				"condition_name": "High Errors in Sharepoint Application",    ' +
+                    '				"condition_id": "69060888",    ' +
+                    '				"condition_family_id": "12083035",    ' +
+                    '				"closed_violations_count": {    ' +
+                      '					"warning": "0",    ' +
+                      '					"critical": "0"    ' +
+                      '				}    ' +
+                      '			}    ' +
+                      '    },    ' +
+                      '   "routing_key": "R020N2868CEIS5VH7KIM2E04G1KJH1S1",    ' +
+                      '   "images": [{    ' +
+                        '       "src": "https://gorgon.nr-assets.net/image/c55b619e-108f-4851-999b-30c598f4ff56?config.legend.enabled=false",    ' +
+                        '       "href": "https://insights.newrelic.com/accounts/2589833/query?query=SELECT%20count%28%2A%29%20FROM%20TransactionError%20TIMESERIES%201%20minute%20SINCE%20%272020-03-15%2009%3A25%3A17%27%20UNTIL%20%272020-03-15%2015%3A24%3A17%27",    ' +
+                        '       "alt": "New Relic Chart"    ' +
+                        '    }],    ' +
+                        '    "links": [{    ' +
+                          '     "href": "https://alerts.newrelic.com/accounts/2589833/incidents/116296591",    ' +
+                          '      "text": "Acknowledge in New Relic"    ' +
+                          '    }],    ' +
+                          '    "event_action": "trigger",    ' +
+                          '    "client": "New Relic",    ' +
+                          '    "client_url": "https://alerts.newrelic.com/accounts/2589833/incidents/116296591"    ' +
+                          '}  '
+
+    console.log(eventObject)
+
+    $.ajax({
+      method: "POST",
+      url: "https://events.pagerduty.com/v2/enqueue",
+      data: eventObject
+    })
+      .done(function( msg ) {
+        alert( "Incident Created: " + msg );
+    });
+
+    return;
+  }
+  //################################################################################
+
+
+
+
+
+
+  //################################################################################
+  //Grab the Params from the URL in this case the Service Key
+  function getParameterByName(name, url) {
+    if (!url) url = window.location.href;
+    name = name.replace(/[\[\]]/g, "\\$&");
+    var regex = new RegExp("[?&]" + name + "(=([^&#]*)|&|#|$)"),
+        results = regex.exec(url);
+    if (!results) return null;
+    if (!results[2]) return '';
+    return decodeURIComponent(results[2].replace(/\+/g, " "));
+  }
+  //################################################################################
+
+
+
+</script>
+  
+
+</body>
+
+
+
+
+
+
+
+</html> 

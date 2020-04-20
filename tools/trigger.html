@@ -108,14 +108,13 @@
       node = document.getElementById('BT-text'),
         BTName = node.value
 
-      setTimeout(function () {
-
+      function sendAppDAlert(NodeID) {
         var date = new Date();  
         dedupKey = date.getMinutes()
 
-          var eventObject = '        {                                             ' +
+        var eventObject = '        {                                             ' +
                         '        "payload": {                                             ' +
-                        '            "summary": "' + BTName + ' (AppNode00' + g_AppDi + ')",                                             ' +
+                        '            "summary": "' + BTName + ' (AppNode00' + NodeID + ')",                                             ' +
                         '            "source": "AppDynamics",                                             ' +
                         '            "severity": "warning",                                             ' +
                         '            "location": "prod",                                             ' +
@@ -131,13 +130,13 @@
                         '                "Event Type": "Warning Event",                                             ' +
                         '                "Event Type Key": "Warning-AppD",                                             ' +
                         '                "Application Name": "DutyCalls - eCommerce",                                             ' +
-                        '                "Node Name": "AppNode00' + g_AppDi + '",                                             ' +
-                        '                "Message": "' + BTName + ' (AppNode00' + g_AppDi + ')",                                             ' +
+                        '                "Node Name": "AppNode00' + NodeID + '",                                             ' +
+                        '                "Message": "' + BTName + ' (AppNode00' + NodeID + ')",                                             ' +
                         '                "Severity": "warning"                                             ' +
                         '            }                                             ' +
                         '        },                                             ' +
                         '        "routing_key": "' + serviceKey + '",                                             ' +
-                        '        "dedup_key": "AppNode00' + g_AppDi + BTName + dedupKey +' - eCommerce",                                             ' +
+                        '        "dedup_key": "AppNode00' + NodeID + BTName + dedupKey +' - eCommerce",                                             ' +
                         '        "event_action": "trigger",                                             ' +
                         '        "client": "View in AppDynamics",                                             ' +
                         '        "client_url": "http://demo1.appdynamics.com/controller/",                                             ' +
@@ -167,11 +166,14 @@
                   //alert( "Data Saved: " + msg );
               });
 
-        }, 1000);
+         }
+
+      setTimeout(sendAppDAlert, 500, g_AppDi);
 
     }
     return;
   }
+
 
   function AppDAlert()
   {

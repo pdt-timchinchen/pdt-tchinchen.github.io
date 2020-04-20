@@ -5,11 +5,11 @@
 <head>
   <meta charset="UTF-8" http-equiv="Cache-control" content="NO-CACHE">
 
-  <title>DutyRocks Checkout</title>
+  <title>PD Bank</title>
 
   <link rel='shortcut icon' type='image/x-icon' href='favicon.ico' />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/5.0.0/normalize.min.css">
-    <link rel="stylesheet" href="css/style-saga.css">
+    <link rel="stylesheet" href="css/style-pdbank.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
   
 
@@ -33,7 +33,8 @@
       text-align: center;
       background-color: red;
       margin-top: 20px;
-      display:none;     
+      display:none;   
+      color: aliceblue  
   }
 
   #PDContent img {
@@ -47,18 +48,26 @@
 <body>
   <br/>
 
-  <img  height="100" width="320" src="images/dutyrockslogo.png">
+  <img  height="85" width="220" src="images/PDBank.png">
 
   <div id="PDContent">
-    <img vspace="25" height="40" width="150" src="images/PagerDuty-BlackRGB-1x.png"/>
+    <img height="45" width="110" src="https://iqm7l1pa7bn3d42rc278rat5-wpengine.netdna-ssl.com/wp-content/uploads/2017/08/logo-pagerduty.svg"/>
   </div>
 
   
-  <h1>DutyRocks Checkout</h1>
+  <h1>Payment Page</h1>
 
 <br/>
-Name &amp; email: <input type="text" name="customerName" id="customer-name" value="Enter your name here..." onfocus="if(this.value=='Enter your name here...') this.value='';"><br>
+Name &amp; email: <input type="text" name="customerName" id="customer-name" value="Enter your name here..." onfocus="if(this.value=='Enter your name here...') this.value='';">
+&nbsp;&nbsp;
+Account: 
+<select id="accountOption">
+  <option value="Premier_Current">Premier Current ****-4321</option>
+  <option value="Everyday_Saver">Everyday Saver ****-1234</option>
+</select>
 
+<br/>
+<br/>
 <br/>
 
 
@@ -67,89 +76,74 @@ Name &amp; email: <input type="text" name="customerName" id="customer-name" valu
   <div class="column-labels">
     <label class="product-image">Image</label>
     <label class="product-details">Product</label>
-    <label class="product-price">Price</label>
-    <label class="product-quantity">Quantity</label>
+    <label class="product-price">Currency</label>
+    <label class="product-quantity">Amount</label>
     <label class="product-removal">Remove</label>
     <label class="product-line-price">Total</label>
   </div>
 
   <div class="product">
     <div class="product-image">
-      <!-- <img src="https://www.att.com/catalog/en/skus/images/apple-iphone%20x-space%20gray-450x350.png"> -->
-      <img src="https://andertons-productimages.imgix.net/257445-1514998065624.png?w=1700&h=1700&fit=fill&bg=FFFFFF&auto=format&ixlib=imgixjs-3.3.2">
+      <img src="https://news.files.bbci.co.uk/include/idt2/assets/dace2f1b-568e-4dee-9752-3097f6c6c39a" height="100" width="300">
     </div>
     <div class="product-details">
-      <div class="product-title">Ibanez AZ242BC-DET Premium in Deep Espresso Burst</div>
-      <p class="product-description">This classy addition to Ibanez's 2018 range combines versatile specs, lush playability and understated aesthetics. This is the epitome of a workhorse instrument! If you're after Ibanez's formidable performance, but with distinctly classy, nostalgic flavours, the AZ series might just be for you.
-        With features like the comfortable oval-C neck profile, lightweight Basswood body, smooth mid-output Seymour Duncan pickups and cutting-edge Gotoh hardware.
-        </p>
+      <div class="product-title">Payee Details</div>
+      <p class="product-description">
+        Account Holder Name: Capt Tom Moore<br/>
+        Sort Code: &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 20-00-00<br/>
+        Account Number: &nbsp;&nbsp;&nbsp;&nbsp; 21368192<br/>
+
+      </p>
     </div>
-    <div class="product-price">800.00</div>
-    <div class="product-quantity">
-      <input type="number" value="2" min="1">
+    <div class="product-price" display="none">1</div>
+    <div class="product-quantity" item-width="1000">
+      <input type="number" value="1000" min="1" >
     </div>
     <div class="product-removal">
       <button class="remove-product">
         Remove
       </button>
     </div>
-    <div class="product-line-price">1600.00</div>
+    <div class="product-line-price">1000</div>
   </div>
 
-  <div class="product">
-    <div class="product-image">
-      <img src="https://encrypted-tbn2.gstatic.com/shopping?q=tbn:ANd9GcSK1jWX6QEasX2gbpKvTbxwKIgLaothcpGzFXK9JVMCIHyzH9iBMW1oExr9SQQU8Cf98S6Pu6g59A&usqp=CAc">
-    </div>
-    <div class="product-details">
-      <div class="product-title">Boss Katana MkII</div>
-      <p class="product-description">The Boss Katana 50 MkII is a medium-sized combo amp packed full of modern features, with a lightweight and compact enclosure that's easy to transport to venues. Fitted with a custom 12" speaker that can push plenty of air in a live scenario, the Katana 50 MkII also serves as a fantastic practice amp for the home.</p>
-    </div>
-    <div class="product-price">129.00</div>
-    <div class="product-quantity">
-      <input type="number" value="1" min="1">
-    </div>
-    <div class="product-removal">
-      <button class="remove-product">
-        Remove
-      </button>
-    </div>
-    <div class="product-line-price">129.00</div>
-  </div>
 
   <div class="totals">
     <div class="totals-item">
       <label>Subtotal</label>
-      <div class="totals-value" id="cart-subtotal">1729.00</div>
+      <div class="totals-value" id="cart-subtotal">1000.00</div>
+    </div>
+    
+    <div class="totals-item">
+      <label>Commission (0%)</label>
+      <div class="totals-value" id="cart-tax">0.0</div>
     </div>
     <div class="totals-item">
-      <label>VAT (5%)</label>
-      <div class="totals-value" id="cart-tax">86.45</div>
-    </div>
-    <div class="totals-item">
-      <label>Shipping</label>
-      <div class="totals-value" id="cart-shipping">5.00</div>
+      <label>Wire Charge (N/A)</label>
+      <div class="totals-value" id="cart-shipping">0.0</div>
     </div>
     <div class="totals-item totals-item-total">
       <label>Grand Total</label>
-      <div class="totals-value" id="cart-total">1820.45</div>
+      <div class="totals-value" id="cart-total">1000</div>
     </div>
   </div>
       
-      <button id="checkoutButton" class="checkout" onclick="completeCheckout()">Checkout</button>
+      <button id="checkoutButton" class="checkout" onclick="completeCheckout()">Pay Now</button>
   </div>
 
 
-<div id="PDinfo">
-  Try and drive our on-call Engineer crazy! or can you?...
-</div>
-
 <div id="checkoutError">
-  <b>Error in Checkout - Unable to complete your order</b> 
-  <br/>"Connection to data source updateOrderDB can not be established! 
+  <b>Error in Payment</b> 
+  <br/>"Connection to data source updatePaymentDB can not be established! 
   <br/>Reason: Invalid operation. The connection is closed. - complete stack
   <br/>at System.Data.SqlClient.SqlConnection.GetOpenConnection()
   <br/>at System.Data.SqlClient.SqlConnection.get_Parser()
   <br/>at System.Data.SqlClient.SqlConnection.Open()", Please try later
+</div>
+
+
+<div id="PDinfo">
+  Not a real Bank! We're better at Digital Operations! <H5>But check out us for real at <a href="https://www.pagerduty.com/">https://www.pagerduty.com/</a></h5>
 </div>
 
 <script>
@@ -166,6 +160,7 @@ Name &amp; email: <input type="text" name="customerName" id="customer-name" valu
       s4() + '-' + s4() + s4() + s4();
   }
   //################################################################################
+
 
   //################################################################################
   //Grab the Params from the URL in this case the Service Key
@@ -194,7 +189,6 @@ Name &amp; email: <input type="text" name="customerName" id="customer-name" valu
 
   }
   //################################################################################
-
 
 
   //################################################################################
@@ -229,7 +223,7 @@ Name &amp; email: <input type="text" name="customerName" id="customer-name" valu
     document.getElementById("checkoutButton").innerHTML = "Working";
     
     //Update the panel eventually - simulating an end system response
-    setTimeout(updateResponsePanel, 5500);
+    setTimeout(updateResponsePanel, 4000);
 
     //Get the Order Value and a Dedup key based on Customer Name and the Minute of the Button click 
     //(someone clicks multiple times = caught one)
@@ -239,7 +233,9 @@ Name &amp; email: <input type="text" name="customerName" id="customer-name" valu
     var date = new Date();  
     dedupKey = customerName + date.getMinutes()
 
-
+    //alert (customerName);
+    var e = document.getElementById ("accountOption");
+    var accountSelected = e.options [e.selectedIndex] .value;
 
     // Requires jQuery
     //Build the JSON payload to send
@@ -252,7 +248,7 @@ Name &amp; email: <input type="text" name="customerName" id="customer-name" valu
         ' "event_type"\: "trigger", ' +
         ' "contexts"\: [ ' +
         ' {  ' +
-            ' "src": "https://s3.eu-west-2.amazonaws.com/www.timchinchen.co.uk/DemoImages/NRErrors2.png", ' +
+            ' "src": "https://s14.postimg.cc/kkb4ebntd/NRErrors2.png", ' +
             ' "alt": "Snapshot of metric", ' +
             ' "href": "http://www.timchinchen.co.uk/DemoImages/NRErrors1.png", ' +
             ' "type": "image" ' +
@@ -263,12 +259,12 @@ Name &amp; email: <input type="text" name="customerName" id="customer-name" valu
         ' "href": "https://pagerduty.zoom.us/j/5080555253", ' +
         ' "type": "link" ' +
         ' }, ' +
+    
       '{' +
-      '  "text": "Conference Call (Zoom)",  ' +
+      '  "text": "Conference Dial (Zoom)",  ' +
       '  "href": "tel:+442036950088,,5080555253#",  ' +
       '  "type": "link"  ' +
       '},' +
-
     '{' +
       ' "text": "Monitor Status", ' +
       ' "href": "https://appp.datadoghq.com/monitors#72563?to_ts=1452282540000&group=host%3Aprod-web-xdb09&from_ts=1452281340000", ' +
@@ -281,19 +277,46 @@ Name &amp; email: <input type="text" name="customerName" id="customer-name" valu
     ' } ' +
     ' ], ' +
   ' "details": { ' +
-    ' "body": "[Critical] Increased response time detected on the Checkout page affecting ' + customerName + ', High Error rates <br/> Object Reference Not Set and ADO.NET Connection pool exceeded errors detected" , ' +   
+    ' "body": "[Critical] Increased response time detected on the Payment page affecting ' + customerName + ', High Error rates <br/> Object Reference Not Set and ADO.NET Connection pool exceeded errors detected" , ' +   
     ' "Order Value": ' + orderValue + ', ' +
     ' "priority": "High", ' +
-    ' "title": "[Critical] Increased response time detected on the Checkout page, High Error rates  affecting ' + customerName + '", ' +
+    ' "Account": "' + accountSelected + '", ' +
+    ' "title": "[Critical] Increased response time detected on the Payment page, High Error rates  affecting ' + customerName + '", ' +
     ' "event_id": "8125363154448140714", ' +
     ' "tags": "aws-prod, base, env:prod, host:farnsworth, monitor, pd_az:us-west-2c, production, xdb, xtradb", ' +
     ' "Customer": "'+ customerName + '" ' +
     ' }, ' +
-  ' "description": "[Critical] Increased response time detected on the Checkout page, High Error rates" ' +
+  ' "description": "[Critical] Increased response time detected on the Payment page, High Error rates" ' +
   '}' 
 
   console.log(eventObject)
 
+
+  //    ' "Customer Name": ' + customerName + ', ' +
+
+
+    //var settings = {
+    //  "url": "https://events.pagerduty.com/generic/2010-04-15/create_event.json",
+    //  "method": "POST",
+    //  "data":  eventObject,
+    //  "headers": {
+    //    "Accept": "application/vnd.pagerduty+json;version=2",
+    //    "Authorization": "Token token=V_uHsBDv3G2NxyimTYVg",
+    //  }
+    //};
+
+    //$.ajax(settings).done(function (response) {
+    //  console.log(response);
+    //  $("#responseText").text(JSON.stringify(response));
+    //});
+
+    //$.ajax({
+    //  type: "POST",
+    //  url: "https://events.pagerduty.com/generic/2010-04-15/create_event.json",
+    //  data: eventObject,
+    //  success: null,
+    //  dataType: "json"
+    //});
 
     //Send!!!
     $.ajax({
@@ -305,60 +328,11 @@ Name &amp; email: <input type="text" name="customerName" id="customer-name" valu
         //alert( "Data Saved: " + msg );
     });
 
+    //Update the panel eventually - simulating an end system response
+    setTimeout(sendZabbix, 5000);
+    //Update the panel eventually - simulating an end system response
+    setTimeout(sendLowRevenueWarning, 5000);
 
-
-/*
-
-    // Requires jQuery
-    //Build the JSON payload to send
-    var eventObject = '{ ' +
-    '	"routing_key": "' + serviceKey + '",  ' +
-    '  "dedup_key": "' + dedupKey + '",  ' +
-    '  "images": [{  ' +
-    '  	"src": "https://s3.eu-west-2.amazonaws.com/www.timchinchen.co.uk/DemoImages/NRErrors2.png",  ' +
-    '  	"href": "https://s3.eu-west-2.amazonaws.com/www.timchinchen.co.uk/DemoImages/NRErrors2.png",  ' +
-    '  	"alt": "Snapshot of metric"  ' +
-    '  }],  ' +
-    '  "links": [{  ' +
-    '    "href": "https://rpm.newrelic.com/accounts/1818495/applications/105833762?tw%5Bend%5D=1518535392&tw%5Bstart%5D=1518528373",  ' +
-    '    "text": "New Relic - Permalink"  ' +
-    '  }],  ' +
-    '  "event_action": "trigger",  ' +
-    '  "client": "New Relic",  ' +
-    '  "client_url": "https://rpm.newrelic.com/accounts/1818495/applications/105833762",  ' +
-    '  "payload": {  ' +
-    '    "summary": "[Critical] Increased response time detected on the Checkout page, High Error rates",  ' +
-    '    "source": "aws-prod, base, env:prod, host:farnsworth, monitor, pd_az:us-west-2c, production, xdb, xtradb",  ' +
-    '    "severity": "critical",  ' +
-    '    "component": "Checkout-Page",  ' +
-    '    "group": "prod-datapipe",  ' +
-    '    "class": "LIVE",  ' +
-    '    "custom_details": {  ' +
-    '			"Error Details": "[Critical] Increased response time detected on the Checkout page affecting ' + customerName + ', High Error rates <br/> Object Reference Not Set and ADO.NET Connection pool exceeded errors detected" ,  ' +
-    '           "Customer Name": "' + customerName + '",  ' +
-    '           "Order Value": 1000  ' +
-    '    }  ' +
-    '  }  ' +
-    '}  '
-
-    console.log(eventObject)
-
-
-    //Send!!!
-    $.ajax({
-      method: "POST",
-      url: "https://events.pagerduty.com/v2/enqueue",
-      data: eventObject
-    })
-      .done(function( msg ) {
-        //alert( "Data Saved: " + msg );
-    });
-
-    */
-
-
-    setTimeout(sendZabbix, 12000);
-    setTimeout(sendLowRevenueWarning, 8000);
     setTimeout(sendSUMO, 8000);
     setTimeout(sendSignalFX, 8000);
     setTimeout(sendAppD, 8000);
@@ -370,13 +344,17 @@ Name &amp; email: <input type="text" name="customerName" id="customer-name" valu
     setTimeout(relatedService1, 10000);
     setTimeout(relatedService2, 10000);
 
+
+
+
   }
 
 
 
 
+
 //################################################################################
-  function relatedService1()
+function relatedService1()
   {
     
 
@@ -389,7 +367,7 @@ Name &amp; email: <input type="text" name="customerName" id="customer-name" valu
 
   var eventObject = ' { ' +
     '   "payload": {     ' +
-    '     "summary": "[Critical] Increased response time detected on the Search page, High Error rates",   ' +
+    '     "summary": "[Critical] Increased response time detected on the GetAccount page, High Error rates",   ' +
     '     "source": "DataDog",   ' +
     '     "severity": "warning",   ' +
     '     "location" : "prod",   ' +
@@ -606,9 +584,12 @@ Name &amp; email: <input type="text" name="customerName" id="customer-name" valu
 //################################################################################
   function sendTweets()
   {
-    sendTweet("@sbarrett - #DutyCalls Wheres my phone ");
-    sendTweet("@howard - This #DutyCalls, great idea poor execution!");
-    sendTweet("@Jenn - Come on #DutyCalls team - deliver these phones!");
+    sendTweet("@sbarrett - #PDBank Wheres my Balance ");
+    sendTweet("@howard - This #PDBank, great idea poor execution!");
+    sendTweet("@Jenn - Come on #PDBank team - I'm trying to pay here!");
+    sendTweet("@Perrine - #PDBank - Terrible experience");
+    sendTweet("@MLivermore - Please #PDBank work for once");
+
   }
 //################################################################################
 
@@ -826,7 +807,7 @@ function sendAppD()
 
     var eventObject = ' { ' +
     '   "payload": {     ' +
-    '     "summary": "AppDynamics - Increased Business Transaction Response time compared to baseline - BTs > Checkout, Order Confirmed",   ' +
+    '     "summary": "AppDynamics - Increased Business Transaction Response time compared to baseline - BTs > Setup Payment, Payment Confirmed",   ' +
     '     "source": "AppDynamics",   ' +
     '     "severity": "warning",   ' +
     '     "location" : "prod",   ' +
@@ -934,7 +915,8 @@ function sendAWSCW()
 //################################################################################
 
 
-//################################################################################
+
+ //################################################################################
  function sendZabbix()
   {
     console.log('Send to Zabbix');
@@ -951,7 +933,7 @@ function sendAWSCW()
     '     "severity": "warning",   ' +
     '     "location" : "prod",   ' +
     '     "component": "Zabbix",   ' +
-    '     "group": "Zabbix,Production,eCommerce,Checkout-Tier",   ' +
+    '     "group": "Zabbix,Production,RetailBanking,Payment-Tier",   ' +
     '     "class": "Zabbix" },   ' +
     '   	"routing_key": "' + serviceKey + '",   ' +
     '   	"dedup_key": "Zabbixdedupkey",   ' +
@@ -981,7 +963,7 @@ function sendAWSCW()
 
     return;
   }
-//################################################################################
+  //################################################################################
 
 
 //################################################################################
@@ -997,12 +979,12 @@ function sendLowRevenueWarning()
 
     var eventObject = ' { ' +
     '   "payload": {     ' +
-    '     "summary": "Low Revenue detected compared to normal",   ' +
+    '     "summary": "Low Transfers detected compared to normal baselines",   ' +
     '     "source": "Prometheus",   ' +
     '     "severity": "warning",   ' +
     '     "location" : "prod",   ' +
     '     "component": "Prometheus",   ' +
-    '     "group": "Prometheus,Production,eCommerce,Checkout-Tier",   ' +
+    '     "group": "Prometheus,Production,Payment-Tier",   ' +
     '     "class": "Prometheus" },   ' +
     '   	"routing_key": "' + serviceKey + '",   ' +
     '   	"dedup_key": "Prometheusdedupkey",   ' +
@@ -1032,10 +1014,15 @@ function sendLowRevenueWarning()
 
     return;
   }
-//################################################################################
+  //################################################################################
 
 
-</script>
+
+
+
+  </script>
+
+
 
 <script src='http://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js'></script>
 <script  src="js/index.js"></script>

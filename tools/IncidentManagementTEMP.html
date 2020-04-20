@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html>
+<title>Incident Tools</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="w3.css">
+<link rel="stylesheet" href="w3-theme-blue.css">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-serialize-object/2.5.0/jquery.serialize-object.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.11.2/js/bootstrap-select.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/async/2.1.2/async.js"></script>
+
+<body style="max-width:400px;margin:16px;border:1px solid #ccc" onload="populateTriggerSelect()"> 
+
+<header class="w3-container w3-card-4 w3-theme">
+  <h1>Incident Tools</h1>
+</header>
+
+<!-- Tweet -->
+
+<div class="w3-panel">
+    <div class="w3-row">
+    <div class="w3-col s3">
+        <img src="https://trimdon.com/wp-content/uploads/2017/02/incident-reporting.jpg" style="width:100%">
+    </div>
+    <div class="w3-col s9 w3-container">
+        <h3>Incident Update feed</h3>
+        <table class="table">
+            <tr><td>Destination:</td><td><select id="trigger-dest-select"></select></td></tr>
+        </table>
+        <p>Affected Customers: <input type="text" name="tweet-text" id="tweet-text" value=""><br/>&nbsp;<br/>
+        <p>Affected Services:  <input type="text" name="tweet-text" id="tweet-text" value=""><br/>&nbsp;<br/>
+        <p>Current Status: <input type="text" name="tweet-text" id="tweet-text" value=""><br/>&nbsp;<br/>
+        <Button onclick="sendTweet()">Send Tweet</Button></p>
+    </div>
+</div>  
+<hr>
+</div>
+
+<footer class="w3-container w3-theme-l2" style="position:relative">
+  <a class="w3-btn w3-xlarge w3-circle w3-theme-action w3-right" style="position:absolute;top:-28px;right:16px;">+</a>
+  <p>Tim's Demo tools</p>
+</footer>
+
+<div class="w3-container w3-theme-dark w3-xlarge">&lt;<span class="w3-right">&gt;</span></div>
+
+<script>
+
+
+
+//################################################################################
+function populateTriggerSelect() {
+	//var token = getParameterByName("token");
+    var token = "V_uHsBDv3G2NxyimTYVg";
+	var servicesData;
+	var integrationIDs = [];
+    
+	async.series([
+		function(callback) {
+			var options = {
+				success: function(data) {
+					servicesData = data;
+					callback(null, "yay");
+				}
+			};
+			PDRequest(token, "services", "GET", options);
+		},
+		function(callback) {
+			servicesData.services.forEach(function(service) {
+				service.integrations.forEach(function(integration) {
+					if ( integration.type.includes("generic_events_api_inbound") || integration.type.includes("nagios_inbound") || integration.type.includes("events_api_v2_inbound") ) {
+						integrationIDs.push([service.id, integration.id]);
+					}
+				});
+			});
+			callback(null, "yay");
+		},
+		function(callback) {
+			var infoFns = [];
+			integrationIDs.forEach(function(integrationID) {
+				infoFns.push(function(callback) {
+					var options = {
+						success: function(integrationInfo) {
+							callback(null, integrationInfo);
+						}
+					}
+					PDRequest(token, "services/" + integrationID[0] + "/integrations/" + integrationID[1], "GET", options);
+				});
+			});
+
+			async.parallel(infoFns, 
+				function(err, results) {
+					results.forEach(function(result) {
+						$('#trigger-dest-select').append($('<option/>', {
+							value: result.integration.integration_key,
+							text: result.integration.service.summary + ": " + result.integration.name
+						}));
+					});
+					$('#trigger-dest-select').selectpicker('refresh');
+					$('.busy').hide();
+			});
+		}
+	]);
+}
+//################################################################################
+
+
+
+
+//################################################################################
+
+function PDRequest(token, endpoint, method, options) {
+
+    var merged = $.extend(true, {}, {
+        type: method,
+        dataType: "json",
+        url: "https://api.pagerduty.com/" + endpoint,
+        headers: {
+            "Authorization": "Token token=" + token,
+            "Accept": "application/vnd.pagerduty+json;version=2"
+        },
+        error: function(err) {
+            $('.busy').hide();
+            var alertStr = "Error '" + err.status + " - " + err.statusText + "' while attempting " + method + " request to '" + endpoint + "'";
+            try {
+                alertStr += ": " + err.responseJSON.error.message;
+            } catch (e) {
+                alertStr += ".";
+            }
+            
+            try {
+                alertStr += "\n\n" + err.responseJSON.error.errors.join("\n");
+            } catch (e) {}
+
+            alert(alertStr);
+        }
+    },
+    options);
+
+    $.ajax(merged);
+}
+//################################################################################
+
+
+
+
+
+
+  //################################################################################
+  function sendTweet()
+  {
+    
+    //Grab the Service key of use Tim's default one!
+    var serviceKey = getParameterByName('service_key');
+    if (!serviceKey) serviceKey = "999845c2635841589098d7fe425b0d0d";
+
+    var date = new Date();  
+    dedupKey = "Tweet" + date.getMinutes()
+
+    node = document.getElementById('tweet-text'),
+    tweetText = node.value
+
+var eventObject = ' { ' +
+  '   "payload": {     ' +
+  '     "summary": "' + tweetText + '",   ' +
+  '     "source": "Twitter",   ' +
+  '     "severity": "warning",   ' +
+  '     "location" : "prod",   ' +
+  '     "component": "Twitter Feed",   ' +
+  '     "group": "Twitter, Sentiment, production",   ' +
+  '     "class": "tweet" },   ' +
+  '   	"routing_key": "' + serviceKey + '",   ' +
+  '   	"dedup_key": "' + dedupKey + '",   ' +
+  '    	"event_action": "trigger",   ' +
+  '   	"client": "View in Twitter",   ' +
+  '   	"client_url": "www.twitter.com"   ' +
+  '   }'
+
+
+    console.log(eventObject)
+
+    $.ajax({
+      method: "POST",
+      url: "https://events.pagerduty.com/v2/enqueue",
+      data: eventObject
+    })
+      .done(function( msg ) {
+        //alert( "Data Saved: " + msg );
+    });
+
+    return;
+  }
+  //################################################################################
+
+
+
+  //################################################################################
+  //Grab the Params from the URL in this case the Service Key
+  function getParameterByName(name, url) {
+    if (!url) url = window.location.href;
+    name = name.replace(/[\[\]]/g, "\\$&");
+    var regex = new RegExp("[?&]" + name + "(=([^&#]*)|&|#|$)"),
+        results = regex.exec(url);
+    if (!results) return null;
+    if (!results[2]) return '';
+    return decodeURIComponent(results[2].replace(/\+/g, " "));
+  }
+  //################################################################################
+
+
+
+</script>
+  
+
+</body>
+
+
+
+
+
+
+
+</html> 
