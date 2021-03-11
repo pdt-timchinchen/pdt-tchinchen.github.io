@@ -1,4 +1,13 @@
 
+<!-- SO YOU KEEP IT ALL UP TO DATE 
+As of 
+
+#######  9th November 2020  #######  
+
+This is the working version.
+
+-->
+
 <!DOCTYPE html>
 <html lang="en" >
 
@@ -47,13 +56,14 @@
 <body>
   <br/>
 
-  <img  height="75" width="245" src="images/cflogo.png">
+  <img  height="58" width="180" src="https://currys-ssl.cdn.dixons.com/grafx/images/logos/logo.png">
 
   <div id="PDContent">
-    <img vspace="25" height="19" width="85" src="images/PagerDuty-BlackRGB-1x.png"/>
+    <img vspace="25" height="35" width="150" src="images/PagerDuty-BlackRGB-1x.png"/>
   </div>
 
   
+  <h2>Checkout</h2>
 
 <br/>
 Name &amp; email: <input type="text" name="customerName" id="customer-name" value="Enter your name here..." onfocus="if(this.value=='Enter your name here...') this.value='';"><br>
@@ -75,15 +85,14 @@ Name &amp; email: <input type="text" name="customerName" id="customer-name" valu
   <div class="product">
     <div class="product-image">
       <!-- <img src="https://www.att.com/catalog/en/skus/images/apple-iphone%20x-space%20gray-450x350.png"> -->
-      <img src="https://andertons-productimages.imgix.net/257445-1514998065624.png?w=1700&h=1700&fit=fill&bg=FFFFFF&auto=format&ixlib=imgixjs-3.3.2">
+      <img src="https://brain-images-ssl.cdn.dixons.com/5/9/10205195/u_10205195.jpg">
     </div>
     <div class="product-details">
-      <div class="product-title">Ibanez AZ242BC-DET Premium in Deep Espresso Burst</div>
-      <p class="product-description">This classy addition to Ibanez's 2018 range combines versatile specs, lush playability and understated aesthetics. This is the epitome of a workhorse instrument! If you're after Ibanez's formidable performance, but with distinctly classy, nostalgic flavours, the AZ series might just be for you.
-        With features like the comfortable oval-C neck profile, lightweight Basswood body, smooth mid-output Seymour Duncan pickups and cutting-edge Gotoh hardware.
+      <div class="product-title">MICROSOFT Xbox Series S - 512 GB SSD</div>
+      <p class="product-description">512 GB SSD & 10 GB GDDR6 memory, Quad HD gaming with HDR graphics, Stream 4K TV shows, Wireless controller included
         </p>
     </div>
-    <div class="product-price">800.00</div>
+    <div class="product-price">249.00</div>
     <div class="product-quantity">
       <input type="number" value="2" min="1">
     </div>
@@ -92,18 +101,20 @@ Name &amp; email: <input type="text" name="customerName" id="customer-name" valu
         Remove
       </button>
     </div>
-    <div class="product-line-price">1600.00</div>
+    <div class="product-line-price">498.00</div>
   </div>
 
   <div class="product">
     <div class="product-image">
-      <img src="https://encrypted-tbn2.gstatic.com/shopping?q=tbn:ANd9GcSK1jWX6QEasX2gbpKvTbxwKIgLaothcpGzFXK9JVMCIHyzH9iBMW1oExr9SQQU8Cf98S6Pu6g59A&usqp=CAc">
+      <img src="https://brain-images-ssl.cdn.dixons.com/1/5/10219351/u_10219351.jpg">
     </div>
     <div class="product-details">
-      <div class="product-title">Boss Katana MkII</div>
-      <p class="product-description">The Boss Katana 50 MkII is a medium-sized combo amp packed full of modern features, with a lightweight and compact enclosure that's easy to transport to venues. Fitted with a custom 12" speaker that can push plenty of air in a live scenario, the Katana 50 MkII also serves as a fantastic practice amp for the home.</p>
+      <div class="product-title">XBOX Xbox Wireless Controller & Venom Xbox Series X/S Twin Docking Station Bundle - Robot White</div>
+      <p class="product-description">Textured controller grips
+        Redesigned hybrid D-pad
+        Share button lets you easily capture and share content</p>
     </div>
-    <div class="product-price">129.00</div>
+    <div class="product-price">69.99</div>
     <div class="product-quantity">
       <input type="number" value="1" min="1">
     </div>
@@ -112,17 +123,17 @@ Name &amp; email: <input type="text" name="customerName" id="customer-name" valu
         Remove
       </button>
     </div>
-    <div class="product-line-price">129.00</div>
+    <div class="product-line-price">69.99</div>
   </div>
 
   <div class="totals">
     <div class="totals-item">
       <label>Subtotal</label>
-      <div class="totals-value" id="cart-subtotal">1729.00</div>
+      <div class="totals-value" id="cart-subtotal">567.99</div>
     </div>
     <div class="totals-item">
       <label>VAT (5%)</label>
-      <div class="totals-value" id="cart-tax">86.45</div>
+      <div class="totals-value" id="cart-tax">28.05</div>
     </div>
     <div class="totals-item">
       <label>Shipping</label>
@@ -130,7 +141,7 @@ Name &amp; email: <input type="text" name="customerName" id="customer-name" valu
     </div>
     <div class="totals-item totals-item-total">
       <label>Grand Total</label>
-      <div class="totals-value" id="cart-total">1820.45</div>
+      <div class="totals-value" id="cart-total">601.39</div>
     </div>
   </div>
       
@@ -370,6 +381,9 @@ Name &amp; email: <input type="text" name="customerName" id="customer-name" valu
     setTimeout(relatedService2, 10000);
     setTimeout(sendTicket, 10000);
     setTimeout(sendChange, 10000);
+
+
+
   }
 
 
@@ -934,8 +948,10 @@ function sendAWSCW()
 //################################################################################
 
 
+
+
 //################################################################################
- function sendZabbix()
+function sendZabbix()
   {
     console.log('Send to Zabbix');
 
@@ -1036,6 +1052,58 @@ function sendTicket()
 
 
 
+
+
+//################################################################################
+ function sendZabbix()
+  {
+    console.log('Send to Zabbix');
+
+    
+    //Grab the Service key of use Tim's default one!
+    var serviceKey = getParameterByName('service_key');
+    if (!serviceKey) serviceKey = "a36720292f404b75a1e0916687454497";
+
+    var eventObject = ' { ' +
+    '   "payload": {     ' +
+    '     "summary": "java.lang.OutOfMemoryError: Java heap space",   ' +
+    '     "source": "Zabbix",   ' +
+    '     "severity": "warning",   ' +
+    '     "location" : "prod",   ' +
+    '     "component": "Zabbix",   ' +
+    '     "group": "Zabbix,Production,eCommerce,Checkout-Tier",   ' +
+    '     "class": "Zabbix" },   ' +
+    '   	"routing_key": "' + serviceKey + '",   ' +
+    '   	"dedup_key": "Zabbixdedupkey",   ' +
+    '    	"event_action": "trigger",   ' +
+    '   	"client": "View in Zabbix",   ' +
+    '   	"client_url": "www.zabbix.com",   ' +
+    '   	"images": [   ' +
+    '   	    {   ' +
+    '   	      "src": "https://chart.googleapis.com/chart?chs=600x400&chd=t:6,2,9,5,2,5,7,4,8,2,1&cht=lc&chds=a&chxt=y&chm=D,0033FF,0,0,5,1",   ' +
+    '   	      "href": "https://acme.pagerduty.com",   ' +
+    '   	      "alt": "This is a sample link"  ' +
+    '   	  }  ' +
+    '   	]  ' +
+    '   }'
+
+
+    console.log(eventObject);
+
+    $.ajax({
+      method: "POST",
+      url: "https://events.pagerduty.com/v2/enqueue",
+      data: eventObject
+    })
+      .done(function( msg ) {
+        //alert( "Data Saved: " + msg );
+    });
+
+    return;
+  }
+//################################################################################
+
+
 //################################################################################
 function sendLowRevenueWarning()
   {
@@ -1085,6 +1153,61 @@ function sendLowRevenueWarning()
     return;
   }
 //################################################################################
+
+
+
+
+
+
+//################################################################################
+function sendZabbix()
+  {
+    console.log('Send to Zabbix');
+
+    
+    //Grab the Service key of use Tim's default one!
+    var serviceKey = getParameterByName('service_key');
+    if (!serviceKey) serviceKey = "a36720292f404b75a1e0916687454497";
+
+    var eventObject = ' { ' +
+    '   "payload": {     ' +
+    '     "summary": "java.lang.OutOfMemoryError: Java heap space",   ' +
+    '     "source": "Zabbix",   ' +
+    '     "severity": "warning",   ' +
+    '     "location" : "prod",   ' +
+    '     "component": "Zabbix",   ' +
+    '     "group": "Zabbix,Production,eCommerce,Checkout-Tier",   ' +
+    '     "class": "Zabbix" },   ' +
+    '   	"routing_key": "' + serviceKey + '",   ' +
+    '   	"dedup_key": "Zabbixdedupkey",   ' +
+    '    	"event_action": "trigger",   ' +
+    '   	"client": "View in Zabbix",   ' +
+    '   	"client_url": "www.zabbix.com",   ' +
+    '   	"images": [   ' +
+    '   	    {   ' +
+    '   	      "src": "https://chart.googleapis.com/chart?chs=600x400&chd=t:6,2,9,5,2,5,7,4,8,2,1&cht=lc&chds=a&chxt=y&chm=D,0033FF,0,0,5,1",   ' +
+    '   	      "href": "https://acme.pagerduty.com",   ' +
+    '   	      "alt": "This is a sample link"  ' +
+    '   	  }  ' +
+    '   	]  ' +
+    '   }'
+
+
+    console.log(eventObject);
+
+    $.ajax({
+      method: "POST",
+      url: "https://events.pagerduty.com/v2/enqueue",
+      data: eventObject
+    })
+      .done(function( msg ) {
+        //alert( "Data Saved: " + msg );
+    });
+
+    return;
+  }
+//################################################################################
+
 
 //################################################################################
 function sendChange()
@@ -1137,7 +1260,6 @@ function sendChange()
     return;
   }
 //################################################################################
-
 
 
 

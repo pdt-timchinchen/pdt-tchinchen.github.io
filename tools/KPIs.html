@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+<html>
+<title>W3.CSS Template</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+<link rel="stylesheet" href="https://www.w3schools.com/lib/w3-theme-black.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.3.0/css/font-awesome.min.css">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<body>
+
+
+<!-- Header -->
+<header class="w3-container w3-theme w3-padding" id="myHeader">
+  <div class="w3-center">
+  <h4>KPI Reporter</h4>
+  </div>
+</header>
+
+<!-- Results Selector -->
+<div class="w3-card w3-container" style="min-height:460px">
+  <h3>Report</h3><br>
+
+  <select id="monthSelect" onchange="getKPIs()">
+    <option>Select...</option> 
+    <option>This Month</option> 
+    <option>Last Month</option> 
+  </select>
+
+  <div class="w3-container">
+    <hr>
+    <div class="w3-center">
+      <h2>Summary</h2>
+    </div>
+  <div class="w3-responsive w3-card-4">
+  <table class="w3-table w3-striped w3-bordered">
+  <thead>
+  <tr class="w3-theme">
+    <th>KPI</th>
+    <th>Description</th>
+    <th>Value</th>
+  </tr>
+  </thead>
+  <tbody>
+  <tr>
+    <td>Number of repeated Incidents</td>
+    <td>Calculates how often the same issue occurs (uses Description)</td>
+    <td><div id="repeatIncidents">0</div></td>
+  </tr>
+    <td>Number of Escalations</td>
+    <td></td>
+    <td><div id="escalationCount">0</div></td>
+  </tr>
+  <tr>
+    <td>Number of Incidents</td> 
+    <td></td>
+    <td><div id="incidentCount">0</div></td>
+  </tr>
+  <tr>
+    <td>Average Initial Response Time</td>
+    <td></td>
+    <td><div id="avgSecondsToFirstAck">0</div></td>
+  </tr>
+  <tr>
+    <td>Incident Resolution Time</td>
+    <td></td>
+    <td>0</td>
+  </tr>
+  <tr>
+    <td>First Time Resolution Rate</td>
+    <td></td>
+    <td>0</td>
+  </tr>
+  <tr>
+    <td>Resolution within SLA</td>
+    <td></td>
+    <td>0</td>
+  </tr>
+  <tr>
+    <td>Incident Resolution Effort</td>    
+    <td></td>
+    <td>0</td>
+  </tr>
+  </tbody>
+  </table>
+  </br>
+  </div>
+  
+
+</div>
+
+</body>
+</html>
+
+
+<script>
+function getKPIs()
+{
+
+
+  var apiKey = getParameterByName('api');
+  var ServiceID = getParameterByName('service');
+
+  if(document.getElementById("monthSelect").value == "This Month")
+  {
+    var date = new Date();
+    var firstDay = new Date(date.getFullYear(), date.getMonth()-1, 1);
+    var lastDay = new Date(date.getFullYear(), date.getMonth(), 0);
+  } else
+  {
+    var date = new Date();
+    var firstDay = new Date(date.getFullYear(), date.getMonth()-2, 1);
+    var lastDay = new Date(date.getFullYear(), date.getMonth()-1, 0);
+
+  }
+
+  var apiRequest = {
+    "filters": {
+        "created_at_start": "",
+        "created_at_end": "",
+        "urgency": "high",
+        "major": true,
+        "service_ids": [
+            ""
+        ],
+        "priority_names": [
+            "P1",
+            "P2"
+        ]
+    },
+    "limit": 1000,
+    "time_zone": "Etc/UTC"
+  }
+
+  apiRequest.filters.created_at_start = firstDay.toISOString();
+  apiRequest.filters.created_at_end = lastDay.toISOString();
+  apiRequest.filters.service_ids[0] = ServiceID;
+
+  console.log(apiRequest);
+
+  var pdURL = "https://api.pagerduty.com/analytics/raw/incidents";
+
+  var settings = {
+    "url": pdURL ,
+    "method": "POST",
+    "data": JSON.stringify(apiRequest),
+    "headers": {
+      "X-EARLY-ACCESS": "analytics-v2",
+      "Accept": "application/vnd.pagerduty+json;version=2",
+      "Content-Type": "application/json",
+      "Authorization": "Token token=" + apiKey
+    }
+  };
+
+  $.ajax(settings).done(function (response) {
+    console.log(response);
+
+    //Incident Count - Number of Returned Items
+    var s= document.getElementById('incidentCount');
+    s.innerHTML = response.data.length;
+
+
+
+    //Incident Count - Number of Returned Items
+    var i;
+    var totalSecondsToFirstAck = 0;
+    for (i = 0; i < response.data.length; i++) {
+      if(response.data[i].seconds_to_first_ack!=null)
+      {
+        console.log(response.data[i].seconds_to_first_ack + " " + totalSecondsToFirstAck);
+        totalSecondsToFirstAck += response.data[i].seconds_to_first_ack;
+        
+      }
+    }
+
+    var s= document.getElementById('avgSecondsToFirstAck');
+    s.innerHTML = (totalSecondsToFirstAck / response.data.length).toFixed(0).toString() + " (Total:" + totalSecondsToFirstAck.toString() + ")";
+
+
+    //Repeated Incidents
+    var i,j;
+    var output;
+
+    var repeatIncArray = [];
+    response.data.forEach(function(value){
+      if (repeatIncArray.indexOf(value.description)==-1) repeatIncArray.push(value.description);
+    });
+
+    console.log(repeatIncArray);
+
+    var output = "";    
+    for (i = 0; i < repeatIncArray.length; i++) {
+      var incCount = 0;
+      var incDescription = repeatIncArray[i];
+
+      console.log(i + "=" + incDescription);
+
+      for (j = 0; j < response.data.length; j++) 
+        {
+          if(response.data[j].description == incDescription)
+          {
+            incCount += 1;
+          }
+        }
+      if(incCount!=1)
+      {
+        output = output + incDescription + " (" + incCount + ")</br>";
+      }
+    }
+
+    var s= document.getElementById('repeatIncidents');
+    s.innerHTML = output;
+
+
+
+
+
+
+  
+  });
+
+}
+
+  //################################################################################
+  //Grab the Params from the URL in this case the Service Key
+  function getParameterByName(name, url) {
+    if (!url) url = window.location.href;
+    name = name.replace(/[\[\]]/g, "\\$&");
+    var regex = new RegExp("[?&]" + name + "(=([^&#]*)|&|#|$)"),
+        results = regex.exec(url);
+    if (!results) return null;
+    if (!results[2]) return '';
+    return decodeURIComponent(results[2].replace(/\+/g, " "));
+  }
+  //################################################################################
+
+
+
+</script>

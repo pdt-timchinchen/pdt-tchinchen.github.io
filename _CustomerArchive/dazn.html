@@ -5,11 +5,11 @@
 <head>
   <meta charset="UTF-8" http-equiv="Cache-control" content="NO-CACHE">
 
-  <title>Checkout</title>
+  <title>Event Stream</title>
 
   <link rel='shortcut icon' type='image/x-icon' href='favicon.ico' />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/5.0.0/normalize.min.css">
-    <link rel="stylesheet" href="css/style-saga.css">
+    <link rel="stylesheet" href="css/style-velocix.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
   
 
@@ -47,13 +47,14 @@
 <body>
   <br/>
 
-  <img  height="75" width="245" src="images/cflogo.png">
+  <img  height="50" width="50" src="data:image/png;base64,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">
 
   <div id="PDContent">
-    <img vspace="25" height="19" width="85" src="images/PagerDuty-BlackRGB-1x.png"/>
+    <img vspace="25" height="35" width="150" src="images/PagerDuty-BlackRGB-1x.png"/>
   </div>
 
   
+  <h1>Select Live Events to Stream</h1>
 
 <br/>
 Name &amp; email: <input type="text" name="customerName" id="customer-name" value="Enter your name here..." onfocus="if(this.value=='Enter your name here...') this.value='';"><br>
@@ -75,35 +76,13 @@ Name &amp; email: <input type="text" name="customerName" id="customer-name" valu
   <div class="product">
     <div class="product-image">
       <!-- <img src="https://www.att.com/catalog/en/skus/images/apple-iphone%20x-space%20gray-450x350.png"> -->
-      <img src="https://andertons-productimages.imgix.net/257445-1514998065624.png?w=1700&h=1700&fit=fill&bg=FFFFFF&auto=format&ixlib=imgixjs-3.3.2">
+      <img src="https://s3-eu-west-1.amazonaws.com/dazn-marketing/app/uploads/2020/08/17124336/whtye-povetkin-ftr_a8l402fks0w41amvw394f0ytb-580x380.jpeg">
     </div>
     <div class="product-details">
-      <div class="product-title">Ibanez AZ242BC-DET Premium in Deep Espresso Burst</div>
-      <p class="product-description">This classy addition to Ibanez's 2018 range combines versatile specs, lush playability and understated aesthetics. This is the epitome of a workhorse instrument! If you're after Ibanez's formidable performance, but with distinctly classy, nostalgic flavours, the AZ series might just be for you.
-        With features like the comfortable oval-C neck profile, lightweight Basswood body, smooth mid-output Seymour Duncan pickups and cutting-edge Gotoh hardware.
-        </p>
+      <div class="product-title">Whyte Vs. Povetkin, Taylor Vs. Persoon II</div>
+      <p class="product-description">To Stream Live On Dazn In All Nine Markets, Live From Matchroom Fight Camp On Saturday, August 22 At 2 P.m. Et New York</p>
     </div>
-    <div class="product-price">800.00</div>
-    <div class="product-quantity">
-      <input type="number" value="2" min="1">
-    </div>
-    <div class="product-removal">
-      <button class="remove-product">
-        Remove
-      </button>
-    </div>
-    <div class="product-line-price">1600.00</div>
-  </div>
-
-  <div class="product">
-    <div class="product-image">
-      <img src="https://encrypted-tbn2.gstatic.com/shopping?q=tbn:ANd9GcSK1jWX6QEasX2gbpKvTbxwKIgLaothcpGzFXK9JVMCIHyzH9iBMW1oExr9SQQU8Cf98S6Pu6g59A&usqp=CAc">
-    </div>
-    <div class="product-details">
-      <div class="product-title">Boss Katana MkII</div>
-      <p class="product-description">The Boss Katana 50 MkII is a medium-sized combo amp packed full of modern features, with a lightweight and compact enclosure that's easy to transport to venues. Fitted with a custom 12" speaker that can push plenty of air in a live scenario, the Katana 50 MkII also serves as a fantastic practice amp for the home.</p>
-    </div>
-    <div class="product-price">129.00</div>
+    <div class="product-price">8.99</div>
     <div class="product-quantity">
       <input type="number" value="1" min="1">
     </div>
@@ -112,29 +91,50 @@ Name &amp; email: <input type="text" name="customerName" id="customer-name" valu
         Remove
       </button>
     </div>
-    <div class="product-line-price">129.00</div>
+    <div class="product-line-price">8.99</div>
+  </div>
+
+  <div class="product">
+    <div class="product-image">
+      <img src="https://selbyvskambosos.live/wp-content/uploads/2020/05/Lee-Selby-vs-George-Kambosos-Jr-1024x606.png">
+    </div>
+    <div class="product-details">
+      <div class="product-title">Lee Selby vs. George Kambosos Jr.</div>
+      <p class="product-description">	Saturday, Oct. 3	Cardiff, Wales (DAZN)
+        </p>
+    </div>
+    <div class="product-price">8.99</div>
+    <div class="product-quantity">
+      <input type="number" value="1" min="1">
+    </div>
+    <div class="product-removal">
+      <button class="remove-product">
+        Remove
+      </button>
+    </div>
+    <div class="product-line-price">8.99</div>
   </div>
 
   <div class="totals">
     <div class="totals-item">
       <label>Subtotal</label>
-      <div class="totals-value" id="cart-subtotal">1729.00</div>
+      <div class="totals-value" id="cart-subtotal">17.98</div>
     </div>
     <div class="totals-item">
       <label>VAT (5%)</label>
-      <div class="totals-value" id="cart-tax">86.45</div>
+      <div class="totals-value" id="cart-tax">0.90</div>
     </div>
     <div class="totals-item">
-      <label>Shipping</label>
+      <label>Subscription</label>
       <div class="totals-value" id="cart-shipping">5.00</div>
     </div>
     <div class="totals-item totals-item-total">
       <label>Grand Total</label>
-      <div class="totals-value" id="cart-total">1820.45</div>
+      <div class="totals-value" id="cart-total">23.88</div>
     </div>
   </div>
       
-      <button id="checkoutButton" class="checkout" onclick="completeCheckout()">Checkout</button>
+      <button id="checkoutButton" class="checkout" onclick="completeCheckout()">Stream</button>
   </div>
 
 
@@ -143,7 +143,7 @@ Name &amp; email: <input type="text" name="customerName" id="customer-name" valu
 </div>
 
 <div id="checkoutError">
-  <b>Error in Checkout - Unable to complete your order</b> 
+  <b>Error in Stream - Unable to complete your order</b> 
   <br/>"Connection to data source updateOrderDB can not be established! 
   <br/>Reason: Invalid operation. The connection is closed. - complete stack
   <br/>at System.Data.SqlClient.SqlConnection.GetOpenConnection()
@@ -189,7 +189,7 @@ Name &amp; email: <input type="text" name="customerName" id="customer-name" valu
     var y = document.getElementById("PDinfo");
     y.style.display = "none";
 
-    document.getElementById("checkoutButton").innerHTML = "Checkout";
+    document.getElementById("checkoutButton").innerHTML = "Stream";
 
   }
   //################################################################################
@@ -280,15 +280,15 @@ Name &amp; email: <input type="text" name="customerName" id="customer-name" valu
     ' } ' +
     ' ], ' +
   ' "details": { ' +
-    ' "body": "[Critical] Increased response time detected on the Checkout page affecting ' + customerName + ', High Error rates <br/> Object Reference Not Set and ADO.NET Connection pool exceeded errors detected" , ' +   
+    ' "body": "[Critical] Increased response time detected on the Select Event page affecting ' + customerName + ', High Error rates <br/> Object Reference Not Set and ADO.NET Connection pool exceeded errors detected" , ' +   
     ' "Order Value": ' + orderValue + ', ' +
     ' "priority": "High", ' +
-    ' "title": "[Critical] Increased response time detected on the Checkout page, High Error rates  affecting ' + customerName + '", ' +
+    ' "title": "[Critical] Increased response time detected on the Select Event page, High Error rates  affecting ' + customerName + '", ' +
     ' "event_id": "8125363154448140714", ' +
     ' "tags": "aws-prod, base, env:prod, host:farnsworth, monitor, pd_az:us-west-2c, production, xdb, xtradb", ' +
     ' "Customer": "'+ customerName + '" ' +
     ' }, ' +
-  ' "description": "[Critical] Increased response time detected on the Checkout page, High Error rates" ' +
+  ' "description": "[Critical] Increased response time detected on the Select Event page, High Error rates" ' +
   '}' 
 
   console.log(eventObject)
@@ -368,8 +368,7 @@ Name &amp; email: <input type="text" name="customerName" id="customer-name" valu
     setTimeout(sendAWSCW, 10000);
     setTimeout(relatedService1, 10000);
     setTimeout(relatedService2, 10000);
-    setTimeout(sendTicket, 10000);
-    setTimeout(sendChange, 10000);
+
   }
 
 
@@ -394,7 +393,7 @@ Name &amp; email: <input type="text" name="customerName" id="customer-name" valu
     '     "severity": "warning",   ' +
     '     "location" : "prod",   ' +
     '     "component": "Sumologic",   ' +
-    '     "group": "Datadog,Production,eCommerce,Checkout-Tier",   ' +
+    '     "group": "Datadog,Production,eCommerce,Stream-Tier",   ' +
     '     "class": "DataDog" },   ' +
     '   	"routing_key": "' + serviceKey + '",   ' +
     '   	"dedup_key": "DataDog",   ' +
@@ -606,9 +605,9 @@ Name &amp; email: <input type="text" name="customerName" id="customer-name" valu
 //################################################################################
   function sendTweets()
   {
-    sendTweet("@sbarrett - #DutyCalls Wheres my phone ");
-    sendTweet("@howard - This #DutyCalls, great idea poor execution!");
-    sendTweet("@Jenn - Come on #DutyCalls team - deliver these phones!");
+    sendTweet("@sbarrett - #DAZN trying to watch! ");
+    sendTweet("@howard - This #DAZN, Waiting for the match to start");
+    sendTweet("@Jenn - Well done #DAZN team - We're good to go!");
   }
 //################################################################################
 
@@ -668,18 +667,18 @@ function sendSUMO()
 
     var eventObject = ' { ' +
     '   "payload": {     ' +
-    '     "summary": "Sumologic - Increase 500 error rates",   ' +
-    '     "source": "Sumologic",   ' +
+    '     "summary": "Dataminer Alert - Increase 500 error rates",   ' +
+    '     "source": "Dataminer",   ' +
     '     "severity": "warning",   ' +
     '     "location" : "prod",   ' +
-    '     "component": "Sumologic",   ' +
-    '     "group": "Sumologic,Production,eCommerce,Checkout-Tier",   ' +
-    '     "class": "Sumologic" },   ' +
+    '     "component": "Dataminer",   ' +
+    '     "group": "Dataminer,Production,eCommerce,Checkout-Tier",   ' +
+    '     "class": "Dataminer" },   ' +
     '   	"routing_key": "' + serviceKey + '",   ' +
     '   	"dedup_key": "Sumologic",   ' +
     '    	"event_action": "trigger",   ' +
     '   	"client": "View in Sumologic",   ' +
-    '   	"client_url": "www.Sumologic.com",   ' +
+    '   	"client_url": "www.Dataminer.com",   ' +
     '   	"images": [   ' +
     '   	    {   ' +
     '   	      "src": "https://chart.googleapis.com/chart?chs=600x400&chd=t:6,2,9,5,2,5,7,4,8,2,1&cht=lc&chds=a&chxt=y&chm=D,0033FF,0,0,5,1",   ' +
@@ -718,7 +717,7 @@ function sendDataDog()
 
     var eventObject = ' { ' +
     '   "payload": {     ' +
-    '     "summary": "DataDog - Long history length in xdb (possible stuck transaction)",   ' +
+    '     "summary": "Solarwinds - Long history length in xdb (possible stuck transaction)",   ' +
     '     "source": "DataDog",   ' +
     '     "severity": "warning",   ' +
     '     "location" : "prod",   ' +
@@ -985,58 +984,6 @@ function sendAWSCW()
 
 
 //################################################################################
-function sendTicket()
-  {
-
-    console.log('Send Custoemr Helpdesk');
-
-    
-    //Grab the Service key of use Tim's default one!
-    var serviceKey = getParameterByName('service_key');
-    if (!serviceKey) serviceKey = "0be6f31ca091417f90824770e340e3ae";
-
-    var eventObject = ' { ' +
-    '   "payload": {     ' +
-    '     "summary": "Zendesk: Customer - Steve Barrett - Cannot complete Purchse of this awesome item",   ' +
-    '     "source": "Zendesk",   ' +
-    '     "severity": "warning",   ' +
-    '     "location" : "prod",   ' +
-    '     "component": "Zendesk",   ' +
-    '     "group": "Zendesk,Production,eCommerce,Checkout-Tier",   ' +
-    '     "class": "Zendesk" },   ' +
-    '   	"routing_key": "' + serviceKey + '",   ' +
-    '   	"dedup_key": "Prometheusdedupkey",   ' +
-    '    	"event_action": "trigger",   ' +
-    '   	"client": "View in Zendesk",   ' +
-    '   	"client_url": "www.Zendesk.com",   ' +
-    '   	"images": [   ' +
-    '   	    {   ' +
-    '   	      "src": "https://logz.io/wp-content/uploads/2017/03/memory-graph.png",   ' +
-    '   	      "href": "https://logz.io/wp-content/uploads/2017/03/memory-graph.png",   ' +
-    '   	      "alt": "This is a sample link"  ' +
-    '   	  }  ' +
-    '   	]  ' +
-    '   }'
-
-
-    console.log(eventObject);
-
-    $.ajax({
-      method: "POST",
-      url: "https://events.pagerduty.com/v2/enqueue",
-      data: eventObject
-    })
-      .done(function( msg ) {
-        //alert( "Data Saved: " + msg );
-    });
-
-    return;
-  }
-//################################################################################
-
-
-
-//################################################################################
 function sendLowRevenueWarning()
   {
 
@@ -1049,7 +996,7 @@ function sendLowRevenueWarning()
 
     var eventObject = ' { ' +
     '   "payload": {     ' +
-    '     "summary": "Low Revenue detected compared to normal",   ' +
+    '     "summary": "Conviva - Low streams detected compared to normal",   ' +
     '     "source": "Prometheus",   ' +
     '     "severity": "warning",   ' +
     '     "location" : "prod",   ' +
@@ -1085,62 +1032,6 @@ function sendLowRevenueWarning()
     return;
   }
 //################################################################################
-
-//################################################################################
-function sendChange()
-  {
-
-    console.log('Send Change Event');
-
-    
-    //Grab the Service key of use Tim's default one!
-    var serviceKey = getParameterByName('service_key');
-    if (!serviceKey) serviceKey = "c339228de0bd49d1b3f8c2231812efc7";
-
-    var MS_PER_MINUTE = 60000;
-    var releaseTime = new Date(Date.now() - 5 * MS_PER_MINUTE);
-
-    var eventObject = ' { ' +
-    '   "routing_key": "c339228de0bd49d1b3f8c2231812efc7", ' +
-    '   "payload": { ' +
-      '     "summary": "Update to eCommerce Front End - New SQL Update for stock update in Checkout", ' +
-      '        "timestamp": "' + releaseTime.toISOString() + '", ' +
-      '   "source": "prod-buildkite-defaultagent-i-0b148d1040d565540", ' +
-      '   "custom_details": { ' +
-        '     "build_state": "passed", ' +
-        '     "build_number": "220", ' +
-        '     "run_time": "1236s", ' +
-        '     "agent_id": "6b4300e4-3b2a-4515-b1a5-c8ec4325a5a8", ' +
-        '     "build_id": "1cf9efe1-a627-493c-b6f2-f4aa66987602"' +
-        '   } ' +
-      '   }, ' +
-      '   "links": [ ' +
-      '   { ' +
-        '   "href": "https://github.com/pagerduty/global-search-production/builds/220", ' +
-        '   "text": "View in Github" ' +
-        '   }  ' +
-        '   ] ' +
-    '   }'
-
-
-    console.log(eventObject);
-
-    $.ajax({
-      method: "POST",
-      url: "https://events.pagerduty.com/v2/change/enqueue",
-      data: eventObject
-    })
-      .done(function( msg ) {
-        //alert( "Data Saved: " + msg );
-    });
-
-    return;
-  }
-//################################################################################
-
-
-
-
 
 
 </script>

@@ -1,11 +1,20 @@
 
+<!-- SO YOU KEEP IT ALL UP TO DATE 
+As of 
+
+#######  9th November 2020  #######  
+
+This is the working version.
+
+-->
+
 <!DOCTYPE html>
 <html lang="en" >
 
 <head>
   <meta charset="UTF-8" http-equiv="Cache-control" content="NO-CACHE">
 
-  <title>Checkout</title>
+  <title>Securitas Quote</title>
 
   <link rel='shortcut icon' type='image/x-icon' href='favicon.ico' />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/5.0.0/normalize.min.css">
@@ -47,13 +56,14 @@
 <body>
   <br/>
 
-  <img  height="75" width="245" src="images/cflogo.png">
+  <img  height="90" width="140" src="data:image/png;base64,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">
 
   <div id="PDContent">
-    <img vspace="25" height="19" width="85" src="images/PagerDuty-BlackRGB-1x.png"/>
+    <img vspace="25" height="25" width="108" src="images/PagerDuty-BlackRGB-1x.png"/>
   </div>
 
   
+  <h1>Securitas Quote</h1>
 
 <br/>
 Name &amp; email: <input type="text" name="customerName" id="customer-name" value="Enter your name here..." onfocus="if(this.value=='Enter your name here...') this.value='';"><br>
@@ -74,14 +84,14 @@ Name &amp; email: <input type="text" name="customerName" id="customer-name" valu
 
   <div class="product">
     <div class="product-image">
-      <!-- <img src="https://www.att.com/catalog/en/skus/images/apple-iphone%20x-space%20gray-450x350.png"> -->
-      <img src="https://andertons-productimages.imgix.net/257445-1514998065624.png?w=1700&h=1700&fit=fill&bg=FFFFFF&auto=format&ixlib=imgixjs-3.3.2">
+      <img src="https://www.verisure.co.uk/sites/securitas-uk/files/styles/tres_columnas/public/colum1_0_0.jpg?itok=JWvP-hQr">
     </div>
     <div class="product-details">
-      <div class="product-title">Ibanez AZ242BC-DET Premium in Deep Espresso Burst</div>
-      <p class="product-description">This classy addition to Ibanez's 2018 range combines versatile specs, lush playability and understated aesthetics. This is the epitome of a workhorse instrument! If you're after Ibanez's formidable performance, but with distinctly classy, nostalgic flavours, the AZ series might just be for you.
-        With features like the comfortable oval-C neck profile, lightweight Basswood body, smooth mid-output Seymour Duncan pickups and cutting-edge Gotoh hardware.
-        </p>
+      <div class="product-title">An alarm for the whole family
+      </div>
+      <p class="product-description"> 
+        The Verisure home alarm includes an access-control system that is very useful for families. Any family members, from children to seniors, can activate or deactivate the alarm system easily from the home’s entrance. In addition, the entry and exit times of all family members or employees (for a business) are recorded through the smart keys, which are assigned to each user.
+      </p>
     </div>
     <div class="product-price">800.00</div>
     <div class="product-quantity">
@@ -97,11 +107,11 @@ Name &amp; email: <input type="text" name="customerName" id="customer-name" valu
 
   <div class="product">
     <div class="product-image">
-      <img src="https://encrypted-tbn2.gstatic.com/shopping?q=tbn:ANd9GcSK1jWX6QEasX2gbpKvTbxwKIgLaothcpGzFXK9JVMCIHyzH9iBMW1oExr9SQQU8Cf98S6Pu6g59A&usqp=CAc">
+      <img src="https://www.verisure.co.uk/sites/securitas-uk/files/styles/tres_columnas/public/cxolum2_0.jpg?itok=84LtSXg-">
     </div>
     <div class="product-details">
-      <div class="product-title">Boss Katana MkII</div>
-      <p class="product-description">The Boss Katana 50 MkII is a medium-sized combo amp packed full of modern features, with a lightweight and compact enclosure that's easy to transport to venues. Fitted with a custom 12" speaker that can push plenty of air in a live scenario, the Katana 50 MkII also serves as a fantastic practice amp for the home.</p>
+      <div class="product-title">Protection Against Fire </div>
+      <p class="product-description">Verisure and its home alarm not only protect you against burglary and any other unauthorised entry, but also offer an advanced smoke-detection system. Our sensors communicate with each other and with you, thanks to their digital voice and message-sending module, to inform you, wherever you may be, that a fire has started in your home or business.</p>
     </div>
     <div class="product-price">129.00</div>
     <div class="product-quantity">
@@ -134,7 +144,7 @@ Name &amp; email: <input type="text" name="customerName" id="customer-name" valu
     </div>
   </div>
       
-      <button id="checkoutButton" class="checkout" onclick="completeCheckout()">Checkout</button>
+      <button id="checkoutButton" class="checkout" onclick="completeCheckout()">Ask for a Quote</button>
   </div>
 
 
@@ -143,7 +153,7 @@ Name &amp; email: <input type="text" name="customerName" id="customer-name" valu
 </div>
 
 <div id="checkoutError">
-  <b>Error in Checkout - Unable to complete your order</b> 
+  <b>Error in Quote - Unable to complete your order</b> 
   <br/>"Connection to data source updateOrderDB can not be established! 
   <br/>Reason: Invalid operation. The connection is closed. - complete stack
   <br/>at System.Data.SqlClient.SqlConnection.GetOpenConnection()
@@ -189,7 +199,7 @@ Name &amp; email: <input type="text" name="customerName" id="customer-name" valu
     var y = document.getElementById("PDinfo");
     y.style.display = "none";
 
-    document.getElementById("checkoutButton").innerHTML = "Checkout";
+    document.getElementById("checkoutButton").innerHTML = "Ask for a Quote";
 
   }
   //################################################################################
@@ -280,15 +290,15 @@ Name &amp; email: <input type="text" name="customerName" id="customer-name" valu
     ' } ' +
     ' ], ' +
   ' "details": { ' +
-    ' "body": "[Critical] Increased response time detected on the Checkout page affecting ' + customerName + ', High Error rates <br/> Object Reference Not Set and ADO.NET Connection pool exceeded errors detected" , ' +   
+    ' "body": "[Critical] Increased response time detected on the Quote page affecting ' + customerName + ', High Error rates <br/> Object Reference Not Set and ADO.NET Connection pool exceeded errors detected" , ' +   
     ' "Order Value": ' + orderValue + ', ' +
     ' "priority": "High", ' +
-    ' "title": "[Critical] Increased response time detected on the Checkout page, High Error rates  affecting ' + customerName + '", ' +
+    ' "title": "[Critical] Increased response time detected on the Quote page, High Error rates  affecting ' + customerName + '", ' +
     ' "event_id": "8125363154448140714", ' +
     ' "tags": "aws-prod, base, env:prod, host:farnsworth, monitor, pd_az:us-west-2c, production, xdb, xtradb", ' +
     ' "Customer": "'+ customerName + '" ' +
     ' }, ' +
-  ' "description": "[Critical] Increased response time detected on the Checkout page, High Error rates" ' +
+  ' "description": "[Critical] Increased response time detected on the Quote page, High Error rates" ' +
   '}' 
 
   console.log(eventObject)
@@ -370,6 +380,9 @@ Name &amp; email: <input type="text" name="customerName" id="customer-name" valu
     setTimeout(relatedService2, 10000);
     setTimeout(sendTicket, 10000);
     setTimeout(sendChange, 10000);
+
+
+
   }
 
 
@@ -394,7 +407,7 @@ Name &amp; email: <input type="text" name="customerName" id="customer-name" valu
     '     "severity": "warning",   ' +
     '     "location" : "prod",   ' +
     '     "component": "Sumologic",   ' +
-    '     "group": "Datadog,Production,eCommerce,Checkout-Tier",   ' +
+    '     "group": "Datadog,Production,eCommerce,Quote-Tier",   ' +
     '     "class": "DataDog" },   ' +
     '   	"routing_key": "' + serviceKey + '",   ' +
     '   	"dedup_key": "DataDog",   ' +
@@ -449,7 +462,7 @@ Name &amp; email: <input type="text" name="customerName" id="customer-name" valu
     '     "severity": "warning",   ' +
     '     "location" : "prod",   ' +
     '     "component": "SQLMonitor",   ' +
-    '     "group": "SQLMonitor,Production,eCommerce,Checkout-Tier",   ' +
+    '     "group": "SQLMonitor,Production,eCommerce,Quote-Tier",   ' +
     '     "class": "SQLMonitor" },   ' +
     '   	"routing_key": "' + serviceKey + '",   ' +
     '   	"dedup_key": "SQLMonitor",   ' +
@@ -673,7 +686,7 @@ function sendSUMO()
     '     "severity": "warning",   ' +
     '     "location" : "prod",   ' +
     '     "component": "Sumologic",   ' +
-    '     "group": "Sumologic,Production,eCommerce,Checkout-Tier",   ' +
+    '     "group": "Sumologic,Production,eCommerce,Quote-Tier",   ' +
     '     "class": "Sumologic" },   ' +
     '   	"routing_key": "' + serviceKey + '",   ' +
     '   	"dedup_key": "Sumologic",   ' +
@@ -781,7 +794,7 @@ function sendSignalFX()
     '     "severity": "warning",   ' +
     '     "location" : "prod",   ' +
     '     "component": "SignalFX",   ' +
-    '     "group": "SignalFX,Production,eCommerce,Checkout-Tier",   ' +
+    '     "group": "SignalFX,Production,eCommerce,Quote-Tier",   ' +
     '     "class": "SignalFX" },   ' +
     '   	"routing_key": "' + serviceKey + '",   ' +
     '   	"dedup_key": "SignalFXdedupkey",   ' +
@@ -826,12 +839,12 @@ function sendAppD()
 
     var eventObject = ' { ' +
     '   "payload": {     ' +
-    '     "summary": "AppDynamics - Increased Business Transaction Response time compared to baseline - BTs > Checkout, Order Confirmed",   ' +
+    '     "summary": "AppDynamics - Increased Business Transaction Response time compared to baseline - BTs > Quote, Order Confirmed",   ' +
     '     "source": "AppDynamics",   ' +
     '     "severity": "warning",   ' +
     '     "location" : "prod",   ' +
     '     "component": "AppDynamics",   ' +
-    '     "group": "AppDynamics,Production,eCommerce,Checkout-Tier",   ' +
+    '     "group": "AppDynamics,Production,eCommerce,Quote-Tier",   ' +
     '     "class": "AppDynamics" },   ' +
     '   	"routing_key": "' + serviceKey + '",   ' +
     '   	"dedup_key": "AppDynamicsdedupkey",   ' +
@@ -934,8 +947,10 @@ function sendAWSCW()
 //################################################################################
 
 
+
+
 //################################################################################
- function sendZabbix()
+function sendZabbix()
   {
     console.log('Send to Zabbix');
 
@@ -951,7 +966,7 @@ function sendAWSCW()
     '     "severity": "warning",   ' +
     '     "location" : "prod",   ' +
     '     "component": "Zabbix",   ' +
-    '     "group": "Zabbix,Production,eCommerce,Checkout-Tier",   ' +
+    '     "group": "Zabbix,Production,eCommerce,Quote-Tier",   ' +
     '     "class": "Zabbix" },   ' +
     '   	"routing_key": "' + serviceKey + '",   ' +
     '   	"dedup_key": "Zabbixdedupkey",   ' +
@@ -1002,7 +1017,7 @@ function sendTicket()
     '     "severity": "warning",   ' +
     '     "location" : "prod",   ' +
     '     "component": "Zendesk",   ' +
-    '     "group": "Zendesk,Production,eCommerce,Checkout-Tier",   ' +
+    '     "group": "Zendesk,Production,eCommerce,Quote-Tier",   ' +
     '     "class": "Zendesk" },   ' +
     '   	"routing_key": "' + serviceKey + '",   ' +
     '   	"dedup_key": "Prometheusdedupkey",   ' +
@@ -1036,6 +1051,58 @@ function sendTicket()
 
 
 
+
+
+//################################################################################
+ function sendZabbix()
+  {
+    console.log('Send to Zabbix');
+
+    
+    //Grab the Service key of use Tim's default one!
+    var serviceKey = getParameterByName('service_key');
+    if (!serviceKey) serviceKey = "a36720292f404b75a1e0916687454497";
+
+    var eventObject = ' { ' +
+    '   "payload": {     ' +
+    '     "summary": "java.lang.OutOfMemoryError: Java heap space",   ' +
+    '     "source": "Zabbix",   ' +
+    '     "severity": "warning",   ' +
+    '     "location" : "prod",   ' +
+    '     "component": "Zabbix",   ' +
+    '     "group": "Zabbix,Production,eCommerce,Quote-Tier",   ' +
+    '     "class": "Zabbix" },   ' +
+    '   	"routing_key": "' + serviceKey + '",   ' +
+    '   	"dedup_key": "Zabbixdedupkey",   ' +
+    '    	"event_action": "trigger",   ' +
+    '   	"client": "View in Zabbix",   ' +
+    '   	"client_url": "www.zabbix.com",   ' +
+    '   	"images": [   ' +
+    '   	    {   ' +
+    '   	      "src": "https://chart.googleapis.com/chart?chs=600x400&chd=t:6,2,9,5,2,5,7,4,8,2,1&cht=lc&chds=a&chxt=y&chm=D,0033FF,0,0,5,1",   ' +
+    '   	      "href": "https://acme.pagerduty.com",   ' +
+    '   	      "alt": "This is a sample link"  ' +
+    '   	  }  ' +
+    '   	]  ' +
+    '   }'
+
+
+    console.log(eventObject);
+
+    $.ajax({
+      method: "POST",
+      url: "https://events.pagerduty.com/v2/enqueue",
+      data: eventObject
+    })
+      .done(function( msg ) {
+        //alert( "Data Saved: " + msg );
+    });
+
+    return;
+  }
+//################################################################################
+
+
 //################################################################################
 function sendLowRevenueWarning()
   {
@@ -1054,7 +1121,7 @@ function sendLowRevenueWarning()
     '     "severity": "warning",   ' +
     '     "location" : "prod",   ' +
     '     "component": "Prometheus",   ' +
-    '     "group": "Prometheus,Production,eCommerce,Checkout-Tier",   ' +
+    '     "group": "Prometheus,Production,eCommerce,Quote-Tier",   ' +
     '     "class": "Prometheus" },   ' +
     '   	"routing_key": "' + serviceKey + '",   ' +
     '   	"dedup_key": "Prometheusdedupkey",   ' +
@@ -1086,6 +1153,61 @@ function sendLowRevenueWarning()
   }
 //################################################################################
 
+
+
+
+
+
+//################################################################################
+function sendZabbix()
+  {
+    console.log('Send to Zabbix');
+
+    
+    //Grab the Service key of use Tim's default one!
+    var serviceKey = getParameterByName('service_key');
+    if (!serviceKey) serviceKey = "a36720292f404b75a1e0916687454497";
+
+    var eventObject = ' { ' +
+    '   "payload": {     ' +
+    '     "summary": "java.lang.OutOfMemoryError: Java heap space",   ' +
+    '     "source": "Zabbix",   ' +
+    '     "severity": "warning",   ' +
+    '     "location" : "prod",   ' +
+    '     "component": "Zabbix",   ' +
+    '     "group": "Zabbix,Production,eCommerce,Quote-Tier",   ' +
+    '     "class": "Zabbix" },   ' +
+    '   	"routing_key": "' + serviceKey + '",   ' +
+    '   	"dedup_key": "Zabbixdedupkey",   ' +
+    '    	"event_action": "trigger",   ' +
+    '   	"client": "View in Zabbix",   ' +
+    '   	"client_url": "www.zabbix.com",   ' +
+    '   	"images": [   ' +
+    '   	    {   ' +
+    '   	      "src": "https://chart.googleapis.com/chart?chs=600x400&chd=t:6,2,9,5,2,5,7,4,8,2,1&cht=lc&chds=a&chxt=y&chm=D,0033FF,0,0,5,1",   ' +
+    '   	      "href": "https://acme.pagerduty.com",   ' +
+    '   	      "alt": "This is a sample link"  ' +
+    '   	  }  ' +
+    '   	]  ' +
+    '   }'
+
+
+    console.log(eventObject);
+
+    $.ajax({
+      method: "POST",
+      url: "https://events.pagerduty.com/v2/enqueue",
+      data: eventObject
+    })
+      .done(function( msg ) {
+        //alert( "Data Saved: " + msg );
+    });
+
+    return;
+  }
+//################################################################################
+
+
 //################################################################################
 function sendChange()
   {
@@ -1103,7 +1225,7 @@ function sendChange()
     var eventObject = ' { ' +
     '   "routing_key": "c339228de0bd49d1b3f8c2231812efc7", ' +
     '   "payload": { ' +
-      '     "summary": "Update to eCommerce Front End - New SQL Update for stock update in Checkout", ' +
+      '     "summary": "Update to eCommerce Front End - New SQL Update for stock update in Quote", ' +
       '        "timestamp": "' + releaseTime.toISOString() + '", ' +
       '   "source": "prod-buildkite-defaultagent-i-0b148d1040d565540", ' +
       '   "custom_details": { ' +
@@ -1137,7 +1259,6 @@ function sendChange()
     return;
   }
 //################################################################################
-
 
 
 

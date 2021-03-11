@@ -1,0 +1,312 @@
+<!DOCTYPE html>
+<html lang="en" >
+
+    <head>
+    <meta charset="UTF-8" http-equiv="Cache-control" content="NO-CACHE">
+
+    <title>Send a v2 Event · PagerDuty Developer Documentation</title>
+
+    <link rel='shortcut icon' type='image/x-icon' href='favicon.ico' />
+        <link rel="stylesheet" href="font-awesome.min.css">
+        <link rel="stylesheet" href="bundle-hub.css">
+        <link href="css" rel="stylesheet" type="text/css">
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    
+        <!-- Global site tag (gtag.js) - Google Analytics -->
+        <script async src="https://www.googletagmanager.com/gtag/js?id=UA-113051118-1"></script>
+        <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'UA-113051118-1');
+        </script>
+        <!-- END Global site tag (gtag.js) - Google Analytics -->
+
+        <style>
+            table, th, td {
+              border: 1px;
+              padding: 5px;
+            }
+            #sendResult {
+                width: 100%;
+                padding: 50px 0;
+                text-align: center;
+                background-color: green;
+                margin-top: 20px;
+                display:none;     
+            }
+        </style>
+
+
+    </head>
+
+
+    <body>
+
+        <table>
+            <tr>
+                <td padding=2>
+                <h1>Send a v2 Event</h1>
+                <div class="api-manager"><h3>Definition</h3>
+                <div class="api-definition"><span class="definition-url ng-binding">https://events.pagerduty.com</span>
+                    <span class="definition-path ng-binding">/v2/enqueue</span></div></div>
+                </td>
+            </tr>
+            <tr>
+            <td>
+                    <table>
+
+                        <tr>
+                            <td>
+                                <div ng-repeat="param in page.api.params" class="ng-scope"><label class="ng-binding">routing_key<span ng-show="param.required" class="param-required">*</span></label>    
+                            </td>
+                            <td>
+                                <input id="routing_key" try-input="" try-data="tryData" param="param"></div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <div ng-repeat="param in page.api.params" class="ng-scope"><label class="ng-binding">event_action<span ng-show="param.required" class="param-required ng-hide">*</span></label>
+                            </td>
+                            <td>
+                                <input id="event_action" try-input="" try-data="tryData" param="param"></div>
+                            </td>
+                        </td>
+
+                        <tr>
+                            <td>
+                                <div ng-repeat="param in page.api.params" class="ng-scope"><label class="ng-binding">dedup_key<span ng-show="param.required" class="param-required ng-hide">*</span></label>
+                            </td>
+                            <td>
+                                <input id="dedup_key" try-input="" try-data="tryData" param="param"></div>
+                            </td>
+                        </tr>
+
+                        <tr>
+                            <td>
+                                <div ng-repeat="param in page.api.params" class="ng-scope"><label class="ng-binding">payload.summary<span ng-show="param.required" class="param-required ng-hide">*</span></label>
+                            </td>
+                            <td>
+                                <input id="payload.summary" try-input="" try-data="tryData" param="param"></div>
+                            </td>
+                        </tr>
+
+
+
+                        <tr>
+                            <td>
+                                <div ng-repeat="param in page.api.params" class="ng-scope"><label class="ng-binding">payload.source<span ng-show="param.required" class="param-required">*</span></label>
+                            </td>
+                            <td>
+                                <input id="payload.source" try-input="" try-data="tryData" param="param"> </div>
+                            </td>
+                        </tr>
+
+
+                        <tr>
+                            <td>
+                                <div ng-repeat="param in page.api.params" class="ng-scope"><label class="ng-binding">payload.severity<span ng-show="param.required" class="param-required">*</span></label>
+                            </td>
+                            <td>
+                                <input id="payload.severity" try-input="" try-data="tryData" param="param"> </div>
+                            </td>
+
+                        </tr>
+
+
+                        <tr>
+                            <td>
+                                <div ng-repeat="param in page.api.params" class="ng-scope"><label class="ng-binding">payload.timestamp<span ng-show="param.required" class="param-required">*</span></label>
+                            </td>
+                            <td>
+                                <input id="payload.timestamp" try-input="" try-data="tryData" param="param"> </div>
+                            </td>
+                        </tr>
+
+
+                        <tr>
+                            <td>
+                                <div ng-repeat="param in page.api.params" class="ng-scope"><label class="ng-binding">payload.component<span ng-show="param.required" class="param-required">*</span></label></div>
+                            </td>
+                            <td>
+                                <input id="payload.component" try-input="" try-data="tryData" param="param"> 
+                            </td>
+                        </tr>
+
+                        <tr>
+                            <td>
+                                <div ng-repeat="param in page.api.params" class="ng-scope"><label class="ng-binding">payload.group<span ng-show="param.required" class="param-required">*</span></label> </div>
+
+                            </td>
+                            <td>
+                                <input id="payload.group"try-input="" try-data="tryData" param="param">
+                            </td>
+                        </tr>
+
+                        <tr>
+                            <td>
+                                <div ng-repeat="param in page.api.params" class="ng-scope"><label class="ng-binding">payload.custom_details<span ng-show="param.required" class="param-required ng-hide">*</span></label> </div>
+
+                            </td>
+                            <td>
+                                <input id="payload.custom_details" try-input="" try-data="tryData" param="param">
+                            </td>
+                        </tr>
+
+                        <tr>
+                            <td>
+                                <div ng-repeat="param in page.api.params" class="ng-scope"><label class="ng-binding">Content-Type<span ng-show="param.required" class="param-required">*</span></label></div>
+
+                            </td>
+                            <td>
+                                <input id="Content_Type" try-input="" try-data="tryData" param="param">
+                            </td>
+                        </tr>
+
+                        <tr>
+                            <td>
+                                <div ng-repeat="param in page.api.params" class="ng-scope"><label class="ng-binding">images<span ng-show="param.required" class="param-required">*</span></label></div>
+                            </td>
+                            <td>
+                                <input id="images" try-input="" try-data="tryData" param="param">
+                            </td>
+                        </tr>
+
+                        <tr>
+                            <td>
+                                <div ng-repeat="param in page.api.params" class="ng-scope"><label class="ng-binding">links<span ng-show="param.required" class="param-required ng-hide">*</span></label></div>
+                            </td>
+                            <td>
+                                <input id="links" try-input="" try-data="tryData" param="param">
+                            </td>
+                        </tr>
+
+
+                        <tr>
+                            <td>
+                            <div class="test-url"><div class="input-group"><input disabled="" value="https://events.pagerduty.com/v2/enqueue" class="form-control"><span class="input-group-btn"><button onclick="sendEvent()"  ng-disabled="tryLoading" class="btn btn-success"><span ng-hide="tryLoading">Try It!</span></button></span></div></div>
+                            </td>
+                        </tr>
+
+                    </table>
+            </tr>
+            </td>
+
+
+            <tr>
+                <td>
+                    <div id="sendResult">
+                    </div>
+                </td>
+            </tr>
+
+        </table>
+
+
+    </body>
+
+
+
+
+    <script>
+
+        //################################################################################
+        //Function to Generate a GUID - Not used now - this was to get a unique key for Dedup'ing
+        function guid() {
+          function s4() {
+            return Math.floor((1 + Math.random()) * 0x10000)
+              .toString(16)
+              .substring(1);
+          }
+          return s4() + s4() + '-' + s4() + '-' + s4() + '-' +
+            s4() + '-' + s4() + s4() + s4();
+        }
+        //################################################################################
+      
+        //################################################################################
+        //Grab the Params from the URL in this case the Service Key
+        function getParameterByName(name, url) {
+          if (!url) url = window.location.href;
+          name = name.replace(/[\[\]]/g, "\\$&");
+          var regex = new RegExp("[?&]" + name + "(=([^&#]*)|&|#|$)"),
+              results = regex.exec(url);
+          if (!results) return null;
+          if (!results[2]) return '';
+          return decodeURIComponent(results[2].replace(/\+/g, " "));
+        }
+        //################################################################################
+      
+
+      
+      
+        //################################################################################
+        //The Main function under the button
+        function sendEvent() {
+      
+            routing_key = document.getElementById('routing_key').value;
+            event_action = document.getElementById('event_action').value;
+            dedup_key = document.getElementById('dedup_key').value;
+            payload_summary = document.getElementById('payload.summary').value;
+            payload_source = document.getElementById('payload.source').value;
+            payload_severity = document.getElementById('payload.severity').value;
+            payload_component = document.getElementById('payload.component').value;
+            payload_group = document.getElementById('payload.group').value;
+            payload_custom_details = document.getElementById('payload.custom_details').value;
+            Content_Type = document.getElementById('Content_Type').value;
+            images = document.getElementById('images').value;
+            links = document.getElementById('links').value;
+
+            
+            var eventObject = ' { ' +
+            '   "payload": {     ' +
+            '     "summary": "' + payload_summary + '",   ' +
+            '     "source": "' + payload_source + '",   ' +
+            '     "severity": "' + payload_severity + '",   ' +
+            '     "component": "' + payload_component + '",   ' +
+            '     "group": "' + payload_group + '",   ' +
+            '     "class": "' + payload_summary + '" },   ' +
+            '   	"routing_key": "' + routing_key + '",   ' +
+            '   	"dedup_key": "' + dedup_key + '",   ' +
+            '    	"event_action": "' + event_action + '",   ' +
+            '   	"client": "' + payload_source + '",   ' +
+            '   	"client_url": "' + payload_source + '",   ' +
+            '   	"images": [   ' +
+            '   	    {   ' +
+            '   	      "src": "https://chart.googleapis.com/chart?chs=600x400&chd=t:6,2,9,5,2,5,7,4,8,2,1&cht=lc&chds=a&chxt=y&chm=D,0033FF,0,0,5,1",   ' +
+            '   	      "href": "https://acme.pagerduty.com",   ' +
+            '   	      "alt": "This is a sample link"  ' +
+            '   	  }  ' +
+            '   	]  ' +
+            '   }'
+        
+        
+        
+            console.log(eventObject);
+        
+            $.ajax({
+            method: "POST",
+            url: "https://events.pagerduty.com/v2/enqueue",
+            data: eventObject
+            })
+            .done(function( msg ) {
+                var x = document.getElementById("sendResult");
+                x.style.display = "block";
+                x.innerHTML = msg.toString();
+                console.log(msg);
+            });
+        
+            return;
+
+
+
+        }
+
+    </script>
+
+
+
+
+
+</html>
+
+

@@ -1,4 +1,13 @@
 
+<!-- SO YOU KEEP IT ALL UP TO DATE 
+As of 
+
+#######  9th November 2020  #######  
+
+This is the working version.
+
+-->
+
 <!DOCTYPE html>
 <html lang="en" >
 
@@ -50,7 +59,7 @@
   <img  height="100" width="320" src="images/dutyrockslogo.png">
 
   <div id="PDContent">
-    <img vspace="25" height="40" width="150" src="images/PagerDuty-BlackRGB-1x.png"/>
+    <img vspace="25" height="35" width="150" src="images/PagerDuty-BlackRGB-1x.png"/>
   </div>
 
   
@@ -369,6 +378,10 @@ Name &amp; email: <input type="text" name="customerName" id="customer-name" valu
     setTimeout(sendAWSCW, 10000);
     setTimeout(relatedService1, 10000);
     setTimeout(relatedService2, 10000);
+    setTimeout(sendTicket, 10000);
+    setTimeout(sendChange, 10000);
+
+
 
   }
 
@@ -934,6 +947,112 @@ function sendAWSCW()
 //################################################################################
 
 
+
+
+//################################################################################
+function sendZabbix()
+  {
+    console.log('Send to Zabbix');
+
+    
+    //Grab the Service key of use Tim's default one!
+    var serviceKey = getParameterByName('service_key');
+    if (!serviceKey) serviceKey = "a36720292f404b75a1e0916687454497";
+
+    var eventObject = ' { ' +
+    '   "payload": {     ' +
+    '     "summary": "java.lang.OutOfMemoryError: Java heap space",   ' +
+    '     "source": "Zabbix",   ' +
+    '     "severity": "warning",   ' +
+    '     "location" : "prod",   ' +
+    '     "component": "Zabbix",   ' +
+    '     "group": "Zabbix,Production,eCommerce,Checkout-Tier",   ' +
+    '     "class": "Zabbix" },   ' +
+    '   	"routing_key": "' + serviceKey + '",   ' +
+    '   	"dedup_key": "Zabbixdedupkey",   ' +
+    '    	"event_action": "trigger",   ' +
+    '   	"client": "View in Zabbix",   ' +
+    '   	"client_url": "www.zabbix.com",   ' +
+    '   	"images": [   ' +
+    '   	    {   ' +
+    '   	      "src": "https://chart.googleapis.com/chart?chs=600x400&chd=t:6,2,9,5,2,5,7,4,8,2,1&cht=lc&chds=a&chxt=y&chm=D,0033FF,0,0,5,1",   ' +
+    '   	      "href": "https://acme.pagerduty.com",   ' +
+    '   	      "alt": "This is a sample link"  ' +
+    '   	  }  ' +
+    '   	]  ' +
+    '   }'
+
+
+    console.log(eventObject);
+
+    $.ajax({
+      method: "POST",
+      url: "https://events.pagerduty.com/v2/enqueue",
+      data: eventObject
+    })
+      .done(function( msg ) {
+        //alert( "Data Saved: " + msg );
+    });
+
+    return;
+  }
+//################################################################################
+
+
+//################################################################################
+function sendTicket()
+  {
+
+    console.log('Send Custoemr Helpdesk');
+
+    
+    //Grab the Service key of use Tim's default one!
+    var serviceKey = getParameterByName('service_key');
+    if (!serviceKey) serviceKey = "0be6f31ca091417f90824770e340e3ae";
+
+    var eventObject = ' { ' +
+    '   "payload": {     ' +
+    '     "summary": "Zendesk: Customer - Steve Barrett - Cannot complete Purchse of this awesome item",   ' +
+    '     "source": "Zendesk",   ' +
+    '     "severity": "warning",   ' +
+    '     "location" : "prod",   ' +
+    '     "component": "Zendesk",   ' +
+    '     "group": "Zendesk,Production,eCommerce,Checkout-Tier",   ' +
+    '     "class": "Zendesk" },   ' +
+    '   	"routing_key": "' + serviceKey + '",   ' +
+    '   	"dedup_key": "Prometheusdedupkey",   ' +
+    '    	"event_action": "trigger",   ' +
+    '   	"client": "View in Zendesk",   ' +
+    '   	"client_url": "www.Zendesk.com",   ' +
+    '   	"images": [   ' +
+    '   	    {   ' +
+    '   	      "src": "https://logz.io/wp-content/uploads/2017/03/memory-graph.png",   ' +
+    '   	      "href": "https://logz.io/wp-content/uploads/2017/03/memory-graph.png",   ' +
+    '   	      "alt": "This is a sample link"  ' +
+    '   	  }  ' +
+    '   	]  ' +
+    '   }'
+
+
+    console.log(eventObject);
+
+    $.ajax({
+      method: "POST",
+      url: "https://events.pagerduty.com/v2/enqueue",
+      data: eventObject
+    })
+      .done(function( msg ) {
+        //alert( "Data Saved: " + msg );
+    });
+
+    return;
+  }
+//################################################################################
+
+
+
+
+
 //################################################################################
  function sendZabbix()
   {
@@ -1033,6 +1152,116 @@ function sendLowRevenueWarning()
     return;
   }
 //################################################################################
+
+
+
+
+
+
+//################################################################################
+function sendZabbix()
+  {
+    console.log('Send to Zabbix');
+
+    
+    //Grab the Service key of use Tim's default one!
+    var serviceKey = getParameterByName('service_key');
+    if (!serviceKey) serviceKey = "a36720292f404b75a1e0916687454497";
+
+    var eventObject = ' { ' +
+    '   "payload": {     ' +
+    '     "summary": "java.lang.OutOfMemoryError: Java heap space",   ' +
+    '     "source": "Zabbix",   ' +
+    '     "severity": "warning",   ' +
+    '     "location" : "prod",   ' +
+    '     "component": "Zabbix",   ' +
+    '     "group": "Zabbix,Production,eCommerce,Checkout-Tier",   ' +
+    '     "class": "Zabbix" },   ' +
+    '   	"routing_key": "' + serviceKey + '",   ' +
+    '   	"dedup_key": "Zabbixdedupkey",   ' +
+    '    	"event_action": "trigger",   ' +
+    '   	"client": "View in Zabbix",   ' +
+    '   	"client_url": "www.zabbix.com",   ' +
+    '   	"images": [   ' +
+    '   	    {   ' +
+    '   	      "src": "https://chart.googleapis.com/chart?chs=600x400&chd=t:6,2,9,5,2,5,7,4,8,2,1&cht=lc&chds=a&chxt=y&chm=D,0033FF,0,0,5,1",   ' +
+    '   	      "href": "https://acme.pagerduty.com",   ' +
+    '   	      "alt": "This is a sample link"  ' +
+    '   	  }  ' +
+    '   	]  ' +
+    '   }'
+
+
+    console.log(eventObject);
+
+    $.ajax({
+      method: "POST",
+      url: "https://events.pagerduty.com/v2/enqueue",
+      data: eventObject
+    })
+      .done(function( msg ) {
+        //alert( "Data Saved: " + msg );
+    });
+
+    return;
+  }
+//################################################################################
+
+
+//################################################################################
+function sendChange()
+  {
+
+    console.log('Send Change Event');
+
+    
+    //Grab the Service key of use Tim's default one!
+    var serviceKey = getParameterByName('service_key');
+    if (!serviceKey) serviceKey = "c339228de0bd49d1b3f8c2231812efc7";
+
+    var MS_PER_MINUTE = 60000;
+    var releaseTime = new Date(Date.now() - 5 * MS_PER_MINUTE);
+
+    var eventObject = ' { ' +
+    '   "routing_key": "c339228de0bd49d1b3f8c2231812efc7", ' +
+    '   "payload": { ' +
+      '     "summary": "Update to eCommerce Front End - New SQL Update for stock update in Checkout", ' +
+      '        "timestamp": "' + releaseTime.toISOString() + '", ' +
+      '   "source": "prod-buildkite-defaultagent-i-0b148d1040d565540", ' +
+      '   "custom_details": { ' +
+        '     "build_state": "passed", ' +
+        '     "build_number": "220", ' +
+        '     "run_time": "1236s", ' +
+        '     "agent_id": "6b4300e4-3b2a-4515-b1a5-c8ec4325a5a8", ' +
+        '     "build_id": "1cf9efe1-a627-493c-b6f2-f4aa66987602"' +
+        '   } ' +
+      '   }, ' +
+      '   "links": [ ' +
+      '   { ' +
+        '   "href": "https://github.com/pagerduty/global-search-production/builds/220", ' +
+        '   "text": "View in Github" ' +
+        '   }  ' +
+        '   ] ' +
+    '   }'
+
+
+    console.log(eventObject);
+
+    $.ajax({
+      method: "POST",
+      url: "https://events.pagerduty.com/v2/change/enqueue",
+      data: eventObject
+    })
+      .done(function( msg ) {
+        //alert( "Data Saved: " + msg );
+    });
+
+    return;
+  }
+//################################################################################
+
+
+
 
 
 </script>
